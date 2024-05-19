@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 32%;
+  }
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2.5em;
+}
+
+.cont-perfil {
+    display: flex;
+    width: 40vw;
+    height: 42vw;
+    background-color: #4389e6;
+    justify-content: center;
+    text-justify: justify;
+    text-align: center;   
+    border-radius: 2%;  
+  }
+  
+.foto-de-perfil {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+  background-color: #fff;
+  margin-top: 1.5em;  
+}
+
+.datos{
+  margin-top: 1em;
+  color: #fff;
+  font-size: 20px;
+}
+
+.dato {
+  margin-top: .5em;
+}

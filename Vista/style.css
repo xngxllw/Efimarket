@@ -1,0 +1,554 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+  height: 15x;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Fondo de la pista de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(12, 82, 122, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5a
+  ); /* Color del botón de la barra de desplazamiento al pasar el cursor sobre él */
+}
+
+nav {
+  position: fixed; /* Fija la barra de navegación en la parte superior */
+  top: 0; /* La coloca en la parte superior de la ventana del navegador */
+  width: 100%; /* Ocupa todo el ancho de la ventana */
+  z-index: 99; /* Asegura que esté por encima de otros elementos */
+  /* Estilos adicionales */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  background-color: #9ec6fd;
+  -webkit-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* MENÚ HAMBURGUESA */
+nav .hamburger {
+  margin-right: auto;
+}
+
+nav .hamburger img {
+  max-width: 30px;
+}
+
+.hamburger-dropdown-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Oculta el menú fuera del área visible */
+  width: 30vh; /* Ancho del menú desplegable */
+  height: 100vh; /* Altura del menú desplegable */
+  background-color: #ffffff; /* Fondo gris sólido */
+  transition: left 0.7s ease; /* Cambia la propiedad de transición a "left" */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  overflow-y: auto; /* Agrega desplazamiento vertical si el contenido es demasiado largo */
+}
+
+.hamburger-dropdown-menu.show {
+  left: 0; /* Muestra el menú desplazándolo hacia la derecha */
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #3a7bf5;
+  font-size: 24px;
+}
+
+.close-icon:hover {
+  color: #023e7e;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.menu-logo {
+  width: 50px; /* Ancho de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-right: 10px; /* Espacio entre la imagen y la "X" */
+  cursor: pointer;
+}
+
+.close-icon {
+  cursor: pointer;
+  color: #3a7bf5;
+  font-size: 24px;
+}
+
+.menu-divider {
+  border: none;
+  border-top: 1px solid #ccc; /* Color y grosor de la línea */
+  margin-top: 10px; /* Espacio entre la imagen y la línea */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  display: none; /* Por defecto, oculto */
+}
+
+/* Otros estilos para el menú desplegable */
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 38%;
+}
+
+nav .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+nav .inicio {
+  margin-left: auto; /* Mueve el tercer elemento a la derecha del todo */
+  text-decoration: none;
+}
+
+.link:hover {
+  color: rgb(53, 181, 255);
+}
+.cuerpo {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+form {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 50px 35px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 380px;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ofertas {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.ofertas img:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.ofertas a {
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.oferta {
+  width: 280px;
+  height: 280px;
+  border-radius: 30px;
+  margin: 10px 20px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: auto; /* Quitamos el ancho mínimo */
+  left: auto; /* Quitamos la posición izquierda */
+  right: 0; /* Movemos el menú a la derecha */
+  transform: none; /* Quitamos cualquier transformación */
+}
+
+.user-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(
+    100%
+  ); /* Alinea el recuadro debajo del icono de usuario con un espacio adicional */
+  right: 0; /* Ajusta la posición del recuadro hacia la derecha */
+  background-color: #fff; /* Color de fondo del recuadro */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1; /* Asegura que esté por encima de otros elementos */
+  border-radius: 5px; /* Bordes redondeados */
+  min-width: 150px; /* Ancho mínimo del menú desplegable */
+  transform: translateX(-20%); /* Desplaza el recuadro hacia la izquierda */
+}
+
+.user-icon:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap; /* Evita que el texto se ajuste automáticamente */
+  border-radius: 5px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.fa-user-circle {
+  color: black; /* Color del icono de usuario */
+  font-size: 30px; /* Tamaño del icono */
+  padding: 10px;
+}
+
+.fa-bars {
+  color: #000;
+  font-size: 30px;
+  margin-left: 7px;
+}
+
+.fa-bars:hover {
+  color: #3a7bf5;
+}
+
+.fa-user-circle:hover {
+  color: #3a7bf5;
+}
+
+.user-cart {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon,
+.cart-icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.fa-map-marker-alt {
+  font-size: 23px;
+  padding: 10px;
+}
+
+.fa-map-marker-alt:hover {
+  color: #3a7bf5;
+}
+.cart-icon::before {
+  content: "";
+  position: absolute;
+  height: 30px; /* Ajusta según tu necesidad */
+  width: 1px;
+  background-color: #000; /* Color de la línea */
+  left: -5px; /* Ajusta según tu necesidad */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cont-busq {
+  margin-top: 60px;
+  flex: 1; /* Ocupa el espacio restante */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.barra {
+  width: 100%; /* Ajusta el ancho de la barra de búsqueda */
+  max-width: 800px; /* Limita el ancho máximo de la barra de búsqueda */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc; /* Color del borde por defecto */
+  transition: border-color 0.3s; /* Transición suave para el cambio de color del borde */
+}
+
+.barra:focus {
+  outline: none; /* Elimina el borde predeterminado al enfocar */
+}
+
+.barra:focus {
+  border-color: #007bff; /* Cambia el color del borde al enfocarse */
+}
+
+.barra::placeholder {
+  font-size: 17px; /* Tamaño de fuente del placeholder */
+}
+
+.link:hover {
+  color: rgb(53, 181, 255);
+}
+.slide {
+  position: relative;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+  margin-top: 26px;
+}
+.slide-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+}
+
+.slide-open:checked + .slide-item {
+  position: static;
+  opacity: 100;
+}
+.slide-item {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
+  width: 100%;
+  height: 100%;
+  background-image: url(images/panaderiaAvila.png);
+
+  background-position-x: center;
+}
+.slide-item img {
+  display: block;
+  object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
+  max-width: 100%;
+  height: auto;
+}
+.slide-control {
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 40px;
+  height: 40px;
+  line-height: 35px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  cursor: pointer;
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  text-align: center;
+  width: 40px;
+  z-index: 10;
+}
+.slide-control.prev {
+  left: 2%;
+}
+.slide-control.next {
+  right: 2%;
+}
+.slide-control:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: #aaaaaa;
+}
+#slide-1:checked ~ .control-1,
+#slide-2:checked ~ .control-2,
+#slide-3:checked ~ .control-3 {
+  display: block;
+}
+.slide-indicador {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+.slide-indicador li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.slide-circulo {
+  color: #828282;
+  cursor: pointer;
+  display: block;
+  font-size: 35px;
+}
+.slide-circulo:hover {
+  color: #aaaaaa;
+}
+#slide-1:checked ~ .control-1 ~ .slide-indicador li:nth-child(1) .slide-circulo,
+#slide-2:checked ~ .control-2 ~ .slide-indicador li:nth-child(2) .slide-circulo,
+#slide-3:checked
+  ~ .control-3
+  ~ .slide-indicador
+  li:nth-child(3)
+  .slide-circulo {
+  color: #428bca;
+}
+#titulo {
+  width: 100%;
+  position: absolute;
+  padding: 0px;
+  margin: 0px auto;
+  text-align: center;
+  font-size: 27px;
+  color: rgba(255, 255, 255, 1);
+  z-index: 9999;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
+    -1px 0px 2px rgba(255, 255, 255, 0);
+}
+
+.titulos {
+  text-align: center;
+}
+
+.unete {
+  display: flex;
+  align-items: center;
+  margin-top: 290px;
+  justify-content: center;
+}
+
+.unete a {
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.unete h1 {
+  padding: 20px;
+}
+
+.unete img {
+  width: 450px;
+}
+
+/* Estilo para el formulario */
+form {
+  width: 300px; /* Ancho del formulario */
+  margin: 0 auto; /* Centrar el formulario horizontalmente */
+  padding: 20px; /* Espaciado interno */
+  background-color: #f4f4f4; /* Color de fondo */
+  border-radius: 15px; /* Bordes redondeados */
+  margin-top: 35px;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Ancho completo */
+  height: 55px;
+  padding: 10px; /* Espaciado interno */
+  margin-bottom: 10px; /* Espaciado entre campos */
+  border: 1px solid #ccc; /* Borde del campo */
+  border-radius: 15px; /* Bordes redondeados */
+  box-sizing: border-box; /* Incluir el relleno y el borde en el ancho total */
+}
+
+/* Estilo para el botón de enviar */
+input[type="submit"] {
+  width: 100%; /* Ancho completo */
+  padding: 10px; /* Espaciado interno */
+  background-color: #578ace; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+}
+
+/* Estilo para el botón de enviar al pasar el cursor sobre él */
+input[type="submit"]:hover {
+  background-color: #2c6979; /* Cambiar el color de fondo al pasar el cursor */
+}
+
+.tipo-usuario-label {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #ddd; /* Color de fondo gris claro */
+  cursor: pointer;
+}
+
+/* Estilos para cuando el label está seleccionado */
+.tipo-usuario-label input[type="radio"]:checked + span {
+  background-color: #007bff; /* Color de fondo azul cuando seleccionado */
+  color: #fff; /* Color del texto blanco cuando seleccionado */
+}
+
+/* Ocultar el input radio */
+.tipo-usuario-label input[type="radio"] {
+  display: none;
+}
+
+.imagenes {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Para centrar las imágenes horizontalmente */
+  gap: 1px; /* Espacio entre las imágenes */
+}
+
+.categorias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.categoria {
+  margin: auto 25px;
+}
+
+.categoria img {
+  width: 13em;
+  border-radius: 20px;
+}
+
+.categoria img:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.categoria p {
+  cursor: pointer;
+}

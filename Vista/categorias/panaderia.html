@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panaderías, Reposterías y Cafeterías</title>
+    <script src="https://kit.fontawesome.com/a44f9ce7b1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="categorias.css">
+    <link rel="icon" href="">
+    <script src="../js/index.js"></script>
+</head>
+<body>
+    <nav>
+        <a class="hamburger" href="#" onclick="toggleHamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
+       <a class="logo" href="../index.html"><img width="260" src="../images/letras.png" alt=""></a>
+       <div class="user-icon" onclick="toggleMenu()">
+           <i class="fas fa-user-circle"></i>
+           <div class="dropdown-menu" id="dropdownMenu">
+               <a href="../login.html">Iniciar Sesión</a>
+               <a href="../registro.html">Registrarse</a>
+           </div>
+       </div>
+       <div class="cart-icon">
+           <i class="fas fa-map-marker-alt"></i>
+       </div>
+       <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
+        <div class="menu-header">
+            <img src="../carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
+            <div class="close-icon" onclick="closeMenu()">X</div> <!-- Icono de "X" con evento de clic -->
+        </div>
+        <hr class="menu-divider">
+    </div>
+   </div>
+   <div id="overlay"></div> <!--para oscurecer la pagina cuando aparezca el menu hamburguesa-->
+   </nav>
+   <header>
+    <h1>Panaderías, reposterías y cafeterías en el sector</h1>
+   </header>
+   <h2 class="subtitulo">Abiertos las 24 horas</h2>
+    <div class="contenedor-negocios">
+        <div class="cont-negocios">
+            <a href="#" class="negocio">
+                <img src="img/ricurasmilagrosa.png" alt="">
+                <h3 class="nombreNegocio">Ricuras La Milagrosa</h3>
+                <div class="categoriaNegocio">Panadería y Repostería</div>
+            </a>
+            <a href="#" class="negocio">
+                <img src="img/deliciasloreto.png" alt="">
+                <h3 class="nombreNegocio">Delicias Loreto</h3>
+                <div class="categoriaNegocio">Panadería y Repostería</div>
+            </a>
+        </div>
+   </div>
+   <h2 class="subtitulo">¿Sin energía? Toma café</h2>
+</body>
+</html>

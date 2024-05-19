@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión en Efimarket</title>
+    <link rel="stylesheet" href="form.css">
+    <script src="https://kit.fontawesome.com/a44f9ce7b1.js" crossorigin="anonymous"></script>>
+    <script src="js/index.js"></script>
+    <link rel="icon" type="image/png" href="carrito.png">
+
+</head>
+<body>
+    <nav>
+        <a class="hamburger link" href="#" onclick="toggleHamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
+       <a class="logo link" href="index.html"><img width="260" src="images/letras.png" alt=""></a>
+       <div class="user-icon" onclick="toggleMenu()">
+           <i class="fas fa-user-circle"></i>
+           <div class="dropdown-menu" id="dropdownMenu">
+               <a href="login.html">Iniciar Sesión</a>
+               <a href="registro.html">Registrarse</a>
+           </div>
+       </div>
+       <div class="cart-icon">
+           <i class="fas fa-map-marker-alt"></i>
+       </div>
+   </div>
+   </nav>
+   <br>   
+   <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
+       <div class="menu-header">
+           <img src="carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
+           <div class="close-icon" onclick="closeMenu()">X</div> <!-- Icono de "X" con evento de clic -->
+       </div>
+       <hr class="menu-divider">
+   </div>
+   <div id="overlay"></div>
+    <div class="container">
+        <div class="card">
+            <div class="card-image">    
+                <h2 class="card-heading">
+                    Bienvenido de vuelta
+                    <small>Inicia Sesión en Efimarket</small>
+                </h2>
+            </div>
+            <form action="../Controlador/iniciaSesion.php" method="post" class="card-form">
+                <input type="hidden" name="accion" value="iniciar_sesion">
+                <div class="input">
+                    <input type="text" id="correo" name="correo" class="input-field" required/>
+                    <label for="correo" class="input-label">Correo</label>
+                </div>
+                <div class="input">
+                    <input type="password" class="input-field" id="contrasena" name="contrasena" required/>
+                    <label for="contrasena" class="input-label">Ingresa tu Contraseña</label>
+                </div>          
+
+                <div class="action">
+                    <button type="submit" class="action-button">Continúa</button>
+                </div>
+            </form>
+            <div class="card-info">
+                <p>¿Aún no tienes una cuenta en Efimarket? <a href="registro.html">¡Registrate!</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
