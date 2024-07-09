@@ -50,10 +50,18 @@
                     <div class="horario"><i class="fa-solid fa-clock"></i><span>Sabados y Domingos</span></div>
                     <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Antares</span></div>
                 </div>
+                <a href="#" class="negocio">
+                <img src="img/crazymechanics.jpg" alt="">
+                <h3 class="nombreNegocio">Crazy Mechanics</h3>
+                <div class="categoriaNegocio">Taller de Motos</div>
+                <div class="info-negocio">
+                    <div class="horario"><i class="fa-solid fa-clock"></i><span>8:00am a 7:00pm</span></div>
+                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Cra 30 #32 17</span></div>
+                </div>
             </a>
 
         </div>
-    </div>
+    </div>  
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
