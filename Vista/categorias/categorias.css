@@ -1,0 +1,137 @@
+/* CSS modificado para el desplazamiento horizontal */
+
+/* Importamos la fuente desde Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+/* Aplicamos la fuente a todos los elementos */
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+/* Estilos originales para el encabezado */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centramos horizontalmente */
+  margin: 20px 0 0 0;
+  padding: 10px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+  color: #0098fd;
+}
+
+h1 {
+  margin-top: 45px;
+}
+
+/* Estilos originales para las líneas divisorias */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #a3a3a3;
+  margin: 20px 0;
+}
+
+/* Estilos originales para los subtítulos */
+.subtitulo {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+/* Estilos originales para el contenedor de negocios */
+.cont-negocios {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto; /* Permitimos el desplazamiento horizontal */
+  cursor: grab; /* Cambiamos el cursor al estilo de agarre */
+}
+
+/* Estilos originales para cada negocio */
+.negocio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0.5px solid #b3b3b3;
+  width: 210px;
+  height: 290px;
+  padding: 5px;
+  border-radius: 18px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000;
+  flex: 0 0 auto;
+  justify-content: center;
+}
+
+@media (max-width: 474px) {
+  h1 {
+    margin-top: 40px;
+    font-size: 25px;
+  }
+  .cont-negocios {
+    justify-content: start;
+    font-size: 15px;
+  }
+
+  .negocio {
+    width: 160px; /* Nuevo ancho para pantallas pequeñas */
+    height: 210px; /* Nueva altura para pantallas pequeñas */
+    margin-left: 5px;
+  }
+  .negocio img {
+    width: 100px;
+    height: 90px;
+  }
+}
+
+.negocio img {
+  max-width: 140px;
+  max-height: 130px;
+  border-radius: 10px;
+}
+
+.nombreNegocio {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.categoriaNegocio {
+  background-color: #74c4fa;
+  font-size: 13px;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 2px 0;
+}
+
+/* Estilos para cuando se pasa el cursor sobre el negocio */
+.negocio:hover {
+  border-color: #68bef7;
+  transition: border-color 0.5s ease;
+}
+
+/* Estilos para el cursor mientras se arrastra */
+.cont-negocios.grabbing {
+  cursor: grabbing;
+}
+
+/* Desactivamos la selección de texto mientras se arrastra */
+.cont-negocios.grabbing * {
+  user-select: none;
+}
+
+.info-negocio {
+  display: flex;
+  flex-direction: column;
+  color: #0098fd;
+}
+
+.fa-clock {
+  margin-right: 10px;
+}
+
+.fa-location-dot {
+  margin-right: 10px;
+}

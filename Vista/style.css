@@ -1,0 +1,642 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 7px; /* Ancho de la barra de desplazamiento */
+  height: 15x;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Fondo de la pista de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(12, 82, 122, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5a
+  ); /* Color del botón de la barra de desplazamiento al pasar el cursor sobre él */
+}
+
+nav {
+  position: fixed; /* Fija la barra de navegación en la parte superior */
+  top: 0; /* La coloca en la parte superior de la ventana del navegador */
+  width: 100%; /* Ocupa todo el ancho de la ventana */
+  z-index: 99; /* Asegura que esté por encima de otros elementos */
+  /* Estilos adicionales */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #9ec6fd;
+  -webkit-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+nav .hamburger {
+  margin-right: auto;
+}
+
+nav .hamburger img {
+  max-width: 30px;
+}
+
+nav .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+nav .user-icon {
+  margin-left: auto;
+  position: relative;
+}
+
+nav .inicio {
+  margin-left: auto;
+  text-decoration: none;
+}
+
+.hamburger-dropdown-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Oculta el menú fuera del área visible */
+  width: 30vh; /* Ancho del menú desplegable */
+  height: 100vh; /* Altura del menú desplegable */
+  background-color: #ffffff; /* Fondo gris sólido */
+  transition: left 0.7s ease; /* Cambia la propiedad de transición a "left" */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  overflow-y: auto; /* Agrega desplazamiento vertical si el contenido es demasiado largo */
+}
+
+.hamburger-dropdown-menu.show {
+  left: 0; /* Muestra el menú desplazándolo hacia la derecha */
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #3a7bf5;
+  font-size: 24px;
+}
+
+.close-icon:hover {
+  color: #023e7e;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.menu-logo {
+  width: 50px; /* Ancho de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-right: 10px; /* Espacio entre la imagen y la "X" */
+  cursor: pointer;
+}
+
+.close-icon {
+  cursor: pointer;
+  color: #3a7bf5;
+  font-size: 24px;
+}
+
+.menu-divider {
+  border: none;
+  border-top: 1px solid #ccc; /* Color y grosor de la línea */
+  margin-top: 10px; /* Espacio entre la imagen y la línea */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  display: none; /* Por defecto, oculto */
+}
+
+/* Otros estilos para el menú desplegable */
+
+.link:hover {
+  color: rgb(53, 181, 255);
+}
+.cuerpo {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ofertas {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.ofertas img {
+  width: 200px;
+  height: 200px;
+}
+
+.ofertas img:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.ofertas a {
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.oferta {
+  width: 280px;
+  height: 280px;
+  border-radius: 30px;
+  margin: 10px 20px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: auto; /* Quitamos el ancho mínimo */
+  left: auto; /* Quitamos la posición izquierda */
+  right: 0; /* Movemos el menú a la derecha */
+  transform: none; /* Quitamos cualquier transformación */
+}
+
+.user-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(
+    100%
+  ); /* Alinea el recuadro debajo del icono de usuario con un espacio adicional */
+  right: 0; /* Ajusta la posición del recuadro hacia la derecha */
+  background-color: #fff; /* Color de fondo del recuadro */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1; /* Asegura que esté por encima de otros elementos */
+  border-radius: 5px; /* Bordes redondeados */
+  min-width: 150px; /* Ancho mínimo del menú desplegable */
+  transform: translateX(-20%); /* Desplaza el recuadro hacia la izquierda */
+}
+
+.user-icon:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap; /* Evita que el texto se ajuste automáticamente */
+  border-radius: 5px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.fa-user-circle {
+  color: black; /* Color del icono de usuario */
+  font-size: 30px; /* Tamaño del icono */
+  padding: 10px;
+}
+
+.fa-bars {
+  color: #000;
+  font-size: 30px;
+  margin-left: 7px;
+}
+
+.fa-bars:hover {
+  color: #3a7bf5;
+}
+
+.fa-user-circle:hover {
+  color: #3a7bf5;
+}
+
+.user-cart {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon,
+.cart-icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.fa-map-marker-alt {
+  font-size: 23px;
+  padding: 10px;
+}
+
+.fa-map-marker-alt:hover {
+  color: #3a7bf5;
+}
+.cart-icon::before {
+  content: "";
+  position: absolute;
+  height: 30px; /* Ajusta según tu necesidad */
+  width: 1px;
+  background-color: #000; /* Color de la línea */
+  left: -5px; /* Ajusta según tu necesidad */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cont-busq {
+  margin-top: 60px;
+  flex: 1; /* Ocupa el espacio restante */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.barra {
+  width: 100%; /* Ajusta el ancho de la barra de búsqueda */
+  max-width: 800px; /* Limita el ancho máximo de la barra de búsqueda */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc; /* Color del borde por defecto */
+  transition: border-color 0.3s; /* Transición suave para el cambio de color del borde */
+}
+
+.barra:focus {
+  outline: none; /* Elimina el borde predeterminado al enfocar */
+}
+
+.barra:focus {
+  border-color: #007bff; /* Cambia el color del borde al enfocarse */
+}
+
+.barra::placeholder {
+  font-size: 17px; /* Tamaño de fuente del placeholder */
+}
+
+.link:hover {
+  color: rgb(53, 181, 255);
+}
+.slide {
+  position: relative;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+  margin-top: 26px;
+}
+
+.slide-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+}
+
+.slide-open:checked + .slide-item {
+  position: static;
+  opacity: 100;
+}
+
+.slide-item {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-item img {
+  display: block;
+  object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+  height: 100%; /* Asegura que la imagen ocupe todo el alto del contenedor */
+}
+
+.slide-control {
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 40px;
+  height: 40px;
+  line-height: 35px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  text-align: center;
+  width: 40px;
+  z-index: 10;
+}
+
+.slide-control.prev {
+  left: 2%;
+}
+
+.slide-control.next {
+  right: 2%;
+}
+
+.slide-control:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: #aaaaaa;
+}
+
+#slide-1:checked ~ .control-1,
+#slide-2:checked ~ .control-2,
+#slide-3:checked ~ .control-3 {
+  display: block;
+}
+
+.slide-indicador {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+.slide-indicador li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slide-circulo {
+  color: #828282;
+  cursor: pointer;
+  display: block;
+  font-size: 35px;
+}
+
+.slide-circulo:hover {
+  color: #aaaaaa;
+}
+
+#slide-1:checked ~ .control-1 ~ .slide-indicador li:nth-child(1) .slide-circulo,
+#slide-2:checked ~ .control-2 ~ .slide-indicador li:nth-child(2) .slide-circulo,
+#slide-3:checked
+  ~ .control-3
+  ~ .slide-indicador
+  li:nth-child(3)
+  .slide-circulo {
+  color: #428bca;
+}
+
+#titulo {
+  width: 100%;
+  position: absolute;
+  padding: 0px;
+  margin: 0px auto;
+  text-align: center;
+  font-size: 27px;
+  color: rgba(255, 255, 255, 1);
+  z-index: 9999;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
+    -1px 0px 2px rgba(255, 255, 255, 0);
+}
+
+.titulos {
+  text-align: center;
+}
+
+.unete {
+  display: flex;
+  align-items: center;
+  margin-top: 290px;
+  justify-content: center;
+}
+
+.unete a {
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.unete h1 {
+  padding: 20px;
+}
+
+.unete img {
+  width: 450px;
+}
+
+/* Estilo para el formulario */
+
+/* Estilo para el botón de enviar al pasar el cursor sobre él */
+
+.imagenes {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Para centrar las imágenes horizontalmente */
+  gap: 1px; /* Espacio entre las imágenes */
+}
+
+.categorias {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-x: hidden; /* Permitimos el desplazamiento horizontal */
+  cursor: grab; /* Cambiamos el cursor al estilo de agarre */
+  overflow-y: hidden;
+}
+@media (max-width: 1583px) {
+  .categorias p {
+    display: none;
+  }
+}
+
+@media (max-width: 1486px) {
+  .categorias {
+    justify-content: start;
+  }
+  .oferta img {
+    width: 150px;
+    height: 150px;
+  }
+}
+.categoria {
+  margin: auto 25px;
+}
+
+.categoria img {
+  width: 7.5em;
+  border-radius: 20px;
+}
+
+.categoria img:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+.categoria p {
+  cursor: pointer;
+}
+
+.lista-menu {
+  padding-left: 10px;
+}
+
+.elementos-menu {
+  list-style-type: none;
+}
+.elementos-menu a {
+  text-decoration: none; /* Remove default underline */
+  position: relative; /* Required for the absolute positioning of ::after */
+  color: black; /* Set the text color */
+  display: inline-block; /* Ensure the element is inline-block */
+}
+
+.elementos-menu a:hover {
+  color: #3a7bf5;
+}
+
+.elementos-menu a::after {
+  content: ""; /* Create the pseudo-element */
+  position: absolute; /* Position it absolutely */
+  width: 0; /* Initial width of the underline */
+  height: 2px; /* Height of the underline */
+  bottom: -2px; /* Position it below the text */
+  left: 0; /* Start from the left */
+  background-color: #3a7bf5;
+  transition: width 0.3s ease-in-out; /* Transition effect for the width */
+}
+
+.elementos-menu a:hover::after {
+  width: 100%; /* On hover, set the width to 100% */
+}
+
+.contenedor-busq {
+  width: 70vw;
+  margin: 15px auto 20px; /* Ajuste del margen superior para bajar la barra de búsqueda */
+}
+
+.search-input-box {
+  width: 70vw; /* Ancho ajustado para que no sea demasiado grande */
+  background-color: #35619e;
+  border-radius: 5px;
+  position: relative;
+  color: #f5f6f4;
+  box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.12);
+  margin-top: 10px; /* Ajustamos este margen superior para que la barra se desplace hacia abajo */
+}
+
+.search-input-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  height: 55px;
+  padding-left: 1px;
+  font-size: 18px;
+}
+
+.icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #0d141f;
+}
+
+/* Contenedor de sugerencias */
+.container-suggestions {
+  max-height: 280px;
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.search-input-box.active .container-suggestions {
+  opacity: 1;
+  pointer-events: auto;
+  padding: 10px 8px;
+  display: block;
+}
+
+.search-input-box.active .container-suggestions li {
+  display: block;
+}
+
+.container-suggestions li {
+  list-style: none;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  display: none;
+}
+
+.container-suggestions li:hover {
+  background-color: #414b57;
+}
+
+#map {
+  margin: 20px auto;
+  width: 90%;
+  height: 350px;
+}
+
+.cont-negocios.grabbing {
+  cursor: grabbing;
+}
+
+/* Desactivamos la selección de texto mientras se arrastra */
+.cont-negocios.grabbing * {
+  user-select: none;
+}

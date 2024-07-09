@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+body,
+nav {
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+  height: 15x;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Fondo de la pista de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(12, 82, 122, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5a
+  ); /* Color del botón de la barra de desplazamiento al pasar el cursor sobre él */
+}
+
+.hamburger-dropdown-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Oculta el menú fuera del área visible */
+  width: 30vh; /* Ancho del menú desplegable */
+  height: 100vh; /* Altura del menú desplegable */
+  background-color: #ffffff; /* Fondo gris sólido */
+  transition: left 0.7s ease; /* Cambia la propiedad de transición a "left" */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  overflow-y: auto; /* Agrega desplazamiento vertical si el contenido es demasiado largo */
+}
+
+.hamburger-dropdown-menu.show {
+  left: 0; /* Muestra el menú desplazándolo hacia la derecha */
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #3a7bf5;
+  font-size: 24px;
+}
+
+.close-icon:hover {
+  color: #023e7e;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.menu-logo {
+  width: 50px; /* Ancho de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-right: 10px; /* Espacio entre la imagen y la "X" */
+  cursor: pointer;
+}
+
+.close-icon {
+  cursor: pointer;
+  color: #3a7bf5;
+  font-size: 24px;
+}
+
+.menu-divider {
+  border: none;
+  border-top: 1px solid #ccc; /* Color y grosor de la línea */
+  margin-top: 10px; /* Espacio entre la imagen y la línea */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  display: none; /* Por defecto, oculto */
+}
+
+/* Otros estilos para el menú desplegable */
+
+.link:hover {
+  color: rgb(53, 181, 255);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(
+    100%
+  ); /* Alinea el recuadro debajo del icono de usuario con un espacio adicional */
+  right: 0; /* Ajusta la posición del recuadro hacia la derecha */
+  background-color: #fff; /* Color de fondo del recuadro */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1; /* Asegura que esté por encima de otros elementos */
+  border-radius: 5px; /* Bordes redondeados */
+  min-width: 150px; /* Ancho mínimo del menú desplegable */
+  transform: translateX(-20%); /* Desplaza el recuadro hacia la izquierda */
+}
+
+.user-icon:hover .dropdown-menu {
+  display: block; /* Muestra el menú desplegable cuando se pasa el cursor sobre el icono de usuario */
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap; /* Evita que el texto se ajuste automáticamente */
+  border-radius: 5px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.fa-user-circle {
+  color: black; /* Color del icono de usuario */
+  font-size: 4em; /* Tamaño del icono */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: auto; /* Quitamos el ancho mínimo */
+  left: auto; /* Quitamos la posición izquierda */
+  right: 0; /* Movemos el menú a la derecha */
+  transform: none; /* Quitamos cualquier transformación */
+}
+
+.user-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(
+    100% + 10px
+  ); /* Alinea el recuadro debajo del icono de usuario con un espacio adicional */
+  right: 0; /* Ajusta la posición del recuadro hacia la derecha */
+  background-color: #fff; /* Color de fondo del recuadro */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1; /* Asegura que esté por encima de otros elementos */
+  border-radius: 5px; /* Bordes redondeados */
+  min-width: 150px; /* Ancho mínimo del menú desplegable */
+  transform: translateX(-30%); /* Desplaza el recuadro hacia la izquierda */
+}
+
+.user-icon:hover .dropdown-menu {
+  display: block; /* Muestra el menú desplegable cuando se pasa el cursor sobre el icono de usuario */
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap; /* Evita que el texto se ajuste automáticamente */
+}
+
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+}
+
+.fa-user-circle {
+  color: black; /* Color del icono de usuario */
+  font-size: 30px; /* Tamaño del icono */
+  padding: 10px;
+}
+
+.fa-bars {
+  color: #000;
+  font-size: 30px;
+  margin-left: 7px;
+}
+
+.fa-bars:hover {
+  color: #3a7bf5;
+}
+
+.fa-user-circle:hover {
+  color: #3a7bf5;
+}
+
+.user-cart {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon,
+.cart-icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.fa-map-marker-alt {
+  font-size: 23px;
+  padding: 10px;
+}
+
+.fa-map-marker-alt:hover {
+  color: #3a7bf5;
+}
+.cart-icon::before {
+  content: "";
+  position: absolute;
+  height: 30px; /* Ajusta según tu necesidad */
+  width: 1px;
+  background-color: #000; /* Color de la línea */
+  left: -5px; /* Ajusta según tu necesidad */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body {
+  line-height: 1.5;
+  background-color: #f1f3fb;
+}
+
+input {
+  appearance: none;
+  border-radius: 0;
+}
+
+.card {
+  margin: 70px auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 425px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.card-image {
+  border-radius: 8px;
+  overflow: hidden;
+  padding-bottom: 65%;
+  background-image: url("images/fondo_form.jpg");
+  background-repeat: no-repeat;
+  background-size: 150%;
+  background-position: 0 5%;
+  position: relative;
+}
+
+.card-heading {
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  right: 10%;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.222;
+  small {
+    display: block;
+    font-size: 0.75em;
+    font-weight: 400;
+    margin-top: 0.25em;
+  }
+}
+
+.card-form {
+  padding: 2rem 1rem 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 1.5rem;
+  & + .input {
+    margin-top: 1.5rem;
+  }
+}
+
+.input-label {
+  color: #8597a3;
+  position: absolute;
+  top: 1.5rem;
+  transition: 0.25s ease;
+}
+
+.input-field {
+  border: 0;
+  z-index: 1;
+  background-color: transparent;
+  border-bottom: 2px solid #eee;
+  font: inherit;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
+  &:focus,
+  &:valid {
+    outline: 0;
+    border-bottom-color: #3a7bf5;
+    & + .input-label {
+      color: #3a7bf5;
+      transform: translateY(-1.5rem);
+    }
+  }
+}
+
+.action {
+  margin-top: 2rem;
+}
+
+.action-button {
+  font: inherit;
+  font-size: 1.25rem;
+  padding: 1em;
+  width: 100%;
+  font-weight: 500;
+  background-color: #3a7bf5;
+  border-radius: 6px;
+  color: #fff;
+  border: 0;
+  &:focus {
+    outline: 0;
+  }
+  cursor: pointer;
+}
+.action-button:hover {
+  background-color: #2c60c0;
+}
+
+.card-info {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #8597a3;
+  a {
+    display: block;
+    color: #3a7bf5;
+    text-decoration: none;
+  }
+}
+
+.card-info a:hover {
+  color: #2c60c0;
+}
+
+.seleccion {
+  position: relative;
+  margin-bottom: 20px; /* Ajusta este margen según sea necesario */
+}
+
+.seleccion label {
+  display: block;
+}
+
+.seleccion select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.password-toggle i {
+  font-size: 1.2rem;
+  color: #8597a3;
+}
+
+.password-toggle i:hover {
+  color: #2c60c0;
+}

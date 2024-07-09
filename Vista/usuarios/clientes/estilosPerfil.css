@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+/* Estilos para la barra lateral y el contenido principal */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #f0f5f9; /* Azul claro */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.logo img {
+  max-width: 100%;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.menu li {
+  margin-bottom: 10px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #2c3e50; /* Color de texto oscuro */
+  font-weight: bold;
+  transition: color 0.3s ease;
+  display: block;
+}
+
+.menu a:hover {
+  color: #1172d3; /* Azul más intenso al pasar el mouse */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 24px;
+  color: #2c3e50; /* Color de texto oscuro */
+  margin: 0;
+  text-align: center;
+}
+
+header a {
+  text-decoration: none;
+  color: #3498db; /* Azul */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+header a:hover {
+  color: #1e90ff; /* Azul más intenso al pasar el mouse */
+}
+
+.content {
+  background-color: #fff; /* Fondo blanco para el contenido */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  width: 800px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+button[type="submit"] {
+  background-color: #3498db; /* Azul */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+  background-color: #1e90ff; /* Azul más intenso al pasar el mouse */
+}
