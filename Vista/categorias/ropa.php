@@ -39,6 +39,18 @@
     <header>
         <h1>Encuentra tu tienda de ropa en el sector de Loreto</h1>
     </header>
+    <div class="contenedor-negocios">
+        <div class="cont-negocios">
+            <a href="#" class="negocio">
+                <img src="img/saturnmerch.jpeg" alt="">
+                <h3 class="nombreNegocio">Saturn Merch</h3>
+                <div class="categoriaNegocio">Tienda de Ropa</div>
+                <div class="info-negocio">
+                    <div class="horario"><i class="fa-solid fa-clock"></i><span>24/7</span></div>
+                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Virtual</span></div>
+                </div>
+            </a>
+            <div />
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
@@ -71,18 +83,7 @@
             <li class="elementos-menu"><a href="ropa.php">Tienda de ropa</a></li>
         </ul>
     </div>
-    <div class="contenedor-negocios">
-        <div class="cont-negocios">
-            <a href="#" class="negocio">
-                <img src="img/saturnmerch.jpeg" alt="">
-                <h3 class="nombreNegocio">Saturn Merch</h3>
-                <div class="categoriaNegocio">Tienda de Ropa</div>
-                <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>24/7</span></div>
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Virtual</span></div>
-                </div>
-            </a>
-            <div />
+
             <div id="overlay"></div> <!--para oscurecer la pagina cuando aparezca el menu hamburguesa-->
             <script src="../js/index.js"></script>
 </body>
