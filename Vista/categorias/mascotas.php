@@ -40,6 +40,19 @@
     <header>
         <h1>Encuentra todo para tu mascota en el sector Loreto</h1>
     </header>
+    <div class="contenedor-negocios">
+        <div class="cont-negocios">
+            <a href="#" class="negocio">
+                <img src="img/esquinacanina.jpeg" alt="">
+                <h3 class="nombreNegocio">Esquina Canina</h3>
+                <div class="categoriaNegocio">Mascotas</div>
+                <div class="info-negocio">
+                    <div class="horario"><i class="fa-solid fa-clock"></i><span>24/7</span></div>
+                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>El Plan</span></div>
+                </div>
+            </a>
+        </div>
+    </div>../
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
