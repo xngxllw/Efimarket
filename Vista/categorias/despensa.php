@@ -40,6 +40,19 @@
     <header>
         <h1>Encuentra tu despensa en el sector Loreto</h1>
     </header>
+    <div class="contenedor-negocios">
+        <div class="cont-negocios">
+            <a href="#" class="negocio">
+                <img src="img/mercadola30.jpeg" alt="">
+                <h3 class="nombreNegocio">Mercado la 30</h3>
+                <div class="categoriaNegocio">Supermercado</div>
+                <div class="info-negocio">
+                    <div class="horario"><i class="fa-solid fa-clock"></i><span>7:30am a 9:30pm</span></div>
+                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Crr 30 #32-68</span></div>
+                </div>
+            </a>
+        </div>
+    </div>../
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->

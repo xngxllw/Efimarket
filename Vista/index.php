@@ -155,7 +155,7 @@
             <p>Ropa y Accesorios</p>
         </div>
         <div class="categoria">
-            <a href="categorias/mascotas.php"><img src="images/frutas.jpg" alt=""></a>
+            <a href="categorias/frutas.php"><img src="images/frutas.jpg" alt=""></a>
             <p>Frutas y Verduras</p>
         </div>
     </div>
