@@ -49,9 +49,39 @@ function select(element) {
     case "barbero":
       searchLink.href = "../Vista/categorias/servicios.php";
       break;
+    case "carniceria":
+    case "carnes":
+    case "cerdo":
+    case "Res":
+      searchLink.href = "../Vista/categorias/carniceria.php";
+    case "frutas":
+    case "papa":
+    case "bananos":
+    case "verduras":
+    case "mercado":  
+    searchLink.href = "../Vista/categorias/frutas.php";
+    break;
+    case "mercado":
+    case "mercar":
+    case "supermercado":  
+    case "arroz":
+    case "panela":
+    case "market":
+      searchLink.href = "../Vista/categorias/despensa.php";
+      break;
+    case "cuido":
+    case "mascotas":
+    case "perro":
+    case "gatos":    
+        searchLink.href = "../Vista/categorias/mascotas.php";
+      break;
+
     default:
       searchLink.href = `../Vista/categorias/inexistente.php`;
+      break;
+
   }
+
 
   searchContainer.classList.remove("active");
 }
@@ -75,4 +105,6 @@ let suggestions = [
   "Barbershop Angel Restrepo",
   "Pan",
   "Café",
+  "Carne",
+  "Carniceria",
 ];
