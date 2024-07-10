@@ -39,16 +39,6 @@
     <header>
         <h1>Encuentra tus frutas y verduras en el sector de Loreto</h1>
     </header>
-    <div class="contenedor-negocios">
-        <div class="cont-negocios">
-            <a href="#" class="negocio">
-                <img src="img/revuelteriamarquetalia.png" alt="">
-                <h3 class="nombreNegocio">Revuelteria Marquetalia</h3>
-                <div class="categoriaNegocio">Supermercado</div>
-                <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>8:00am a 8:00pm</span></div>    
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Crr 30 #32-68</span></div>
-                </div>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
@@ -81,6 +71,16 @@
             <li class="elementos-menu"><a href="ropa.php">Tienda de ropa</a></li>
         </ul>
     </div>
+    <div class="contenedor-negocios">
+        <div class="cont-negocios">
+            <a href="#" class="negocio">
+                <img src="img/revuelteriamarquetalia.png" alt="">
+                <h3 class="nombreNegocio">Revuelteria Marquetalia</h3>
+                <div class="categoriaNegocio">Supermercado</div>
+                <div class="info-negocio">
+                    <div class="horario"><i class="fa-solid fa-clock"></i><span>8:00am a 8:00pm</span></div>    
+                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Crr 30 #32-68</span></div>
+                </div>
     <div id="overlay"></div> <!--para oscurecer la pagina cuando aparezca el menu hamburguesa-->
     <script src="../js/index.js"></script>
 </body>
