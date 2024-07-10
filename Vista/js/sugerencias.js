@@ -3,8 +3,8 @@ let suggestions = [
   "Ricuras La Milagrosa",
   "Delicias Loreto",
   "Barbershop Angel Restrepo",
-  "Barberia",
-  "Barber",
   "Pan",
-  "Cafe",
+  "Café",
+  "Carne",
+  "Carniceria",
 ];
