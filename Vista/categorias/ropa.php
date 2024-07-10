@@ -44,7 +44,7 @@
             <a href="#" class="negocio">
                 <img src="img/saturnmerch.jpeg" alt="">
                 <h3 class="nombreNegocio">Saturn Merch</h3>
-                <div class="categoriaNegocio">Tienda de Ropa</div>
+                <div class="categoriaNegocio">Marca de Ropa</div>
                 <div class="info-negocio">
                     <div class="horario"><i class="fa-solid fa-clock"></i><span>24/7</span></div>
                     <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Virtual</span></div>
