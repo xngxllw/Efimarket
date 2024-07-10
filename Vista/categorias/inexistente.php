@@ -40,7 +40,7 @@
     <header>
         <h1 style="margin-top: 100px;">No hay resultados para tu búsqueda</h1>
     </header>
-    <a style="font-size: 20px; text-align: center;" href="../index.html">Volver</a>
+    <a style="font-size: 20px; text-align: center;" href="../index.php">Volver</a>
 </body>
 
 </html>
