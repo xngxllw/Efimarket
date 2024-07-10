@@ -1,6 +1,6 @@
 # Efimarket
 
-![Efimarket Logo](ruta/a/tu/logo.png)
+![Efimarket Logo](Efimarket/Vista/images/efimarketLogo.jpg)
 
 Efimarket es una plataforma en línea que permite a los usuarios registrar, buscar y gestionar negocios locales de manera eficiente. Proporciona una interfaz amigable tanto para dueños de negocios como para clientes, facilitando la conexión y la interacción entre ellos.
 
