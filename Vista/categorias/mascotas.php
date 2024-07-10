@@ -44,11 +44,11 @@
         <div class="cont-negocios">
             <a href="#" class="negocio">
                 <img src="img/esquinacanina.jpeg" alt="">
-                <h3 class="nombreNegocio">Esquina Canina</h3>
-                <div class="categoriaNegocio">Mascotas</div>
+                <h3 class="nombreNegocio">La Esquina Canina</h3>
+                <div class="categoriaNegocio">Tienda de Mascotas</div>
                 <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>24/7</span></div>
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>El Plan</span></div>
+                    <div class="horario"><i class="fa-solid fa-clock"></i><span>10am - 9pm</span></div>
+                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Cll 32 #32-29</span></div>
                 </div>
             </a>
         </div>

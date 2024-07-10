@@ -3,26 +3,15 @@ class ModeloNegocios
 {
     private $conn;
 
-    public function __construct()
+    public function __construct($conn)
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "efimarket";
-
-        // Crear la conexión
-        $this->conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Verificar la conexión
-        if ($this->conn->connect_error) {
-            die("Conexión fallida: " . $this->conn->connect_error);
-        }
+        $this->conn = $conn;
     }
 
-    public function guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria)
+    public function guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario)
     {
-        $sql = "INSERT INTO negocios (id_usuario, nombre_negocio, descripcion, direccion, telefono, sitio_web, id_categoria)
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO negocios (id_usuario, nombre_negocio, descripcion, direccion, telefono, sitio_web, id_categoria, logo, horario)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
@@ -30,18 +19,16 @@ class ModeloNegocios
         }
 
         // Asociar los parámetros
-        $stmt->bind_param("isssssi", $id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria);
+        $stmt->bind_param("isssssiss", $id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario);
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            echo "Nuevo negocio registrado exitosamente";
-            header('Location: negocios.php'); // Redirigir a la lista de negocios
-            exit();
+            $stmt->close(); // Cerrar la declaración preparada
+            return "Nuevo negocio registrado exitosamente";
         } else {
-            echo "Error al ejecutar la consulta: " . $stmt->error;
+            $error = "Error al ejecutar la consulta: " . $stmt->error;
+            $stmt->close(); // Cerrar la declaración preparada
+            return $error;
         }
-
-        $stmt->close();
-        $this->conn->close();
     }
 }

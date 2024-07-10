@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . '/../Modelo/modeloNegocios.php');
+
 class ControladorNegocios
 {
     private $modeloNegocios;
@@ -23,14 +24,14 @@ class ControladorNegocios
         $this->modeloNegocios = new ModeloNegocios($this->conn);
     }
 
-    public function guardarNegocio($nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $id_usuario)
+    public function guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario)
     {
-        return $this->modeloNegocios->guardarNegocio($nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $id_usuario);
+        return $this->modeloNegocios->guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario);
     }
 
     public function obtenerNegociosPorUsuario($id_usuario)
     {
-        $sql = "SELECT nombre_negocio, descripcion, direccion, telefono, sitio_web FROM negocios WHERE id_usuario = ?";
+        $sql = "SELECT nombre_negocio, descripcion, direccion, telefono, sitio_web, logo, horario FROM negocios WHERE id_usuario = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id_usuario);
         $stmt->execute();

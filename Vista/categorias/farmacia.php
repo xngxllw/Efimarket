@@ -37,7 +37,7 @@
         </div>
     </nav>
     <header>
-        <h1>Encuentra tu farmacia en el sector de Loreto</h1>
+        <h1>Encuentra farmacias en el sector de Loreto</h1>
     </header>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">

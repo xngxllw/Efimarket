@@ -1,33 +1,49 @@
 <?php
-// Iniciar sesión (si no se ha iniciado)
 session_start();
 require_once '../../../Controlador/controladorNegocios.php';
-require_once '../../../Modelo/modeloNegocios.php';
 
-// Verificar si el ID de usuario está definido en la sesión
-if (isset($_SESSION['id_usuario'])) {
-    $nombre_negocio = $_POST['nombre_negocio'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener datos del formulario
+    $nombre = $_POST['nombre_negocio'];
     $descripcion = $_POST['descripcion'];
     $direccion = $_POST['direccion'];
     $telefono = $_POST['telefono'];
-    $sitio_web = $_POST['sitio'];
-    $id_categoria = $_POST['categoria'];
-
-    // Obtener el ID del usuario de la sesión activa
+    $sitio = $_POST['sitio'];
+    $horario = $_POST['horario'];
+    $categoria = $_POST['categoria'];
     $id_usuario = $_SESSION['id_usuario'];
 
-    // Instanciar el controlador y guardar el negocio
-    $controlador = new ControladorNegocios();
-    $resultado = $controlador->guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio_web, $id_categoria);
-
-    // Verificar si se guardó el negocio correctamente
-    if ($resultado) {
-        echo "Negocio guardado correctamente.";
+    // Manejo de subida de imagen
+    $target_dir = "../../../uploads/logos/";
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir, 0755, true);
+    }
+    $target_file = $target_dir . basename($_FILES["logo"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["logo"]["tmp_name"]);
+    if ($check !== false) {
+        if (move_uploaded_file($_FILES["logo"]["tmp_name"], $target_file)) {
+            $logo = basename($_FILES["logo"]["name"]);
+        } else {
+            echo "Error subiendo el archivo.";
+            exit;
+        }
     } else {
-        echo "Error al guardar el negocio.";
+        echo "El archivo no es una imagen.";
+        exit;
+    }
+
+    // Instanciar el controlador y llamar a guardarNegocio
+    $controlador = new ControladorNegocios();
+    $resultado = $controlador->guardarNegocio($id_usuario, $nombre, $descripcion, $direccion, $telefono, $sitio, $categoria, $logo, $horario);
+
+    // Manejar el resultado de la operación
+    if ($resultado === "Nuevo negocio registrado exitosamente") {
+        header('Location: negocios.php');
+        exit();
+    } else {
+        echo $resultado; // Mostrar mensaje de error si ocurre algún problema
     }
 } else {
-    // Manejar el caso en el que el ID del usuario no está definido en la sesión
-    // Por ejemplo, redireccionar al usuario a la página de inicio de sesión
-    echo "Error: sesión no iniciada.";
+    echo "Debe iniciar sesión para acceder a esta sección.";
 }

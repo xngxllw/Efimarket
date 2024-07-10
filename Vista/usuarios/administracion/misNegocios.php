@@ -58,6 +58,8 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
                 <div class="header">Direccion</div>
                 <div class="header">Telefono</div>
                 <div class="header">Sitio Web</div>
+                <div class="header">Logo</div>
+                <div class="header">Horario</div>
                 <?php if (isset($negocios) && !empty($negocios)) : ?>
                     <?php foreach ($negocios as $negocio) : ?>
                         <div class="campo"><?php echo $negocio['nombre_negocio']; ?></div>
@@ -69,9 +71,17 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
                                 <?php echo htmlspecialchars($negocio['sitio_web']); ?>
                             </a>
                         </div>
+                        <div class="campo">
+                            <?php if (!empty($negocio['logo'])) : ?>
+                                <img src="../../../uploads/logos/<?php echo htmlspecialchars($negocio['logo']); ?>" alt="Logo del negocio" style="max-width: 100px; max-height: 100px;">
+                            <?php else : ?>
+                                Sin logo
+                            <?php endif; ?>
+                        </div>
+                        <div class="campo"><?php echo $negocio['horario']; ?></div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="campo" colspan="5">No hay negocios registrados</div>
+                    <div class="campo" colspan="7">No hay negocios registrados</div>
                 <?php endif; ?>
             </div>
         </div>

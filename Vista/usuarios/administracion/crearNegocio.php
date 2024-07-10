@@ -34,7 +34,10 @@ session_start();
     <div class="container">
       <?php if (isset($_SESSION['id_usuario']) && $_SESSION['rol'] == 'admin') : ?>
         <h1>Registrar Nuevo Negocio</h1>
-        <form action="guardarNegocio.php" method="POST">
+        <form action="guardarNegocio.php" method="POST" enctype="multipart/form-data">
+          <label for="logo">Logo del Negocio:</label>
+          <input type="file" id="logo" name="logo" accept="image/*" required><br><br>
+
           <label for="nombre_negocio">Nombre del Negocio:</label>
           <input type="text" id="nombre_negocio" name="nombre_negocio" required><br><br>
 
@@ -49,6 +52,9 @@ session_start();
 
           <label for="sitio">Sitio Web:</label>
           <input type="text" id="sitio" name="sitio"><br><br>
+
+          <label for="horario">Horario:</label>
+          <input type="text" id="horario" name="horario" required><br><br>
 
           <label for="categoria">Categoría:</label>
           <select id="categoria" name="categoria" required>
