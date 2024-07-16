@@ -52,7 +52,7 @@
             echo '<div class="cont-negocios">';
             foreach ($negocios as $negocio) {
                 echo '<a href="#" class="negocio">';
-                echo '<img src="uploads/logos/' . $negocio['logo'] . '" alt="">';
+                echo '<img src="../../uploads/logos/' . $negocio['logo'] . '" alt="">';
                 echo '<h3 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h3>';
                 echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
                 echo '<div class="info-negocio">';

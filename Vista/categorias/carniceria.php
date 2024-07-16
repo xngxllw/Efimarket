@@ -37,7 +37,7 @@
         </div>
     </nav>
     <header>
-        <h1>Encuentra tu Carniceria en el sector de Loreto</h1>
+        <h1>Encuentra tu Carnicería en el sector de Loreto</h1>
     </header>
     <div class="contenedor-negocios">
         <?php
@@ -51,7 +51,7 @@
             echo '<div class="cont-negocios">';
             foreach ($negocios as $negocio) {
                 echo '<a href="#" class="negocio">';
-                echo '<img src="uploads/logos/' . $negocio['logo'] . '" alt="">';
+                echo '<img src="../../uploads/logos/' . $negocio['logo'] . '" alt="">';
                 echo '<h3 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h3>';
                 echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
                 echo '<div class="info-negocio">';

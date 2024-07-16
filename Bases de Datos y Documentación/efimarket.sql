@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-07-2024 a las 15:45:37
+-- Tiempo de generación: 16-07-2024 a las 17:48:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -72,7 +72,12 @@ CREATE TABLE `negocios` (
 
 INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripcion`, `direccion`, `telefono`, `sitio_web`, `id_categoria`, `horario`, `logo`) VALUES
 (2, 1, 'Barbershop Angel Restrepo', 'Barbería', 'Calle 32C #27A43', '3196516362', 'instagram.com/xngxllw', 4, 'Fines de Semana', 'barbershopangel.jpg'),
-(3, 2, 'Taller Crazy Mechanics', 'Taller de Motos', 'Carrera 30 #32 17', '3022995856', '', 4, '8:00am a 7:00pm', 'crazymechanics.jpg');
+(3, 2, 'Taller Crazy Mechanics', 'Taller de Motos', 'Carrera 30 #32 17', '3022995856', '', 4, '8:00am a 7:00pm', 'crazymechanics.jpg'),
+(5, 4, 'La Esquina Canina', 'Tienda de Mascotas', 'Cll 32 # 32a-29', '3126300036', '', 7, 'Lunes a sábado 10AM a 9PM', 'esquinacanina.jpeg'),
+(6, 5, 'Mercado La 30', 'Supermercado', 'CRR 30 #32-68', '3166710674', '', 1, '7:20AM a 9:00PM', 'mercadola30.jpeg'),
+(7, 6, 'Tienda de Carnes Loreto', 'Carniceria', 'CLL 32 # 29A-35', '3218016805', '', 6, '7:30AM A 8:00PM', 'carnesloreto.jpeg'),
+(8, 7, 'Ricuras La Milagrosa', 'Panadería y Repostería', 'CLL 38F #28A-04', '3108244136', 'm.facebook.com/61559767821360', 2, '24/7', 'ricurasmilagrosa.png'),
+(9, 7, 'Delicias Loreto', 'Panadería y Repostería', 'CRR 30 #35-19A 35-1', '3108244136', '', 2, '24/7', 'deliciasloreto.png');
 
 -- --------------------------------------------------------
 
@@ -95,7 +100,11 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) VALUES
 (1, 'Angel Restrepo', 'miguelrpo05@gmail.com', 'a1036451368', 'admin'),
 (2, 'Josué Quintero', 'mecanicoslocos1225@gmail.com', 'josue.efimarket123', 'admin'),
-(3, 'testClienteeeeeee', 'a@a.com', '123456789', 'cliente');
+(3, 'testClienteeeeeee', 'a@a.com', '123456789', 'cliente'),
+(4, 'Erika Sanchez', 'laesquinacanina18@gmail.com', 'erika.efimarket123', 'admin'),
+(5, 'Edison Duque', 'edi3110du@gmail.com', 'edison.efimarket123', 'admin'),
+(6, 'David Cruz', 'tiendadecarnesloreto@gmail.com', 'david.efimarket123', 'admin'),
+(7, 'Rodinson Franco', 'panaderiasefimarket@gmail.com', 'rodinson.efimarket123', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -134,13 +143,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

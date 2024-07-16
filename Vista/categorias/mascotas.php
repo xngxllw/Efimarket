@@ -43,7 +43,7 @@
         <?php
         require_once '../../Controlador/controladorNegocios.php';
         $controladorNegocios = new ControladorNegocios();
-        $negocios = $controladorNegocios->obtenerNegociosPorCategoria(6); // Cambia el número según la categoría correcta para mascotas
+        $negocios = $controladorNegocios->obtenerNegociosPorCategoria(7); // Cambia el número según la categoría correcta para mascotas
 
         if (empty($negocios)) {
             echo '<p class="no-negocios" style="text-align: center;">No hay negocios disponibles en esta categoría.</p>';
@@ -51,7 +51,7 @@
             echo '<div class="cont-negocios">';
             foreach ($negocios as $negocio) {
                 echo '<a href="#" class="negocio">';
-                echo '<img src="uploads/logos/' . $negocio['logo'] . '" alt="">';
+                echo '<img src="../../uploads/logos/' . $negocio['logo'] . '" alt="">';
                 echo '<h3 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h3>';
                 echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
                 echo '<div class="info-negocio">';
