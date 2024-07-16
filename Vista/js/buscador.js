@@ -41,12 +41,16 @@ function select(element) {
     case "delicias loreto":
     case "pan":
     case "café":
+    case "buñuelos":
+    case "tinto":  
       searchLink.href = "../Vista/categorias/panaderia.php";
       break;
     case "barbershop angel restrepo":
     case "barberia":
     case "barber":
     case "barbero":
+    case "corte":
+    case "motilado": 
       searchLink.href = "../Vista/categorias/servicios.php";
       break;
     case "carniceria":
@@ -54,11 +58,13 @@ function select(element) {
     case "cerdo":
     case "Res":
       searchLink.href = "../Vista/categorias/carniceria.php";
+      break;
     case "frutas":
     case "papa":
     case "bananos":
     case "verduras":
     case "mercado":  
+    case "verduras":
     searchLink.href = "../Vista/categorias/frutas.php";
     break;
     case "mercado":
@@ -67,14 +73,25 @@ function select(element) {
     case "arroz":
     case "panela":
     case "market":
+    case "aceite":
+    case "grano":
       searchLink.href = "../Vista/categorias/despensa.php";
       break;
     case "cuido":
     case "mascotas":
     case "perro":
-    case "gatos":    
+    case "gatos":   
+    case "galleticas":
+    case "pañuelos":  
+    case "collares": 
         searchLink.href = "../Vista/categorias/mascotas.php";
       break;
+    case "hamburguesas":
+    case "comidas":
+    case "salchipapas":
+    case "fritos":
+    case "empanadas":
+    case "buñuelos":   
 
     default:
       searchLink.href = `../Vista/categorias/inexistente.php`;
@@ -107,4 +124,19 @@ let suggestions = [
   "Café",
   "Carne",
   "Carniceria",
+  "Buñuelos",
+  "Hamburguesas",
+  "Cuido",
+  "Carnes",
+  "Arroz",
+  "Aceite",
+  "Gatos",
+  "Perros",
+  "Fritos",
+  "Empanadas",
+  "Mercar",
+  "Mercado",
+  "Tintos",
+  "Corte",
+  "Motilado",
 ];
