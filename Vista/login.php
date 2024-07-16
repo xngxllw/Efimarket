@@ -82,9 +82,9 @@
                 </h2>
             </div>
             <form action="../Controlador/iniciaSesion.php" method="post" class="card-form">
-                <input maxlength="25" type="hidden" name="accion" value="iniciar_sesion">
+                <input maxlength="50" type="hidden" name="accion" value="iniciar_sesion">
                 <div class="input">
-                    <input maxlength="25" type="text" id="correo" name="correo" class="input-field" required />
+                    <input maxlength="50" type="text" id="correo" name="correo" class="input-field" required />
                     <label for="correo" class="input-label">Correo</label>
                 </div>
                 <div class="input">

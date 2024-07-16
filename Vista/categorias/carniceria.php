@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="categorias.css">
     <link rel="icon" type="image/png" href="../images/carrito.png">
-
 </head>
 
 <body>
@@ -41,17 +40,30 @@
         <h1>Encuentra tu Carniceria en el sector de Loreto</h1>
     </header>
     <div class="contenedor-negocios">
-        <div class="cont-negocios">
-            <a href="#" class="negocio">
-                <img src="img/carnesloreto.jpeg" alt="">
-                <h3 class="nombreNegocio">Tienda de Carnes Loreto</h3>
-                <div class="categoriaNegocio">Carnicería</div>
-                <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>Lunes a sábado:7:30 a 8:00pm</span></div>
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Cll 32 # 29a 35</span></div>
-                </div>
-            </a>
-            <div />
+        <?php
+        require_once '../../Controlador/controladorNegocios.php';
+        $controladorNegocios = new ControladorNegocios();
+        $negocios = $controladorNegocios->obtenerNegociosPorCategoria(6); // 6 es el id_categoria para carnicerías
+
+        if (empty($negocios)) {
+            echo '<p align="center" class="no-negocios">No hay negocios disponibles en esta categoría.</p>';
+        } else {
+            echo '<div class="cont-negocios">';
+            foreach ($negocios as $negocio) {
+                echo '<a href="#" class="negocio">';
+                echo '<img src="uploads/logos/' . $negocio['logo'] . '" alt="">';
+                echo '<h3 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h3>';
+                echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
+                echo '<div class="info-negocio">';
+                echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . htmlspecialchars($negocio['horario']) . '</span></div>';
+                echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . htmlspecialchars($negocio['direccion']) . '</span></div>';
+                echo '</div>';
+                echo '</a>';
+            }
+            echo '</div>';
+        }
+        ?>
+    </div>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->

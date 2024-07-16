@@ -35,34 +35,36 @@
                 ?>
             </div>
         </div>
-
     </nav>
     <header>
         <h1>Panaderías, reposterías y cafeterías en el sector</h1>
     </header>
     <h2 class="subtitulo">Abiertos las 24 horas</h2>
     <div class="contenedor-negocios">
-        <div class="cont-negocios">
-            <a href="#" class="negocio">
-                <img src="img/ricurasmilagrosa.png" alt="">
-                <h3 class="nombreNegocio">Ricuras La Milagrosa</h3>
-                <div class="categoriaNegocio">Panadería y Repostería</div>
-                <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>24/7</span></div>
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Ávila</span></div>
-                </div>
-            </a>
-            <a href="#" class="negocio">
-                <img src="img/deliciasloreto.png" alt="">
-                <h3 class="nombreNegocio">Delicias Loreto</h3>
-                <div class="categoriaNegocio">Panadería y Repostería</div>
-                <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>24/7</span></div>
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Pto. Arturo</span></div>
-                </div>
-            </a>
-        </div>
-    </div>../
+        <?php
+        require_once '../../Controlador/controladorNegocios.php';
+        $controladorNegocios = new ControladorNegocios();
+        $negocios = $controladorNegocios->obtenerNegociosPorCategoria(2); // Cambia el número según la categoría correcta para panaderías
+
+        if (empty($negocios)) {
+            echo '<p class="no-negocios" style="text-align: center;">No hay negocios disponibles en esta categoría.</p>';
+        } else {
+            echo '<div class="cont-negocios">';
+            foreach ($negocios as $negocio) {
+                echo '<a href="#" class="negocio">';
+                echo '<img src="uploads/logos/' . $negocio['logo'] . '" alt="">';
+                echo '<h3 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h3>';
+                echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
+                echo '<div class="info-negocio">';
+                echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . htmlspecialchars($negocio['horario']) . '</span></div>';
+                echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . htmlspecialchars($negocio['direccion']) . '</span></div>';
+                echo '</div>';
+                echo '</a>';
+            }
+            echo '</div>';
+        }
+        ?>
+    </div>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
@@ -81,7 +83,7 @@
                 echo '<li class="elementos-menu"><a href="../../Controlador/logout.php">Cerrar Sesión</a></li>';
             } else {
                 echo '<li class="elementos-menu"><a href="../registro.php">Regístrate en Efimarket</a></li>';
-                echo '<li class="elementos-menu"><a href="../login.php">Iniciar Sesión</a></li>';
+                echo '<li class="elementos-menu"><a href="../../login.php">Iniciar Sesión</a></li>';
             }
             ?>
             <li class="elementos-menu"><a href="fruver.php">Despensa</a></li>

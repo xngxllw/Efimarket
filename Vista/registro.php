@@ -71,11 +71,11 @@
             </div>
             <form action="../Controlador/registro.php" method="post" class="card-form">
                 <div class="input">
-                    <input maxlength="25" type="text" class="input-field" id="nombre_usuario" name="nombre_usuario" required />
+                    <input maxlength="50" type="text" class="input-field" id="nombre_usuario" name="nombre_usuario" required />
                     <label for="nombre_usuario" class="input-label">Nombre Completo</label>
                 </div>
                 <div class="input">
-                    <input maxlength="25" type="text" id="correo" name="correo" class="input-field" required />
+                    <input maxlength="50" type="text" id="correo" name="correo" class="input-field" required />
                     <label for="correo" class="input-label">Correo</label>
                 </div>
                 <div class="input">

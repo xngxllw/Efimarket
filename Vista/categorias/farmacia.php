@@ -39,6 +39,31 @@
     <header>
         <h1>Encuentra farmacias en el sector de Loreto</h1>
     </header>
+    <div class="contenedor-negocios">
+        <?php
+        require_once '../../Controlador/controladorNegocios.php';
+        $controladorNegocios = new ControladorNegocios();
+        $negocios = $controladorNegocios->obtenerNegociosPorCategoria(5); // Cambia el número según la categoría correcta para farmacias
+
+        if (empty($negocios)) {
+            echo '<p align="center" class="no-negocios">No hay farmacias disponibles en esta categoría.</p>';
+        } else {
+            echo '<div class="cont-negocios">';
+            foreach ($negocios as $negocio) {
+                echo '<a href="#" class="negocio">';
+                echo '<img src="uploads/logos/' . $negocio['logo'] . '" alt="">';
+                echo '<h3 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h3>';
+                echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
+                echo '<div class="info-negocio">';
+                echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . htmlspecialchars($negocio['horario']) . '</span></div>';
+                echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . htmlspecialchars($negocio['direccion']) . '</span></div>';
+                echo '</div>';
+                echo '</a>';
+            }
+            echo '</div>';
+        }
+        ?>
+    </div>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->

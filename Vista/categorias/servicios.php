@@ -1,3 +1,7 @@
+<?php
+// Iniciar sesión y verificar si el usuario es administrador
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +23,6 @@
             <i class="fas fa-user-circle"></i>
             <div class="dropdown-menu" id="dropdownMenu">
                 <?php
-                session_start();
                 if (isset($_SESSION['rol'])) {
                     if ($_SESSION['rol'] == 'admin') {
                         echo '<a href="../usuarios/administracion/panel.php">Panel de Administrador</a>';
@@ -42,26 +45,43 @@
     <h2 class="subtitulo">Para tu cuidado y estética personal</h2>
     <div class="contenedor-negocios">
         <div class="cont-negocios">
-            <a href="#" class="negocio">
-                <img src="img/barbershopangel.jpg" alt="">
-                <h3 class="nombreNegocio">Barbershop A. Restrepo</h3>
-                <div class="categoriaNegocio">Barbería</div>
-                <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>Sabados y Domingos</span></div>
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Antares</span></div>
-                </div>
-                <a href="#" class="negocio">
-                <img src="img/crazymechanics.jpg" alt="">
-                <h3 class="nombreNegocio">Crazy Mechanics</h3>
-                <div class="categoriaNegocio">Taller de Motos</div>
-                <div class="info-negocio">
-                    <div class="horario"><i class="fa-solid fa-clock"></i><span>8:00am a 7:00pm</span></div>
-                    <div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>Cra 30 #32 17</span></div>
-                </div>
-            </a>
+            <?php
+            // Conectar a la base de datos
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "efimarket";
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
+            // Verificar la conexión
+            if ($conn->connect_error) {
+                die("Conexión fallida: " . $conn->connect_error);
+            }
+
+            // Obtener los negocios de la categoría Servicios (id_categoria = 4)
+            $sql = "SELECT * FROM negocios WHERE id_categoria = 4";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<a href="#" class="negocio">';
+                    echo '<img src="../../uploads/logos/' . $row["logo"] . '" alt="">';
+                    echo '<h3 class="nombreNegocio">' . $row["nombre_negocio"] . '</h3>';
+                    echo '<div class="categoriaNegocio">' . $row["descripcion"] . '</div>';
+                    echo '<div class="info-negocio">';
+                    echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . $row["horario"] . '</span></div>';
+                    echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . $row["direccion"] . '</span></div>';
+                    echo '</div>';
+                    echo '</a>';
+                }
+            } else {
+                echo "No hay negocios disponibles en esta categoría.";
+            }
+
+            $conn->close();
+            ?>
         </div>
-    </div>  
+    </div>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->

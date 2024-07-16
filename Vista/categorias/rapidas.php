@@ -32,13 +32,38 @@
                     echo '<a href="../login.php">Iniciar Sesión</a>';
                     echo '<a href="../registro.php">Registrarse</a>';
                 }
-                ?>../
+                ?>
             </div>
         </div>
     </nav>
     <header>
         <h1>Comidas rápidas en Loreto</h1>
     </header>
+    <div class="contenedor-negocios">
+        <?php
+        require_once '../../Controlador/controladorNegocios.php';
+        $controladorNegocios = new ControladorNegocios();
+        $negocios = $controladorNegocios->obtenerNegociosPorCategoria(3); // Cambia el número según la categoría correcta para comidas rápidas
+
+        if (empty($negocios)) {
+            echo '<p align="center" class="no-negocios">No hay negocios de comidas rápidas disponibles en esta categoría.</p>';
+        } else {
+            echo '<div class="cont-negocios">';
+            foreach ($negocios as $negocio) {
+                echo '<a href="#" class="negocio">';
+                echo '<img src="uploads/logos/' . $negocio['logo'] . '" alt="">';
+                echo '<h3 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h3>';
+                echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
+                echo '<div class="info-negocio">';
+                echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . htmlspecialchars($negocio['horario']) . '</span></div>';
+                echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . htmlspecialchars($negocio['direccion']) . '</span></div>';
+                echo '</div>';
+                echo '</a>';
+            }
+            echo '</div>';
+        }
+        ?>
+    </div>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
@@ -57,7 +82,7 @@
                 echo '<li class="elementos-menu"><a href="../../Controlador/logout.php">Cerrar Sesión</a></li>';
             } else {
                 echo '<li class="elementos-menu"><a href="../registro.php">Regístrate en Efimarket</a></li>';
-                echo '<li class="elementos-menu"><a href="../login.php">Iniciar Sesión</a></li>';
+                echo '<li class="elementos-menu"><a href="../../login.php">Iniciar Sesión</a></li>';
             }
             ?>
             <li class="elementos-menu"><a href="despensa.php">Despensa</a></li>
