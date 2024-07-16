@@ -12,9 +12,6 @@ body {
 
 /* Estilos para la barra lateral y el contenido principal */
 .sidebar {
-  position: fixed; /* Fija la barra lateral en la ventana */
-  top: 0; /* Coloca la barra lateral en la parte superior */
-  left: 0; /* Coloca la barra lateral en la parte izquierda */
   width: 250px; /* Ancho de la barra lateral */
   height: 100vh; /* Altura igual al 100% del viewport height */
   background-color: #f0f5f9; /* Color de fondo */
@@ -52,7 +49,6 @@ body {
 .main-content {
   flex: 1;
   padding: 20px;
-  margin-left: 13%;
 }
 
 header {

@@ -24,15 +24,21 @@ class ControladorNegocios
         $this->modeloNegocios = new ModeloNegocios($this->conn);
     }
 
-    public function guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario)
+    public function guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $horario, $logo)
     {
-        return $this->modeloNegocios->guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario);
+        return $this->modeloNegocios->guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $horario, $logo);
     }
 
     public function obtenerNegociosPorUsuario($id_usuario)
     {
-        $sql = "SELECT nombre_negocio, descripcion, direccion, telefono, sitio_web, logo, horario FROM negocios WHERE id_usuario = ?";
+        $sql = "SELECT nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo  FROM negocios WHERE id_usuario = ?";
         $stmt = $this->conn->prepare($sql);
+
+        // Verificar si la preparación de la consulta fue exitosa
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
         $stmt->bind_param("i", $id_usuario);
         $stmt->execute();
         $result = $stmt->get_result();
