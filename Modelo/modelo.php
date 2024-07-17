@@ -22,12 +22,11 @@ class Modelo
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            return true; // Registro exitoso
+            return $this->conexion->insert_id; // Devolver el ID del nuevo usuario
         } else {
             return false; // Error al registrar
         }
     }
-
 
     // Función para verificar las credenciales del usuario al iniciar sesión
     public function verificarCredenciales($correo, $contrasena)
@@ -48,8 +47,38 @@ class Modelo
         }
     }
 
+    // Función para obtener los datos de un usuario por su ID
+    public function obtenerUsuarioPorId($id_usuario)
+    {
+        $stmt = $this->conexion->prepare("SELECT nombre, correo, rol FROM usuarios WHERE id_usuario = ?");
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+        $stmt->bind_result($nombre, $correo, $rol);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($nombre) {
+            return ['nombre' => $nombre, 'correo' => $correo, 'rol' => $rol];
+        } else {
+            return null;
+        }
+    }
+
+    // Función para obtener los negocios por categoría
+    public function obtenerNegociosPorCategoria($id_categoria)
+    {
+        $stmt = $this->conexion->prepare("SELECT * FROM negocios WHERE id_categoria = ?");
+        $stmt->bind_param("i", $id_categoria);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $negocios = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $negocios;
+    }
+
     public function __destruct()
     {
         $this->conexion->close();
     }
 }
+?>

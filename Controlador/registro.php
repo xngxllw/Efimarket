@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($id_usuario) {
         session_start();
+        session_unset(); // Destruir cualquier sesión existente
+        session_regenerate_id(true); // Regenerar ID de sesión por seguridad
         $_SESSION['id_usuario'] = $id_usuario;
         $_SESSION['rol'] = $rol_db;
 
@@ -26,3 +28,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Error en el registro. Por favor, intenta nuevamente.";
     }
 }
+?>
