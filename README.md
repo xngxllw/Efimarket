@@ -34,5 +34,5 @@ Efimarket es una plataforma en línea que permite a los usuarios registrar, busc
 ### Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu_usuario/efimarket.git
+git clone https://github.com/xngxllw/efimarket.git
 cd efimarket
