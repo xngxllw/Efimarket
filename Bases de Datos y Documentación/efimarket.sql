@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-07-2024 a las 05:47:03
+-- Tiempo de generación: 17-07-2024 a las 15:43:07
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -78,7 +78,8 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (7, 6, 'Tienda de Carnes Loreto', 'Carniceria', 'CLL 32 # 29A-35', '3218016805', '', 6, '7:30AM A 8:00PM', 'carnesloreto.jpeg'),
 (8, 7, 'Ricuras La Milagrosa', 'Panadería y Repostería', 'CLL 38F #28A-04', '3108244136', 'm.facebook.com/61559767821360', 2, '24/7', 'ricurasmilagrosa.png'),
 (9, 7, 'Delicias Loreto', 'Panadería y Repostería', 'CRR 30 #35-19A 35-1', '3108244136', '', 2, '24/7', 'deliciasloreto.png'),
-(10, 8, 'Saturn Merch', 'Tienda de Ropa', 'Online', '3106702810', '', 8, '24/7', 'Logo Saturn azul.png');
+(10, 8, 'Saturn Merch', 'Tienda de Ropa', 'Online', '3106702810', '', 8, '24/7', 'Logo Saturn azul.png'),
+(11, 10, 'Mobiliario Eskuadra', 'Tapicería de muebles', 'CLL32 #29-10', '3135435447', '', 4, '8.00AM  a 9PM', 'eskuadra.jpeg');
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) V
 (5, 'Edison Duque', 'edi3110du@gmail.com', 'edison.efimarket123', 'admin'),
 (6, 'David Cruz', 'tiendadecarnesloreto@gmail.com', 'david.efimarket123', 'admin'),
 (7, 'Rodinson Franco', 'panaderiasefimarket@gmail.com', 'rodinson.efimarket123', 'admin'),
-(8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin');
+(8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin'),
+(10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -145,13 +147,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
