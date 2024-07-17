@@ -174,7 +174,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdMhWjoJMe-J1QWIZW_37reKryLe-_sLc&callback=initMap">
     </script>
 </body>
- <!-- <footer>
+ <footer>
         <div class="footer-content">
             <div class="footer-section about">
                 <h2>Sobre Nosotros</h2>
@@ -217,6 +217,6 @@
         <div class="footer-bottom">
             &copy; 2024 Efimarket | Todos los derechos reservados
         </div>
-    </footer> -->
+    </footer>
 
 </html>
