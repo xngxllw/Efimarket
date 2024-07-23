@@ -28,6 +28,7 @@ body {
   list-style: none;
   padding: 0;
   margin-top: 20px;
+  margin-right: 30px;
 }
 
 .menu li {
@@ -200,4 +201,45 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #1e90ff; /* Azul más intenso al pasar el mouse */
+}
+
+.vacantesGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+.vacantesGrid .header,
+.vacantesGrid .campo {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.vacantesGrid .header {
+  background-color: #029bfb;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+.vacantesGrid .campo {
+  text-align: center;
+  justify-content: center;
+}
+
+.vacantesGrid .campo[colspan] {
+  grid-column: span 6;
+}
+
+.button {
+  color: #fff;
+  border: 5px;
+  text-decoration: none;
+  background-color: #029bfb;
+  position: relative;
+  top: 20px;
+  padding: 10px;
+  border-radius: 5px;
 }

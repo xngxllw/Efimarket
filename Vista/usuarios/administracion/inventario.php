@@ -20,7 +20,7 @@
       <li><a href="panel.php">Inicio</a></li>
       <li><a href="negocios.php">Negocios</a></li>
       <li><a href="#">Inventario</a></li>
-      <li><a href="confi.php">Configuración</a></li>
+      <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
     </ul>
   </div>
 

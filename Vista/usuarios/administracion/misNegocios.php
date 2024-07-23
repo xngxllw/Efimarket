@@ -41,9 +41,9 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
         </a>
         <ul class="menu">
             <li><a href="panel.php">Inicio</a></li>
-            <li><a href="negocios.php">Negocios</a></li>
-            <li><a href="inventario.php">Inventario</a></li>
-            <li><a href="confi.php">Configuración</a></li>
+            <li><a href="negocios.php">Mis Negocios</a></li>
+            <li><a href="vacantes.php">Vacantes de Empleo</a></li>
+            <li><a href="../clientes/perfil.php">Mi Perfil</a></li>      
         </ul>
     </div>
     <div class="main-content">
@@ -83,6 +83,7 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
                 <?php else : ?>
                     <div class="campo" colspan="7">No hay negocios registrados</div>
                 <?php endif; ?>
+
             </div>
         </div>
     </div>

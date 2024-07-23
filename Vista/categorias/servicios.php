@@ -42,6 +42,7 @@ session_start();
     <header>
         <h1>Servicios esenciales en Loreto!</h1>
     </header>
+    <h2 class="subtitulo">Para tu cuidado y estética personal</h2>
     <div class="contenedor-negocios">
         <div class="cont-negocios">
             <?php

@@ -159,12 +159,12 @@
             <p>Frutas y Verduras</p>
         </div>
     </div>
-    <h2 class="titulos">Los combos más apetecidos:</h2>
+    <!-- <h2 class="titulos">Los combos más apetecidos:</h2>
     <div class="ofertas">
         <a href=""><img class="oferta" src="images/combo1.jpg" alt="Imagen 1"></a>
         <a href=""><img class="oferta" src="images/combo2.jpg" alt="Imagen 2"></a>
         <a href=""><img class="oferta" src="images/combo3.jpg" alt="Imagen 3"></a>
-    </div>
+    </div> -->
     <h2 style="text-align: center">No logras ubicarte? Te ayudamos:</h2>
     <div id="map"></div>
     <script src="js/buscador.js"></script>
@@ -174,7 +174,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdMhWjoJMe-J1QWIZW_37reKryLe-_sLc&callback=initMap">
     </script>
 </body>
- <footer>
+ <!-- <footer>
         <div class="footer-content">
             <div class="footer-section about">
                 <h2>Sobre Nosotros</h2>
@@ -217,6 +217,6 @@
         <div class="footer-bottom">
             &copy; 2024 Efimarket | Todos los derechos reservados
         </div>
-    </footer>
+    </footer> -->
 
 </html>
