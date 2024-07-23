@@ -26,6 +26,30 @@ function initMap() {
       position: { lat: 6.230265300019864, lng: -75.55705733669103 },
       title: "Barbershop A. Restrepo",
     },
+    {
+      position: { lat: 6.229120, lng: -75.559080 },
+      title: "Eskuadra Mobiliarios",
+    },
+    {
+      position: { lat: 6.230230, lng: -75.558926},
+      title: "Milagrito Café",
+    },
+    {
+      position: { lat: 6.229873, lng: -75.559233},
+      title: "Supermercado La 30",
+    },
+    {
+      position: { lat: 6.229433, lng: -75.559471},
+      title: "Taller Crazy Mechanics"
+    },
+    {
+      position: {lat: 6.229302, lng: -75.559516},
+      title: "Tienda de Carnes Loreto"
+    },
+    {
+      position: {lat: 6.230477, lng: -75.561268},
+      title: "La Esquina Canina",
+    },
   ];
 
   // Añadir marcadores con InfoWindows
