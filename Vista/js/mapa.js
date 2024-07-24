@@ -27,7 +27,6 @@ function initMap() {
       title: "Barbershop A. Restrepo",
     },
     {
-<<<<<<< HEAD:Vista/images/js/mapa.js
       position: { lat: 6.22912, lng: -75.55908 },
       title: "Eskuadra Mobiliarios",
     },
@@ -49,29 +48,28 @@ function initMap() {
     },
     {
       position: { lat: 6.230477, lng: -75.561268 },
-=======
-      position: { lat: 6.229120, lng: -75.559080 },
+      position: { lat: 6.22912, lng: -75.55908 },
       title: "Eskuadra Mobiliarios",
     },
     {
-      position: { lat: 6.230230, lng: -75.558926},
+      position: { lat: 6.23023, lng: -75.558926 },
       title: "Milagrito Café",
     },
     {
-      position: { lat: 6.229873, lng: -75.559233},
+      position: { lat: 6.229873, lng: -75.559233 },
       title: "Supermercado La 30",
     },
     {
-      position: { lat: 6.229433, lng: -75.559471},
-      title: "Taller Crazy Mechanics"
+      position: { lat: 6.229433, lng: -75.559471 },
+      title: "Taller Crazy Mechanics",
     },
     {
-      position: {lat: 6.229302, lng: -75.559516},
-      title: "Tienda de Carnes Loreto"
+      position: { lat: 6.229302, lng: -75.559516 },
+      title: "Tienda de Carnes Loreto",
     },
     {
-      position: {lat: 6.230477, lng: -75.561268},
->>>>>>> 816ff56a2fed446e4d3162af6f83b2998ead2194:Vista/js/mapa.js
+      position: { lat: 6.230477, lng: -75.561268 },
+
       title: "La Esquina Canina",
     },
   ];

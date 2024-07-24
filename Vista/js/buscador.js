@@ -42,7 +42,7 @@ function select(element) {
     case "pan":
     case "café":
     case "buñuelos":
-    case "tinto":  
+    case "tinto":
       searchLink.href = "../Vista/categorias/panaderia.php";
       break;
     case "barbershop angel restrepo":
@@ -50,7 +50,7 @@ function select(element) {
     case "barber":
     case "barbero":
     case "corte":
-    case "motilado": 
+    case "motilado":
       searchLink.href = "../Vista/categorias/servicios.php";
       break;
     case "carniceria":
@@ -63,13 +63,13 @@ function select(element) {
     case "papa":
     case "bananos":
     case "verduras":
-    case "mercado":  
+    case "mercado":
     case "verduras":
-    searchLink.href = "../Vista/categorias/frutas.php";
-    break;
+      searchLink.href = "../Vista/categorias/frutas.php";
+      break;
     case "mercado":
     case "mercar":
-    case "supermercado":  
+    case "supermercado":
     case "arroz":
     case "panela":
     case "market":
@@ -80,25 +80,23 @@ function select(element) {
     case "cuido":
     case "mascotas":
     case "perro":
-    case "gatos":   
+    case "gatos":
     case "galleticas":
-    case "pañuelos":  
-    case "collares": 
-        searchLink.href = "../Vista/categorias/mascotas.php";
+    case "pañuelos":
+    case "collares":
+      searchLink.href = "../Vista/categorias/mascotas.php";
       break;
     case "hamburguesas":
     case "comidas":
     case "salchipapas":
     case "fritos":
     case "empanadas":
-    case "buñuelos":   
+    case "buñuelos":
 
     default:
       searchLink.href = `../Vista/categorias/inexistente.php`;
       break;
-
   }
-
 
   searchContainer.classList.remove("active");
 }
