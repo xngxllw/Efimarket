@@ -21,9 +21,10 @@ session_start();
     </a>
     <ul class="menu">
       <li><a href="panel.php">Inicio</a></li>
-      <li><a href="negocios.php">Negocios</a></li>
-      <li><a href="inventario.php">Inventario</a></li>
-      <li><a href="#">Configuración</a></li>
+      <li><a href="negocios.php">Mis Negocios</a></li>
+      <li><a href="vacantes.php">Vacantes de Empleo</a></li>
+      <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
+
     </ul>
   </div>
   <div class="main-content">
@@ -42,7 +43,7 @@ session_start();
           <input type="text" id="nombre_negocio" name="nombre_negocio" required><br><br>
 
           <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion" required></textarea><br><br>
+          <textarea id="descripcion" name="descripcion" placeholder="Escribe una pequeña descripcion del negocio (Por ejemplo: Tienda de Ropa)" required></textarea><br><br>
 
           <label for="direccion">Dirección:</label>
           <input type="text" id="direccion" name="direccion" required><br><br>

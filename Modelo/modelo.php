@@ -75,6 +75,40 @@ class Modelo
         $stmt->close();
         return $negocios;
     }
+    public function obtenerNegociosPorUsuario($id_usuario) {
+        $stmt = $this->conexion->prepare("SELECT id_negocio, nombre_negocio FROM negocios WHERE id_usuario = ?");
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    public function crearVacante($id_negocio, $ocupacion, $descripcion, $requisitos, $horario, $salario)
+    {
+        $stmt = $this->conexion->prepare("INSERT INTO vacantes (id_negocio, ocupacion, descripcion, requisitos, horario, salario) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssss", $id_negocio, $ocupacion, $descripcion, $requisitos, $horario, $salario);
+        return $stmt->execute();
+    }
+
+    public function obtenerVacantesPorNegocio($id_usuario)
+{
+    $stmt = $this->conexion->prepare("
+        SELECT v.ocupacion, v.descripcion, v.requisitos, v.horario, v.salario, v.fecha, n.nombre_negocio
+        FROM vacantes v
+        JOIN negocios n ON v.id_negocio = n.id_negocio
+        WHERE n.id_usuario = ?
+    ");
+    $stmt->bind_param("i", $id_usuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $vacantes = [];
+    while ($row = $result->fetch_assoc()) {
+        $vacantes[] = $row;
+    }
+    $stmt->close();
+    return $vacantes;
+}
+
+
 
     public function __destruct()
     {

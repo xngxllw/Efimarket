@@ -73,7 +73,8 @@
         </ul>
     </div>
     <div id="overlay"></div>
-    <div style="margin-top: 60px;" class="contenedor-busq">
+
+    <div style="margin-top: 50px;" class="contenedor-busq">
         <div class="search-input-box">
             <input type="text" placeholder="¿Qué buscas hoy?" />
             <a id="linkBusqueda" href="#">
@@ -86,6 +87,7 @@
             </ul>
         </div>
     </div>
+
     <div class="slide">
         <div class="slide-inner">
             <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
@@ -94,11 +96,11 @@
             </div>
             <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="">
             <div class="slide-item">
-                <img src="images/panaderiaLoreto.png">
+                <img src="images/panaderia Delicias.jpeg">
             </div>
             <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="">
             <div class="slide-item">
-                <img src="images/colegio.png">
+                <img src="images/milagrito.jpg">
             </div>
             <label for="slide-3" class="slide-control prev control-1">‹</label>
             <label for="slide-2" class="slide-control next control-1">›</label>
@@ -159,12 +161,12 @@
             <p>Frutas y Verduras</p>
         </div>
     </div>
-    <h2 class="titulos">Los combos más apetecidos:</h2>
+    <!-- <h2 class="titulos">Los combos más apetecidos:</h2>
     <div class="ofertas">
         <a href=""><img class="oferta" src="images/combo1.jpg" alt="Imagen 1"></a>
         <a href=""><img class="oferta" src="images/combo2.jpg" alt="Imagen 2"></a>
         <a href=""><img class="oferta" src="images/combo3.jpg" alt="Imagen 3"></a>
-    </div>
+    </div> -->
     <h2 style="text-align: center">No logras ubicarte? Te ayudamos:</h2>
     <div id="map"></div>
     <script src="js/buscador.js"></script>
@@ -174,7 +176,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdMhWjoJMe-J1QWIZW_37reKryLe-_sLc&callback=initMap">
     </script>
 </body>
- <!-- <footer>
+<!-- <footer>
         <div class="footer-content">
             <div class="footer-section about">
                 <h2>Sobre Nosotros</h2>

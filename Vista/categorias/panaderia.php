@@ -58,6 +58,8 @@
                 echo '<div class="info-negocio">';
                 echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . htmlspecialchars($negocio['horario']) . '</span></div>';
                 echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . htmlspecialchars($negocio['direccion']) . '</span></div>';
+                echo '<div class="ubicacion"><i class="fa-solid fa-phone"></i><span>' . htmlspecialchars($negocio['telefono']) . '</span></div>';
+
                 echo '</div>';
                 echo '</a>';
             }

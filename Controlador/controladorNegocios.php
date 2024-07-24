@@ -31,7 +31,7 @@ class ControladorNegocios
 
     public function obtenerNegociosPorUsuario($id_usuario)
     {
-        $sql = "SELECT nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo  FROM negocios WHERE id_usuario = ?";
+        $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo  FROM negocios WHERE id_usuario = ?";
         $stmt = $this->conn->prepare($sql);
 
         // Verificar si la preparación de la consulta fue exitosa
@@ -62,4 +62,7 @@ class ControladorNegocios
         $stmt->close();
         return $negocios;
     }
+    public function actualizarNegocio($id_negocio, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $logo, $horario) {
+        return $this->modeloNegocios->actualizarNegocio($id_negocio, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $logo, $horario);
+    }   
 }
