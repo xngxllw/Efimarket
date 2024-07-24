@@ -45,7 +45,11 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
             <li><a href="panel.php">Inicio</a></li>
             <li><a href="negocios.php">Mis Negocios</a></li>
             <li><a href="vacantes.php">Vacantes de Empleo</a></li>
+<<<<<<< HEAD
             <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
+=======
+            <li><a href="../clientes/perfil.php">Mi Perfil</a></li>      
+>>>>>>> 816ff56a2fed446e4d3162af6f83b2998ead2194
         </ul>
     </div>
     <div class="mensaje-alternativo">
