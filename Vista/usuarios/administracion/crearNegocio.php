@@ -70,7 +70,7 @@ session_start();
             <option value="8">Ropa</option>
           </select><br><br>
 
-          <button type="submit">Registrar</button>
+          <button type="submit" class="boton-subir">Registrar</button>
         </form>
       <?php else : ?>
         <p>Debe iniciar sesión para acceder a esta sección.</p>

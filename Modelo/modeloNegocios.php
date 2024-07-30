@@ -63,5 +63,23 @@ class ModeloNegocios
             return $error;
         }
     }
+
+    public function eliminarNegocio($id_negocio)
+    {
+        $sql = "DELETE FROM negocios WHERE id_negocio = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $id_negocio);
+        if ($stmt->execute()) {
+            $stmt->close(); // Cerrar la declaración preparada
+            return "Negocio eliminado exitosamente";
+        } else {
+            $error = "Error al ejecutar la consulta: " . $stmt->error;
+            $stmt->close(); // Cerrar la declaración preparada
+            return $error;
+        }
+    }
 }
 ?>

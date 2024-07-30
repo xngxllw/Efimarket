@@ -31,7 +31,7 @@ class ControladorNegocios
 
     public function obtenerNegociosPorUsuario($id_usuario)
     {
-        $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo  FROM negocios WHERE id_usuario = ?";
+        $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_usuario = ?";
         $stmt = $this->conn->prepare($sql);
 
         // Verificar si la preparación de la consulta fue exitosa
@@ -49,7 +49,9 @@ class ControladorNegocios
         $stmt->close();
         return $negocios;
     }
-    public function obtenerNegociosPorCategoria($id_categoria) {
+
+    public function obtenerNegociosPorCategoria($id_categoria)
+    {
         $sql = "SELECT nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_categoria = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id_categoria);
@@ -62,7 +64,15 @@ class ControladorNegocios
         $stmt->close();
         return $negocios;
     }
-    public function actualizarNegocio($id_negocio, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $logo, $horario) {
+
+    public function actualizarNegocio($id_negocio, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $logo, $horario)
+    {
         return $this->modeloNegocios->actualizarNegocio($id_negocio, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $logo, $horario);
-    }   
+    }
+
+    public function eliminarNegocio($id_negocio)
+    {
+        return $this->modeloNegocios->eliminarNegocio($id_negocio);
+    }
 }
+?>

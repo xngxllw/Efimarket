@@ -185,7 +185,7 @@ textarea {
   resize: vertical; /* Permite redimensionar verticalmente */
 }
 
-button[type="submit"] {
+.boton-subir {
   background-color: #3498db; /* Azul */
   color: white;
   border: none;
@@ -199,7 +199,7 @@ button[type="submit"] {
   border-radius: 5px;
 }
 
-button[type="submit"]:hover {
+.boton-subir:hover {
   background-color: #1e90ff; /* Azul más intenso al pasar el mouse */
 }
 
@@ -254,11 +254,13 @@ button[type="submit"]:hover {
   padding: 10px;
   border-radius: 5px;
   height: 50px;
+
 }
 
 .boton-editar:hover {
   background-color: #0484d3;
   transition: background-color 0.5s ease;
+  cursor: pointer;
 }
 
 .contenedor-editar {
@@ -305,4 +307,25 @@ button[type="submit"]:hover {
   .mensaje-alternativo {
     display: none;
   }
+}
+
+.boton-borrar {
+  background-color: rgb(255, 0, 0);
+  border: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+  height: 50px;
+margin: 0px;
+}
+
+.borrar-cont {
+  margin: 0;
+  width: 100px;
+  padding: 0px;
 }

@@ -88,6 +88,10 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
                         <div class="campo"><?php echo isset($negocio['horario']) ? htmlspecialchars($negocio['horario']) : 'N/A'; ?></div>
                         <div class="campo">
                             <button class="boton-editar" data-toggle="modal" data-target="#editModal<?php echo htmlspecialchars($negocio['id_negocio']); ?>">Editar</button>
+                            <form action="borrarNegocio.php" method="post" class="borrar-cont"">
+                                <input type="hidden" name="id_negocio" value="<?php echo htmlspecialchars($negocio['id_negocio']); ?>">
+                                <button type="submit" class="boton-borrar">Borrar</button>
+                            </form>
                         </div>
 
                         <!-- Modal -->
@@ -153,5 +157,4 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-
 </html>
