@@ -81,5 +81,16 @@ class ModeloNegocios
             return $error;
         }
     }
+    public function obtenerNegocioPorId($id_negocio)
+    {
+        $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_negocio = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id_negocio);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $negocio = $result->fetch_assoc();
+        $stmt->close();
+        return $negocio;
+    }
 }
 ?>

@@ -52,7 +52,7 @@ class ControladorNegocios
 
     public function obtenerNegociosPorCategoria($id_categoria)
     {
-        $sql = "SELECT nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_categoria = ?";
+        $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_categoria = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id_categoria);
         $stmt->execute();
@@ -74,5 +74,11 @@ class ControladorNegocios
     {
         return $this->modeloNegocios->eliminarNegocio($id_negocio);
     }
+    
+    public function obtenerNegocioPorId($id_negocio)
+    {
+        return $this->modeloNegocios->obtenerNegocioPorId($id_negocio);
+    }
 }
+
 ?>
