@@ -94,7 +94,7 @@
             <li class="elementos-menu"><a href="frutas.php">Frutas y verduras</a></li>
             <li class="elementos-menu"><a href="mascotas.php">Tienda de Mascotas</a></li>
             <li class="elementos-menu"><a href="carniceria.php">Carniceria</a></li>
-            <li class="elementos-menu"><a href="farmacia.php">Farmacias</a></li>
+            <li class="elementos-menu"><a href="farmacia.php">Salud y Belleza</a></li>
             <li class="elementos-menu"><a href="ropa.php">Tienda de ropa</a></li>
         </ul>
     </div>

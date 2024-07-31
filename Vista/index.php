@@ -142,7 +142,7 @@
         </div>
         <div class="categoria">
             <a href="categorias/farmacia.php"><img src="images/farmacia.jpeg" alt=""></a>
-            <p>Farmacia</p>
+            <p>Salud y Belleza</p>
         </div>
         <div class="categoria">
             <a href="categorias/carniceria.php"><img src="images/carniceria.jpeg" alt=""></a>
