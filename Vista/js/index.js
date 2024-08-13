@@ -27,6 +27,7 @@ function closeMenu() {
   overlay.style.display = "none";
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
   const contenedorNegocios = document.querySelector(".cont-negocios");
   let inicioX = 0;
@@ -128,3 +129,47 @@ function togglePasswordVisibility() {
     toggleIcon.classList.add("fa-eye-slash");
   }
 }
+document.addEventListener('DOMContentLoaded', function () {
+  const negocios = document.querySelectorAll('.negocio');
+  const modal = document.getElementById('negocioModal');
+  const span = document.getElementsByClassName('close-button')[0];
+
+  negocios.forEach(negocio => {
+      negocio.addEventListener('click', function (e) {
+          e.preventDefault();
+          const idNegocio = this.getAttribute('data-id');
+          fetch(`../../Controlador/obtenerDetallesNegocio.php?id_negocio=${idNegocio}`)
+              .then(response => response.json())
+              .then(data => {
+                  document.getElementById('modalNombre').innerText = data.nombre_negocio;
+                  document.getElementById('modalDescripcion').innerText = data.descripcion;
+                  document.getElementById('modalDireccion').innerText = data.direccion;
+                  document.getElementById('modalTelefono').innerText = data.telefono;
+                  document.getElementById('modalSitioWeb').innerText = data.sitio_web;
+                  document.getElementById('modalHorario').innerText = data.horario;
+
+                  const vacantesDiv = document.getElementById('modalVacantes');
+                  vacantesDiv.innerHTML = '<h3>Vacantes:</h3>';
+                  if (data.vacantes.length > 0) {
+                      data.vacantes.forEach(vacante => {
+                          vacantesDiv.innerHTML += `<p>${vacante.ocupacion}: ${vacante.descripcion}</p>`;
+                      });
+                  } else {
+                      vacantesDiv.innerHTML += '<p>No hay vacantes disponibles.</p>';
+                  }
+
+                  modal.style.display = "block";
+              });
+      });
+  });
+
+  span.onclick = function () {
+      modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  };
+});
