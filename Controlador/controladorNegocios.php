@@ -123,18 +123,25 @@ class ControladorNegocios
     }
 
     // Función para actualizar un producto
-    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $foto_producto) {
-        $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?, foto_producto = ? WHERE id_producto = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("issi", $id_negocio, $nombre_producto, $foto_producto, $id_producto);
-
+    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $foto_producto = null) {
+        // Si no se proporciona un nuevo logo, se utiliza el actual
+        if ($foto_producto === null) {
+            $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ? WHERE id_producto = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("isi", $id_negocio, $nombre_producto, $id_producto);
+        } else {
+            $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?, foto_producto = ? WHERE id_producto = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("issi", $id_negocio, $nombre_producto, $foto_producto, $id_producto);
+        }
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
-
+    
     // Función para eliminar un producto
     public function eliminarProducto($id_producto) {
         $query = "DELETE FROM productos WHERE id_producto = ?";

@@ -120,5 +120,35 @@ class ModeloNegocios
             $stmt->close(); // Cerrar la declaración preparada
             return false; // Error al agregar el producto
         }
-    }}
+        
+    }public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $foto_producto = null) {
+        // Crear la consulta de actualización
+        $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?";
+    
+        // Solo agregar la parte de la foto si se proporciona una nueva foto
+        if ($foto_producto !== null) {
+            $query .= ", foto_producto = ?";
+        }
+    
+        $query .= " WHERE id_producto = ?";
+    
+        $stmt = $this->conn->prepare($query);
+    
+        // Preparar los parámetros
+        if ($foto_producto !== null) {
+            $stmt->bind_param("issi", $id_negocio, $nombre_producto, $foto_producto, $id_producto);
+        } else {
+            $stmt->bind_param("ssi", $id_negocio, $nombre_producto, $id_producto);
+        }
+    
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+
+}
 ?>

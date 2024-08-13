@@ -78,34 +78,36 @@
 
                             <!-- Modal de Edición -->
                             <div class="modal fade" id="editModal<?php echo htmlspecialchars($producto['id_producto']); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="actualizarProducto.php" method="post" enctype="multipart/form-data">
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id_producto" value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
-                                                <div class="form-group">
-                                                    <label for="nombre_producto">Nombre del Producto</label>
-                                                    <input class="form-editar" type="text" class="form-control" id="nombre_producto" name="nombre_producto" value="<?php echo htmlspecialchars($producto['nombre_producto']); ?>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="foto_producto">Foto del Producto</label>
-                                                    <input type="file" class="form-control" id="foto_producto" name="foto_producto">
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="actualizarProducto.php" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <input type="hidden" name="id_producto" value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
+                    <input type="hidden" name="id_negocio" value="<?php echo htmlspecialchars($producto['id_negocio']); ?>"> <!-- Asegúrate de incluir este campo -->
+                    <div class="form-group">
+                        <label for="nombre_producto">Nombre del Producto</label>
+                        <input class="form-editar form-control" type="text" id="nombre_producto" name="nombre_producto" value="<?php echo htmlspecialchars($producto['nombre_producto']); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="foto_producto">Foto del Producto</label>
+                        <input type="file" class="form-control" id="foto_producto" name="foto_producto">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
                         <?php endforeach; ?>
                     <?php else : ?>
