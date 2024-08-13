@@ -79,6 +79,72 @@ class ControladorNegocios
     {
         return $this->modeloNegocios->obtenerNegocioPorId($id_negocio);
     }
-}
+    public function agregarProducto($id_negocio, $nombre_producto, $foto_producto) {
+        $numeroDeProductos = $this->modeloNegocios->contarProductosPorNegocio($id_negocio);
 
+        if ($numeroDeProductos >= 5) {
+            return false; // No se puede agregar más productos
+        }
+
+        // Agregar el producto si el número es menor que 5
+        return $this->modeloNegocios->agregarProducto($id_negocio, $nombre_producto, $foto_producto);
+    }
+    
+    public function obtenerProductos() {
+        $query = "SELECT p.id_producto, p.id_negocio, p.nombre_producto, p.foto_producto, n.nombre_negocio 
+                  FROM productos p 
+                  INNER JOIN negocios n ON p.id_negocio = n.id_negocio";
+        $result = $this->conn->query($query);
+
+        if ($result->num_rows > 0) {
+            $productos = [];
+            while ($row = $result->fetch_assoc()) {
+                $productos[] = $row;
+            }
+            return $productos;
+        } else {
+            return [];
+        }
+    }
+
+    // Función para obtener un producto por su ID
+    public function obtenerProductoPorId($id_producto) {
+        $query = "SELECT * FROM productos WHERE id_producto = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id_producto);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+
+    // Función para actualizar un producto
+    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $foto_producto) {
+        $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?, foto_producto = ? WHERE id_producto = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("issi", $id_negocio, $nombre_producto, $foto_producto, $id_producto);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Función para eliminar un producto
+    public function eliminarProducto($id_producto) {
+        $query = "DELETE FROM productos WHERE id_producto = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id_producto);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+}}
 ?>

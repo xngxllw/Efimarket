@@ -92,5 +92,33 @@ class ModeloNegocios
         $stmt->close();
         return $negocio;
     }
-}
+    public function contarProductosPorNegocio($id_negocio) {
+        $sql = "SELECT COUNT(*) AS cantidad FROM productos WHERE id_negocio = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $id_negocio);
+        $stmt->execute();
+        $resultado = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $resultado['cantidad'];
+    }
+    public function agregarProducto($id_negocio, $nombre_producto, $foto_producto) {
+        $sql = "INSERT INTO productos (id_negocio, nombre_producto, foto_producto) VALUES (?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+    
+        $stmt->bind_param("sss", $id_negocio, $nombre_producto, $foto_producto);
+    
+        if ($stmt->execute()) {
+            $stmt->close(); // Cerrar la declaración preparada
+            return true; // Producto agregado exitosamente
+        } else {
+            $stmt->close(); // Cerrar la declaración preparada
+            return false; // Error al agregar el producto
+        }
+    }}
 ?>

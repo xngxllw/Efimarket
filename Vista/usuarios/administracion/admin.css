@@ -141,6 +141,15 @@ header a:hover {
   border-collapse: collapse;
 }
 
+.tablaProductos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+
 .header,
 .campo {
   padding: 10px;
