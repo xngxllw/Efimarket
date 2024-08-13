@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-07-2024 a las 16:42:03
+-- Tiempo de generación: 13-08-2024 a las 17:37:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -41,7 +41,7 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
 (2, 'panaderia'),
 (3, 'rapidas'),
 (4, 'servicios'),
-(5, 'salud_belleza'),
+(5, 'farmacia'),
 (6, 'carnicos'),
 (7, 'mascotas'),
 (8, 'ropa'),
@@ -71,7 +71,7 @@ CREATE TABLE `negocios` (
 --
 
 INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripcion`, `direccion`, `telefono`, `sitio_web`, `id_categoria`, `horario`, `logo`) VALUES
-(2, 1, 'Barbershop Angel Restrepo', 'Barbería', 'Calle 32C #27A43', '3196516362', 'instagram.com/xngxllw', 4, 'Fines de Semana', 'barbershopangel.jpg'),
+(2, 1, 'Barber Angel Restrepo', 'Barbería', 'CLL 32C #27A43', '3196516362', 'instagram.com/xngxllw', 4, 'Fines de Semana', 'barbershopangel.jpg'),
 (3, 2, 'Taller Crazy Mechanics', 'Taller de Motos', 'Carrera 30 #32 17', '3022995856', '', 4, '8:00am a 7:00pm', 'crazymechanics.jpg'),
 (5, 4, 'La Esquina Canina', 'Tienda de Mascotas', 'Cll 32 # 32a-29', '3126300036', '', 7, 'Lunes a sábado 10AM a 9PM', 'esquinacanina.jpeg'),
 (6, 5, 'Mercado La 30', 'Supermercado', 'CRR 30 #32-68', '3166710674', '', 1, '7:20AM a 9:00PM', 'mercadola30.jpeg'),
@@ -79,9 +79,39 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (8, 7, 'Ricuras La Milagrosa', 'Panadería y Repostería', 'CLL 38F #28A-04', '3108244136', 'm.facebook.com/61559767821360', 2, '24/7', 'ricurasmilagrosa.png'),
 (9, 7, 'Delicias Loreto', 'Panadería y Repostería', 'CRR 30 #35-19A 35-1', '3108244136', '', 2, '24/7', 'deliciasloreto.png'),
 (10, 8, 'Saturn Merch', 'Tienda de Ropa', 'Online', '3106702810', '', 8, '24/7', 'Logo Saturn azul.png'),
-(11, 10, 'Mobiliario Eskuadra', 'Tapicería de muebles', 'CLL32 #29-10', '3145018489', '', 4, '8.00AM  a 9PM', 'eskuadra.jpeg'),
-(13, 12, 'Revuelteria Marquetalia', 'Revuelteria', 'CLL32 30-3', '3013343433', '', 9, '8:30 AM a 8:00PM', 'revuelteriamarquetalia.png'),
-(14, 13, 'Pinkittyglam', 'Tienda De Maquillaje', 'A domicilio', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pink.jpg');
+(11, 10, 'Mobiliario Eskuadra', 'Tapicería de muebles', 'CLL32 #29-10', '3135435447', '', 4, '8.00AM  a 9PM', 'eskuadra.jpeg'),
+(12, 1, 'Milagrito Café', 'Móvil de Café', 'CLL 32C #27A43', '3022397164', 'instagram.com/milagritocafemovil', 2, '4:00PM a 8:00PM', 'milagrito.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `postulaciones`
+--
+
+CREATE TABLE `postulaciones` (
+  `id_postulacion` int(11) NOT NULL,
+  `id_vacante` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_negocio` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `edad` int(11) NOT NULL,
+  `telefono` varchar(20) NOT NULL,
+  `hoja_de_vida` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE `productos` (
+  `id_producto` int(11) NOT NULL,
+  `id_negocio` int(11) NOT NULL,
+  `nombre_producto` varchar(255) NOT NULL,
+  `foto_producto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -110,10 +140,24 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) V
 (6, 'David Cruz', 'tiendadecarnesloreto@gmail.com', 'david.efimarket123', 'admin'),
 (7, 'Rodinson Franco', 'panaderiasefimarket@gmail.com', 'rodinson.efimarket123', 'admin'),
 (8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin'),
-(10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin'),
-(11, 'Juan G', 'juanfervilla2007@gmail.com', 'Prueba0123', 'admin'),
-(12, 'Miguel Carmona', 'marcelita1043@gmail.com', 'miguel.efimarket123', 'admin'),
-(13, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin');
+(10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vacantes`
+--
+
+CREATE TABLE `vacantes` (
+  `id_vacante` int(11) NOT NULL,
+  `id_negocio` int(11) NOT NULL,
+  `ocupacion` varchar(255) NOT NULL,
+  `descripcion` text NOT NULL,
+  `requisitos` text NOT NULL,
+  `horario` varchar(255) NOT NULL,
+  `salario` varchar(255) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -133,10 +177,28 @@ ALTER TABLE `negocios`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
+-- Indices de la tabla `postulaciones`
+--
+ALTER TABLE `postulaciones`
+  ADD PRIMARY KEY (`id_postulacion`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id_producto`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- Indices de la tabla `vacantes`
+--
+ALTER TABLE `vacantes`
+  ADD PRIMARY KEY (`id_vacante`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -152,13 +214,31 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `postulaciones`
+--
+ALTER TABLE `postulaciones`
+  MODIFY `id_postulacion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `vacantes`
+--
+ALTER TABLE `vacantes`
+  MODIFY `id_vacante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
