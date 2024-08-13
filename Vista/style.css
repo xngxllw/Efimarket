@@ -665,7 +665,7 @@ footer {
 .contact-form h2 {
   color: #000;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .links a {
@@ -681,7 +681,7 @@ footer {
 .links ul,
 .contact-form form {
   color: #000000;
-  font-size: 14px;
+  font-size: 12px;
 } 
 
 .links ul {
@@ -708,7 +708,7 @@ footer {
 }
 
 .contact-form .btn {
-  background-color: #4CAF50;
+  background-color: #3e7ddb;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -718,18 +718,24 @@ footer {
 }
 
 .contact-form .btn:hover {
-  background-color: #45a049;
+  background-color: #096272;
 }
 
 .social {
   margin-top: 10px;
 }
 
+
+
 .social a {
   color: #000;
   text-decoration: none;
   margin-right: 10px;
   font-size: 20px;
+}
+
+.social a:hover {
+  color: #35619e;
 }
 
 .footer-bottom {

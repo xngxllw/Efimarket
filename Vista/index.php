@@ -176,30 +176,27 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdMhWjoJMe-J1QWIZW_37reKryLe-_sLc&callback=initMap">
     </script>
 </body>
-<!-- <footer>
+<footer>
         <div class="footer-content">
             <div class="footer-section about">
                 <h2>Sobre Nosotros</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis commodo orci sed nibh ullamcorper
-                    ullamcorper.</p>
+                <p>Somos un grupo de estudiantes de desarrollo de software que buscan contribuir a la comunidad a través de soluciones tecnológicas.</p>
                 <div class="contact">
-                    <span><i class="fas fa-phone"></i> 3196516362</span>
                     <span><i class="fas fa-envelope"></i> efimarket@gmail.com</span>
                 </div>
                 <div class="social">
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://instagram.com/efimarket" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
 
             <div class="footer-section links">
                 <h2>Enlaces útiles</h2>
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Contacto</a></li>
+                <li><a href="#">Inicio</a></li>
+                    <li><a href="https://wa.me/573196516362"><i class="fab fa-whatsapp"></i>Contacto</a></li>
+                    <li><a href="https://wa.me/573145018489"><i class="fab fa-whatsapp"></i>Contacto</a></li>
                 </ul>
             </div>
 
@@ -219,6 +216,6 @@
         <div class="footer-bottom">
             &copy; 2024 Efimarket | Todos los derechos reservados
         </div>
-    </footer> -->
+    </footer>
 
 </html>

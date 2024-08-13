@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2024 a las 17:55:17
+-- Tiempo de generación: 31-07-2024 a las 16:42:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -41,7 +41,7 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
 (2, 'panaderia'),
 (3, 'rapidas'),
 (4, 'servicios'),
-(5, 'farmacia'),
+(5, 'salud_belleza'),
 (6, 'carnicos'),
 (7, 'mascotas'),
 (8, 'ropa'),
@@ -80,7 +80,8 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (9, 7, 'Delicias Loreto', 'Panadería y Repostería', 'CRR 30 #35-19A 35-1', '3108244136', '', 2, '24/7', 'deliciasloreto.png'),
 (10, 8, 'Saturn Merch', 'Tienda de Ropa', 'Online', '3106702810', '', 8, '24/7', 'Logo Saturn azul.png'),
 (11, 10, 'Mobiliario Eskuadra', 'Tapicería de muebles', 'CLL32 #29-10', '3145018489', '', 4, '8.00AM  a 9PM', 'eskuadra.jpeg'),
-(13, 12, 'Revuelteria Marquetalia', 'Revuelteria', 'CLL32 30-3', '3013343433', '', 9, '8:30 AM a 8:00PM', 'revuelteriamarquetalia.png');
+(13, 12, 'Revuelteria Marquetalia', 'Revuelteria', 'CLL32 30-3', '3013343433', '', 9, '8:30 AM a 8:00PM', 'revuelteriamarquetalia.png'),
+(14, 13, 'Pinkittyglam', 'Tienda De Maquillaje', 'A domicilio', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pink.jpg');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) V
 (8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin'),
 (10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin'),
 (11, 'Juan G', 'juanfervilla2007@gmail.com', 'Prueba0123', 'admin'),
-(12, 'Miguel Carmona', 'marcelita1043@gmail.com', 'miguel.efimarket123', 'admin');
+(12, 'Miguel Carmona', 'marcelita1043@gmail.com', 'miguel.efimarket123', 'admin'),
+(13, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -150,13 +152,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
