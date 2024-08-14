@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-08-2024 a las 17:37:57
+-- Tiempo de generación: 14-08-2024 a las 16:11:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -112,6 +112,14 @@ CREATE TABLE `productos` (
   `nombre_producto` varchar(255) NOT NULL,
   `foto_producto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_producto`) VALUES
+(6, 4, 'FASSADS', 'carrito.png'),
+(10, 12, 'Frappe', 'Libertadores_Imagen.png');
 
 -- --------------------------------------------------------
 
@@ -226,7 +234,7 @@ ALTER TABLE `postulaciones`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
