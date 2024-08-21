@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panaderías, Reposterías y Cafeterías</title>
+    <title>Efimarket: Servicios</title>
     <script src="https://kit.fontawesome.com/a44f9ce7b1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="categorias.css">

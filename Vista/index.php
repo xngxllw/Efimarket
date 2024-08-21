@@ -92,11 +92,11 @@
         <div class="slide-inner">
             <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
             <div class="slide-item">
-                <img src="images/panaderiaAvila.png" alt="">
+                <img src="images/panaderiaAvila.jpg" alt="">
             </div>
             <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="">
             <div class="slide-item">
-                <img src="images/panaderia Delicias.jpeg">
+                <img src="images/esquinaCanina.jpg">
             </div>
             <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="">
             <div class="slide-item">
@@ -177,45 +177,44 @@
     </script>
 </body>
 <footer>
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h2>Sobre Nosotros</h2>
-                <p>Somos un grupo de estudiantes de desarrollo de software que buscan contribuir a la comunidad a través de soluciones tecnológicas.</p>
-                <div class="contact">
-                    <span><i class="fas fa-envelope"></i> efimarket@gmail.com</span>
-                </div>
-                <div class="social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instagram.com/efimarket" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>Sobre Nosotros</h2>
+            <p>Somos un grupo de estudiantes de desarrollo de software que buscan contribuir a la comunidad a través de soluciones tecnológicas.</p>
+            <div class="contact">
+                <span><i class="fas fa-envelope"></i> efimarket@gmail.com</span>
             </div>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/efimarket" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
 
-            <div class="footer-section links">
-                <h2>Enlaces útiles</h2>
-                <ul>
+        <div class="footer-section links">
+            <h2>Enlaces útiles</h2>
+            <ul>
                 <li><a href="#">Inicio</a></li>
-                    <li><a href="https://wa.me/573196516362"><i class="fab fa-whatsapp"></i>Contacto</a></li>
-                    <li><a href="https://wa.me/573145018489"><i class="fab fa-whatsapp"></i>Contacto</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section contact-form">
-                <h2>Contacto</h2>
-                <form action="#">
-                    <input type="email" name="email" class="text-input contact-input" placeholder="Tu correo electrónico...">
-                    <textarea name="message" class="text-input contact-input" placeholder="Tu mensaje..."></textarea>
-                    <button type="submit" class="btn btn-big contact-btn">
-                        <i class="fas fa-envelope"></i>
-                        Enviar
-                    </button>
-                </form>
-            </div>
+                <li><a href="https://wa.me/573196516362"><i class="fab fa-whatsapp"></i>Contacto</a></li>
+                <li><a href="https://wa.me/573145018489"><i class="fab fa-whatsapp"></i>Contacto</a></li>
+            </ul>
         </div>
 
-        <div class="footer-bottom">
-            &copy; 2024 Efimarket | Todos los derechos reservados
+        <div class="footer-section contact-form">
+            <h2>Contacto</h2>
+            <form action="#">
+                <input type="email" name="email" class="text-input contact-input" placeholder="Tu correo electrónico...">
+                <textarea name="message" class="text-input contact-input" placeholder="Tu mensaje..."></textarea>
+                <button type="submit" class="btn btn-big contact-btn">
+                    <i class="fas fa-envelope"></i>
+                    Enviar
+                </button>
+            </form>
         </div>
-    </footer>
+    </div>
 
+    <div class="footer-bottom">
+        &copy; 2024 DIGITAL AZ S.A | Todos los derechos reservados
+    </div>
+</footer>   
 </html>
