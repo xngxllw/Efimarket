@@ -15,7 +15,7 @@
 <body>
     <nav>
         <a class="hamburger link" href="#" onclick="toggleHamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
-        <a class="logo link" href="index.php"><img width="260" src="images/letras.png" alt=""></a>
+        <a class="logo link" href="../index.php"><img width="260" src="images/letras.png" alt=""></a>
         <div class="user-icon" onclick="toggleMenu()">
             <i class="fas fa-user-circle"></i>
             <div class="dropdown-menu" id="dropdownMenu">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-08-2024 a las 18:14:51
+-- Tiempo de generación: 28-08-2024 a las 16:27:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -81,7 +81,7 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (10, 8, 'Saturn Merch', 'Tienda de Ropa', 'Online', '3106702810', '', 8, '24/7', 'Logo Saturn azul.png'),
 (11, 10, 'Mobiliario Eskuadra', 'Tapicería de muebles', 'CLL32 #29-10', '3135435447', '', 4, '8.00AM  a 9PM', 'eskuadra.jpeg'),
 (12, 1, 'Milagrito Café', 'Móvil de Café', 'CLL 32C #27A43', '3022397164', 'instagram.com/milagritocafemovil', 2, '4:00PM a 8:00PM', 'milagrito.jpeg'),
-(16, 11, 'Revuelteria Marquetalia', 'Frutas y Verduras', 'CLL32 30-3', ' 3122202569', '', 9, '8:30 AM a 8:00PM', 'revuelteriamarquetalia.png');
+(16, 11, 'Pinkittyglam', 'Tienda de Maquillaje Online', 'Online', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pinkittyglam.jpg');
 
 -- --------------------------------------------------------
 
@@ -111,16 +111,21 @@ CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
   `id_negocio` int(11) NOT NULL,
   `nombre_producto` varchar(255) NOT NULL,
-  `foto_producto` varchar(255) DEFAULT NULL
+  `foto_producto` varchar(255) DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `precio` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_producto`) VALUES
-(6, 4, 'FASSADS', 'carrito.png'),
-(10, 12, 'Frappe', 'Libertadores_Imagen.png');
+INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_producto`, `id_usuario`, `precio`) VALUES
+(11, 12, 'Frappe', 'frappe.jpg', 1, 6500),
+(12, 12, 'Malteada', 'frappe.jpg', 1, 6900),
+(13, 12, 'Latte', 'frappe.jpg', 1, 3800),
+(14, 12, 'Capuccino', 'frappe.jpg', 1, 6200),
+(15, 12, 'Torta de Almójabana', 'frappe.jpg', 1, 5800);
 
 -- --------------------------------------------------------
 
@@ -150,7 +155,7 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) V
 (7, 'Rodinson Franco', 'panaderiasefimarket@gmail.com', 'rodinson.efimarket123', 'admin'),
 (8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin'),
 (10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin'),
-(11, 'Miguel Carmona', 'marcelita1043@gmail.com', 'miguel.efimarket123', 'admin');
+(11, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin');
 
 -- --------------------------------------------------------
 
@@ -236,7 +241,7 @@ ALTER TABLE `postulaciones`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

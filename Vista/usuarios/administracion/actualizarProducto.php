@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_producto = $_POST['id_producto'];
     $id_negocio = $_POST['id_negocio'];
     $nombre_producto = $_POST['nombre_producto'];
+    $precio = $_POST['precio']; // Añadir el campo precio
     $foto_producto = $_FILES['foto_producto'];
 
     // Obtener el nombre del archivo antiguo
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Mover el archivo subido a la ruta destino
         if (move_uploaded_file($foto_producto['tmp_name'], $rutaDestino)) {
             // Actualizar producto con nueva foto
-            $controladorNegocios->actualizarProducto($id_producto, $id_negocio, $nombre_producto, $nombreArchivo);
+            $controladorNegocios->actualizarProducto($id_producto, $id_negocio, $nombre_producto, $precio, $nombreArchivo);
             // Eliminar el archivo antiguo si se subió uno nuevo
             if (file_exists("../../../uploads/productos/" . $nombre_archivo_antiguo)) {
                 unlink("../../../uploads/productos/" . $nombre_archivo_antiguo);
@@ -47,7 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         // Actualizar producto sin cambiar la foto
-        $controladorNegocios->actualizarProducto($id_producto, $id_negocio, $nombre_producto, $nombre_archivo_antiguo);
+        $controladorNegocios->actualizarProducto($id_producto, $id_negocio, $nombre_producto, $precio, $nombre_archivo_antiguo);
+    }
+
+    // Obtener el número de productos actuales para el negocio
+    $cantidadProductos = $controladorNegocios->contarProductosPorNegocio($id_negocio);
+
+    // Verificar si se excede el límite de 6 productos
+    if ($cantidadProductos >= 6) {
+        $_SESSION['error'] = "No puedes agregar más de 6 productos a este negocio.";
+        header("Location: productos.php");
+        exit();
     }
 
     // Redirigir a la página de productos con un mensaje de éxito

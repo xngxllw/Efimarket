@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_negocio = $_POST['nombre_negocio'];
     $nombre_producto = $_POST['nombre_producto'];
     $foto_producto = $_FILES['foto_producto'];
+    $precio = $_POST['precio'];
+    $id_usuario = $_SESSION['id_usuario']; // Tomamos el id_usuario de la sesión
 
     // Verificar que se subió la foto correctamente
     if ($foto_producto['error'] === UPLOAD_ERR_OK) {
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Mover el archivo subido a la ruta destino
         if (move_uploaded_file($foto_producto['tmp_name'], $rutaDestino)) {
             // Llamar al método del controlador para agregar el producto
-            $productoAgregado = $controladorNegocios->agregarProducto($id_negocio, $nombre_producto, $nombreArchivo);
+            $productoAgregado = $controladorNegocios->agregarProducto($id_negocio, $nombre_producto, $nombreArchivo, $precio, $id_usuario);
 
             if ($productoAgregado) {
                 // Redirigir a la página de productos con un mensaje de éxito
@@ -58,3 +60,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: productos.php");
     exit();
 }
+?>
+    

@@ -79,19 +79,31 @@ class ControladorNegocios
     {
         return $this->modeloNegocios->obtenerNegocioPorId($id_negocio);
     }
-    public function agregarProducto($id_negocio, $nombre_producto, $foto_producto) {
-        $numeroDeProductos = $this->modeloNegocios->contarProductosPorNegocio($id_negocio);
 
-        if ($numeroDeProductos >= 5) {
-            return false; // No se puede agregar más productos
-        }
-
-        // Agregar el producto si el número es menor que 5
-        return $this->modeloNegocios->agregarProducto($id_negocio, $nombre_producto, $foto_producto);
+    public function contarProductosPorNegocio($id_negocio) {
+        $query = "SELECT COUNT(*) as total FROM productos WHERE id_negocio = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id_negocio);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result['total'];
     }
     
+    public function agregarProducto($id_negocio, $nombre_producto, $nombreArchivo, $precio, $id_usuario) {
+        $query = "INSERT INTO productos (id_negocio, nombre_producto, foto_producto, precio, id_usuario) VALUES (?, ?, ?, ?, ?)";
+        
+        if ($stmt = $this->conn->prepare($query)) {
+            $stmt->bind_param("issdi", $id_negocio, $nombre_producto, $nombreArchivo, $precio, $id_usuario);
+            if ($stmt->execute()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
     public function obtenerProductos() {
-        $query = "SELECT p.id_producto, p.id_negocio, p.nombre_producto, p.foto_producto, n.nombre_negocio 
+        $query = "SELECT p.id_producto, p.id_negocio, p.nombre_producto, p.precio, p.foto_producto, n.nombre_negocio 
                   FROM productos p 
                   INNER JOIN negocios n ON p.id_negocio = n.id_negocio";
         $result = $this->conn->query($query);
@@ -123,16 +135,16 @@ class ControladorNegocios
     }
 
     // Función para actualizar un producto
-    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $foto_producto = null) {
+    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $precio, $foto_producto = null) {
         // Si no se proporciona un nuevo logo, se utiliza el actual
         if ($foto_producto === null) {
-            $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ? WHERE id_producto = ?";
+            $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?, precio = ? WHERE id_producto = ?";
             $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("isi", $id_negocio, $nombre_producto, $id_producto);
+            $stmt->bind_param("isi", $id_negocio, $nombre_producto, $precio, $id_producto);
         } else {
-            $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?, foto_producto = ? WHERE id_producto = ?";
+            $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?, precio = ?, foto_producto = ? WHERE id_producto = ?";
             $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("issi", $id_negocio, $nombre_producto, $foto_producto, $id_producto);
+            $stmt->bind_param("isisi", $id_negocio, $nombre_producto, $precio, $foto_producto, $id_producto);
         }
     
         if ($stmt->execute()) {
