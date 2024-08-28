@@ -153,5 +153,29 @@ class ControladorNegocios
         } else {
             return false;
         }
-}}
+}
+public function obtenerFotosPorNegocio($id_negocio) {
+
+    $sql = "SELECT foto_producto FROM productos WHERE id_negocio = ?";
+    
+    // Prepara la consulta
+    if ($stmt = $this->conn->prepare($sql)) {
+        $stmt->bind_param("i", $id_negocio);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $fotos = [];
+        while ($fila = $result->fetch_assoc()) {
+            $fotos[] = $fila;
+        }
+        
+        $stmt->close();
+        return $fotos;
+
+    } else {
+        return false;
+    }
+}
+}
+
 ?>
