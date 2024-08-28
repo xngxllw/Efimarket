@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Recibir los datos del formulario
     $id_negocio = $_POST['nombre_negocio'];
     $nombre_producto = $_POST['nombre_producto'];
-    $foto_producto = $_FILES['foto_producto'];
     $precio = $_POST['precio'];
+    $foto_producto = $_FILES['foto_producto'];
     $id_usuario = $_SESSION['id_usuario']; // Tomamos el id_usuario de la sesión
 
     // Verificar que se subió la foto correctamente
@@ -61,4 +61,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit();
 }
 ?>
-    
