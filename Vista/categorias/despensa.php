@@ -52,6 +52,8 @@
             echo '<div class="cont-negocios">';
             foreach ($negocios as $negocio) {
                 $descripcion = isset($negocio['descripcion']) ? $negocio['descripcion'] : 'No disponible';
+                $fotos = $controladorNegocios->obtenerFotosPorNegocio($negocio['id_negocio']); // Obtener las fotos del negocio
+
 
                 echo '<a href="#" class="negocio" data-bs-toggle="modal" data-bs-target="#modalNegocio' . $negocio['id_negocio'] . '">';
                 echo '<img width="150px" height="150px" src="../../uploads/logos/' . $negocio['logo'] . '" alt="Logo del negocio">';

@@ -45,6 +45,7 @@
         require_once '../../Controlador/controladorNegocios.php';
         $controladorNegocios = new ControladorNegocios();
         $negocios = $controladorNegocios->obtenerNegociosPorCategoria(9); // Cambia el número según la categoría correcta para panaderías
+        $fotos = $controladorNegocios->obtenerFotosPorNegocio($negocio['id_negocio']); // Obtener las fotos del negocio
 
         if (empty($negocios)) {
             echo '<p class="no-negocios" style="text-align: center;">No hay negocios disponibles en esta categoría.</p>';
