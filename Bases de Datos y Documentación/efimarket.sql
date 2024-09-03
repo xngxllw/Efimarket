@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-08-2024 a las 16:32:32
+-- Tiempo de generación: 03-09-2024 a las 17:16:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -125,7 +125,9 @@ INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_p
 (12, 12, 'Malteada', 'frappe.jpg', 1, 6900),
 (13, 12, 'Latte', 'frappe.jpg', 1, 3800),
 (14, 12, 'Capuccino', 'frappe.jpg', 1, 6200),
-(15, 12, 'Torta de Almójabana', 'frappe.jpg', 1, 5800);
+(15, 12, 'Torta de Almójabana', 'frappe.jpg', 1, 5800),
+(16, 10, 'Camisa 🪐S🪐', 'camisa.png', 8, 70000),
+(17, 10, 'Cadena 🪐', 'cadena.png', 8, 20000);
 
 -- --------------------------------------------------------
 
@@ -241,7 +243,7 @@ ALTER TABLE `postulaciones`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

@@ -52,6 +52,8 @@
             echo '<div class="cont-negocios">';
             foreach ($negocios as $negocio) {
                 $descripcion = isset($negocio['descripcion']) ? $negocio['descripcion'] : 'No disponible';
+                $fotos = $controladorNegocios->obtenerFotosPorNegocio($negocio['id_negocio']); // Obtener las fotos del negocio
+
 
                 echo '<a href="#" class="negocio" data-bs-toggle="modal" data-bs-target="#modalNegocio' . $negocio['id_negocio'] . '">';
                 echo '<img width="150px" height="150px" src="../../uploads/logos/' . $negocio['logo'] . '" alt="Logo del negocio">';
@@ -79,13 +81,17 @@
                 echo '<p><strong>Ubicación:</strong> ' . htmlspecialchars($negocio['direccion']) . '</p>';
                 echo '<p><strong>Teléfono:</strong> ' . htmlspecialchars($negocio['telefono']) . '</p>';
                 echo '<p><strong>Fotos:</strong></p>';
+                echo '<div class="cont-productos">';
                 if (!empty($fotos)) {
                     foreach ($fotos as $foto) {
-                        echo '<img src="../../uploads/productos/' . $foto['foto_producto'] . '" alt="Foto del negocio" width="100px" style="margin: 15px; border-radius: 10px;">';
+                        echo '<div class="cont-producto"> <img src="../../uploads/productos/' . $foto['foto_producto'] . '" alt="Foto del negocio">';
+                        echo '<h5 class="nombre-producto">' . $foto['nombre_producto'] . '</h5>';
+                        echo '<h6><strong>$</strong>' . $foto['precio'] . '</h5> </div>';
                     }
                 } else {
                     echo '<p>No hay fotos disponibles.</p>';
                 }
+                echo '</div>';
                 echo '</div>';
                 echo '<div class="modal-footer">';
                 echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';

@@ -83,14 +83,17 @@
 
                 // Sección de fotos
                 echo '<p><strong>Fotos:</strong></p>';
+                echo '<div class="cont-productos">';
                 if (!empty($fotos)) {
                     foreach ($fotos as $foto) {
-                        echo '<img src="../../uploads/productos/' . $foto['foto_producto'] . '" alt="Foto del negocio" width="100px" style="margin: 15px; border-radius: 10px;">';
+                        echo '<div class="cont-producto"> <img src="../../uploads/productos/' . $foto['foto_producto'] . '" alt="Foto del negocio" width="150px">';
+                        echo '<h5 class="nombre-producto">' . $foto['nombre_producto'] . '</h5>';
+                        echo '<h6><strong>$</strong>' . $foto['precio'] . '</h5> </div>';
                     }
                 } else {
                     echo '<p>No hay fotos disponibles.</p>';
                 }
-
+                echo '</div>';
                 echo '</div>';
                 echo '<div class="modal-footer">';
                 echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';

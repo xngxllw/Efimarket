@@ -185,7 +185,7 @@ class ControladorNegocios
 
     public function obtenerFotosPorNegocio($id_negocio)
     {
-        $sql = "SELECT foto_producto FROM productos WHERE id_negocio = ?";
+        $sql = "SELECT foto_producto , nombre_producto, precio FROM productos WHERE id_negocio = ?";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {
@@ -204,6 +204,8 @@ class ControladorNegocios
         $stmt->close();
         return $fotos;
     }
+    
+    
     public function obtenerProductosPorUsuario($id_usuario)
 {
     $modeloNegocios = new ModeloNegocios($this->conn);
