@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Efimarket: Salud y Belleza</title>
+    <title>Farmacia y Cosméticos</title>
     <script src="https://kit.fontawesome.com/a44f9ce7b1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="categorias.css">
@@ -38,14 +38,13 @@
         </div>
     </nav>
     <header>
-        <h1>Encuentra negocios de salud y belleza</h1>
+        <h1>Farmacias y cosméticos</h1>
     </header>
     <div class="contenedor-negocios">
         <?php
         require_once '../../Controlador/controladorNegocios.php';
         $controladorNegocios = new ControladorNegocios();
         $negocios = $controladorNegocios->obtenerNegociosPorCategoria(5); // Cambia el número según la categoría correcta para panaderías
-        $fotos = $controladorNegocios->obtenerFotosPorNegocio($negocio['id_negocio']); // Obtener las fotos del negocio
 
         if (empty($negocios)) {
             echo '<p class="no-negocios" style="text-align: center;">No hay negocios disponibles en esta categoría.</p>';
@@ -53,6 +52,8 @@
             echo '<div class="cont-negocios">';
             foreach ($negocios as $negocio) {
                 $descripcion = isset($negocio['descripcion']) ? $negocio['descripcion'] : 'No disponible';
+                $fotos = $controladorNegocios->obtenerFotosPorNegocio($negocio['id_negocio']); // Obtener las fotos del negocio
+    
 
                 echo '<a href="#" class="negocio" data-bs-toggle="modal" data-bs-target="#modalNegocio' . $negocio['id_negocio'] . '">';
                 echo '<img width="150px" height="150px" src="../../uploads/logos/' . $negocio['logo'] . '" alt="Logo del negocio">';
@@ -79,10 +80,13 @@
                 echo '<p><strong>Horario:</strong> ' . htmlspecialchars($negocio['horario']) . '</p>';
                 echo '<p><strong>Ubicación:</strong> ' . htmlspecialchars($negocio['direccion']) . '</p>';
                 echo '<p><strong>Teléfono:</strong> ' . htmlspecialchars($negocio['telefono']) . '</p>';
+
+                // Sección de fotos
+                echo '<p><strong>Fotos:</strong></p>';
                 echo '<div class="cont-productos">';
                 if (!empty($fotos)) {
                     foreach ($fotos as $foto) {
-                        echo '<div class="cont-producto"> <img src="../../uploads/productos/' . $foto['foto_producto'] . '" alt="Foto del negocio">';
+                        echo '<div class="cont-producto"> <img src="../../uploads/productos/' . $foto['foto_producto'] . '" alt="Foto del negocio" width="150px">';
                         echo '<h5 class="nombre-producto">' . $foto['nombre_producto'] . '</h5>';
                         echo '<h6><strong>$</strong>' . $foto['precio'] . '</h5> </div>';
                     }
