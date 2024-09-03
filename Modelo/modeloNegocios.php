@@ -160,23 +160,27 @@ class ModeloNegocios
         }
     }
     public function obtenerProductosPorUsuario($id_usuario)
-{
-    $sql = "SELECT p.id_producto, p.nombre_producto, p.foto_producto, n.nombre_negocio, p.precio
-            FROM productos p 
-            INNER JOIN negocios n ON p.id_negocio = n.id_negocio 
-            WHERE n.id_usuario = ?";
-    $stmt = $this->conn->prepare($sql);
-    if (!$stmt) {
-        die("Error al preparar la consulta: " . $this->conn->error);
+    {
+        $sql = "SELECT p.id_producto, p.nombre_producto, p.foto_producto, p.id_negocio, p.precio, n.nombre_negocio
+                FROM productos p
+                INNER JOIN negocios n ON p.id_negocio = n.id_negocio
+                WHERE n.id_usuario = ?";
+        
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+    
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $productos = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $productos;
     }
-
-    $stmt->bind_param("i", $id_usuario);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $productos = $result->fetch_all(MYSQLI_ASSOC);
-    $stmt->close();
-    return $productos;
-}
+    
+    
+    
 
 }
 
