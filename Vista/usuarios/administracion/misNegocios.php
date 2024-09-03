@@ -19,7 +19,6 @@ $id_usuario = $_SESSION['id_usuario'];
 
 // Obtener los negocios asociados al usuario actual
 $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
-
 ?>
 
 <!DOCTYPE html>

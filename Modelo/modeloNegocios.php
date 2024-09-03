@@ -18,16 +18,14 @@ class ModeloNegocios
             die("Error al preparar la consulta: " . $this->conn->error);
         }
 
-        // Asociar los parámetros
         $stmt->bind_param("isssssiss", $id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario);
 
-        // Ejecutar la consulta
         if ($stmt->execute()) {
-            $stmt->close(); // Cerrar la declaración preparada
+            $stmt->close();
             return "Nuevo negocio registrado exitosamente";
         } else {
             $error = "Error al ejecutar la consulta: " . $stmt->error;
-            $stmt->close(); // Cerrar la declaración preparada
+            $stmt->close();
             return $error;
         }
     }
@@ -53,13 +51,12 @@ class ModeloNegocios
             $stmt->bind_param("ssssssi", $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $horario, $id_negocio);
         }
 
-        // Ejecutar la consulta
         if ($stmt->execute()) {
-            $stmt->close(); // Cerrar la declaración preparada
+            $stmt->close();
             return "Negocio actualizado exitosamente";
         } else {
             $error = "Error al ejecutar la consulta: " . $stmt->error;
-            $stmt->close(); // Cerrar la declaración preparada
+            $stmt->close();
             return $error;
         }
     }
@@ -71,20 +68,26 @@ class ModeloNegocios
         if (!$stmt) {
             die("Error al preparar la consulta: " . $this->conn->error);
         }
+
         $stmt->bind_param("i", $id_negocio);
         if ($stmt->execute()) {
-            $stmt->close(); // Cerrar la declaración preparada
+            $stmt->close();
             return "Negocio eliminado exitosamente";
         } else {
             $error = "Error al ejecutar la consulta: " . $stmt->error;
-            $stmt->close(); // Cerrar la declaración preparada
+            $stmt->close();
             return $error;
         }
     }
+
     public function obtenerNegocioPorId($id_negocio)
     {
         $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_negocio = ?";
         $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
         $stmt->bind_param("i", $id_negocio);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -92,63 +95,89 @@ class ModeloNegocios
         $stmt->close();
         return $negocio;
     }
-    public function contarProductosPorNegocio($id_negocio) {
+
+    public function contarProductosPorNegocio($id_negocio)
+    {
         $sql = "SELECT COUNT(*) AS cantidad FROM productos WHERE id_negocio = ?";
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Error al preparar la consulta: " . $this->conn->error);
         }
+
         $stmt->bind_param("i", $id_negocio);
         $stmt->execute();
         $resultado = $stmt->get_result()->fetch_assoc();
         $stmt->close();
         return $resultado['cantidad'];
     }
-    public function agregarProducto($id_negocio, $nombre_producto, $foto_producto) {
+
+    public function agregarProducto($id_negocio, $nombre_producto, $foto_producto)
+    {
         $sql = "INSERT INTO productos (id_negocio, nombre_producto, foto_producto) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Error al preparar la consulta: " . $this->conn->error);
         }
-    
-        $stmt->bind_param("sss", $id_negocio, $nombre_producto, $foto_producto);
-    
+
+        $stmt->bind_param("iss", $id_negocio, $nombre_producto, $foto_producto);
+
         if ($stmt->execute()) {
-            $stmt->close(); // Cerrar la declaración preparada
-            return true; // Producto agregado exitosamente
+            $stmt->close();
+            return true;
         } else {
-            $stmt->close(); // Cerrar la declaración preparada
-            return false; // Error al agregar el producto
+            $stmt->close();
+            return false;
         }
-        
-    }public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $foto_producto = null) {
-        // Crear la consulta de actualización
-        $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?";
-    
-        // Solo agregar la parte de la foto si se proporciona una nueva foto
+    }
+
+    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $foto_producto = null)
+    {
+        $sql = "UPDATE productos SET id_negocio = ?, nombre_producto = ?";
+
         if ($foto_producto !== null) {
-            $query .= ", foto_producto = ?";
+            $sql .= ", foto_producto = ?";
         }
-    
-        $query .= " WHERE id_producto = ?";
-    
-        $stmt = $this->conn->prepare($query);
-    
-        // Preparar los parámetros
+
+        $sql .= " WHERE id_producto = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
         if ($foto_producto !== null) {
             $stmt->bind_param("issi", $id_negocio, $nombre_producto, $foto_producto, $id_producto);
         } else {
             $stmt->bind_param("ssi", $id_negocio, $nombre_producto, $id_producto);
         }
-    
-        // Ejecutar la consulta
+
         if ($stmt->execute()) {
+            $stmt->close();
             return true;
         } else {
+            $stmt->close();
             return false;
         }
     }
-    
+    public function obtenerProductosPorUsuario($id_usuario)
+{
+    $sql = "SELECT p.id_producto, p.nombre_producto, p.foto_producto, n.nombre_negocio, p.precio
+            FROM productos p 
+            INNER JOIN negocios n ON p.id_negocio = n.id_negocio 
+            WHERE n.id_usuario = ?";
+    $stmt = $this->conn->prepare($sql);
+    if (!$stmt) {
+        die("Error al preparar la consulta: " . $this->conn->error);
+    }
+
+    $stmt->bind_param("i", $id_usuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $productos = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $productos;
+}
 
 }
+
 ?>

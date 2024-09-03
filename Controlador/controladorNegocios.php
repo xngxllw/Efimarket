@@ -34,7 +34,6 @@ class ControladorNegocios
         $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_usuario = ?";
         $stmt = $this->conn->prepare($sql);
 
-        // Verificar si la preparación de la consulta fue exitosa
         if (!$stmt) {
             die("Error al preparar la consulta: " . $this->conn->error);
         }
@@ -54,6 +53,11 @@ class ControladorNegocios
     {
         $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE id_categoria = ?";
         $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
         $stmt->bind_param("i", $id_categoria);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -74,35 +78,43 @@ class ControladorNegocios
     {
         return $this->modeloNegocios->eliminarNegocio($id_negocio);
     }
-    
+
     public function obtenerNegocioPorId($id_negocio)
     {
         return $this->modeloNegocios->obtenerNegocioPorId($id_negocio);
     }
 
-    public function contarProductosPorNegocio($id_negocio) {
+    public function contarProductosPorNegocio($id_negocio)
+    {
         $query = "SELECT COUNT(*) as total FROM productos WHERE id_negocio = ?";
         $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
         $stmt->bind_param("i", $id_negocio);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
         return $result['total'];
     }
-    
-    public function agregarProducto($id_negocio, $nombre_producto, $nombreArchivo, $precio, $id_usuario) {
+
+    public function agregarProducto($id_negocio, $nombre_producto, $nombreArchivo, $precio, $id_usuario)
+    {
         $query = "INSERT INTO productos (id_negocio, nombre_producto, foto_producto, precio, id_usuario) VALUES (?, ?, ?, ?, ?)";
-        
-        if ($stmt = $this->conn->prepare($query)) {
-            $stmt->bind_param("issdi", $id_negocio, $nombre_producto, $nombreArchivo, $precio, $id_usuario);
-            if ($stmt->execute()) {
-                return true;
-            }
+
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
         }
-        return false;
+
+        $stmt->bind_param("issdi", $id_negocio, $nombre_producto, $nombreArchivo, $precio, $id_usuario);
+        return $stmt->execute();
     }
-    
-    
-    public function obtenerProductos() {
+
+    public function obtenerProductos()
+    {
         $query = "SELECT p.id_producto, p.id_negocio, p.nombre_producto, p.precio, p.foto_producto, n.nombre_negocio 
                   FROM productos p 
                   INNER JOIN negocios n ON p.id_negocio = n.id_negocio";
@@ -119,10 +131,15 @@ class ControladorNegocios
         }
     }
 
-    // Función para obtener un producto por su ID
-    public function obtenerProductoPorId($id_producto) {
+    public function obtenerProductoPorId($id_producto)
+    {
         $query = "SELECT * FROM productos WHERE id_producto = ?";
         $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
         $stmt->bind_param("i", $id_producto);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -134,9 +151,8 @@ class ControladorNegocios
         }
     }
 
-    // Función para actualizar un producto
-    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $precio, $foto_producto = null) {
-        // Si no se proporciona un nuevo logo, se utiliza el actual
+    public function actualizarProducto($id_producto, $id_negocio, $nombre_producto, $precio, $foto_producto = null)
+    {
         if ($foto_producto === null) {
             $query = "UPDATE productos SET id_negocio = ?, nombre_producto = ?, precio = ? WHERE id_producto = ?";
             $stmt = $this->conn->prepare($query);
@@ -146,32 +162,36 @@ class ControladorNegocios
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("isisi", $id_negocio, $nombre_producto, $precio, $foto_producto, $id_producto);
         }
-    
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
         }
+
+        return $stmt->execute();
     }
-    
-    // Función para eliminar un producto
-    public function eliminarProducto($id_producto) {
+
+    public function eliminarProducto($id_producto)
+    {
         $query = "DELETE FROM productos WHERE id_producto = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $id_producto);
 
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
         }
-}
-public function obtenerFotosPorNegocio($id_negocio) {
 
-    $sql = "SELECT foto_producto FROM productos WHERE id_negocio = ?";
-    
-    // Prepara la consulta
-    if ($stmt = $this->conn->prepare($sql)) {
+        $stmt->bind_param("i", $id_producto);
+        return $stmt->execute();
+    }
+
+    public function obtenerFotosPorNegocio($id_negocio)
+    {
+        $sql = "SELECT foto_producto FROM productos WHERE id_negocio = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
         $stmt->bind_param("i", $id_negocio);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -180,14 +200,16 @@ public function obtenerFotosPorNegocio($id_negocio) {
         while ($fila = $result->fetch_assoc()) {
             $fotos[] = $fila;
         }
-        
+
         $stmt->close();
         return $fotos;
-
-    } else {
-        return false;
     }
+    public function obtenerProductosPorUsuario($id_usuario)
+{
+    $modeloNegocios = new ModeloNegocios($this->conn);
+    return $modeloNegocios->obtenerProductosPorUsuario($id_usuario);
 }
+
 }
 
 ?>
