@@ -61,6 +61,7 @@
                 echo '<li class="elementos-menu"><a href="login.php">Iniciar Sesión</a></li>';
             }
             ?>
+            <li class="elementos-menu"><a href="planes.php">Planes</a></li>
             <li class="elementos-menu"><a href="categorias/despensa.php">Despensa</a></li>
             <li class="elementos-menu"><a href="categorias/panaderia.php">Panaderías</a></li>
             <li class="elementos-menu"><a href="categorias/rapidas.php">Comidas Rápidas</a></li>
@@ -75,15 +76,16 @@
     <div id="overlay"></div>
 
     <div class="contenedor-busq" style="margin-top: 50px;">
-    <div class="search-input-box">
-        <form action="categorias/resultados.php" method="GET">
-            <input type="text" name="query" placeholder="¿Qué buscas hoy?" required />
-            <button type="submit">
-                <i class="fa-solid fa-magnifying-glass icon"></i>
-            </button>
-        </form>
+        <div class="search-input-box">
+            <form action="categorias/resultados.php" method="GET">
+                <input type="text" name="query" placeholder="¿Qué buscas hoy?" required />
+                <button style="display: none;" type="submit">
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                </button>
+            </form>
+        </div>
+
     </div>
-</div>
 
 
     <div class="slide">
@@ -216,5 +218,6 @@
     <div class="footer-bottom">
         &copy; 2024 DIGITAL AZ S.A | Todos los derechos reservados
     </div>
-</footer>   
+</footer>
+
 </html>
