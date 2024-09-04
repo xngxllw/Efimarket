@@ -197,6 +197,7 @@
                 <li><a href="#">Inicio</a></li>
                 <li><a href="https://wa.me/573196516362"><i class="fab fa-whatsapp"></i>Contacto</a></li>
                 <li><a href="https://wa.me/573145018489"><i class="fab fa-whatsapp"></i>Contacto</a></li>
+                <li><a href="https://wa.me/573106702810"><i class="fab fa-whatsapp"></i>Contacto</a></li>
             </ul>
         </div>
 
