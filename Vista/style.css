@@ -753,3 +753,29 @@ footer {
 .footer-bottom a:hover {
   text-decoration: underline;
 } 
+
+.plans {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px; /* Add space between the plan boxes */
+  margin-top: 100px;
+}
+
+.plan {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 30%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.plan h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.plan ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
