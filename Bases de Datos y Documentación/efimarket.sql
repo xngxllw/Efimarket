@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-09-2024 a las 17:16:55
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Tiempo de generación: 03-09-2024 a las 19:56:14
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -81,7 +81,8 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (10, 8, 'Saturn Merch', 'Tienda de Ropa', 'Online', '3106702810', '', 8, '24/7', 'Logo Saturn azul.png'),
 (11, 10, 'Mobiliario Eskuadra', 'Tapicería de muebles', 'CLL32 #29-10', '3135435447', '', 4, '8.00AM  a 9PM', 'eskuadra.jpeg'),
 (12, 1, 'Milagrito Café', 'Móvil de Café', 'CLL 32C #27A43', '3022397164', 'instagram.com/milagritocafemovil', 2, '4:00PM a 8:00PM', 'milagrito.jpeg'),
-(16, 11, 'Pinkittyglam', 'Tienda de Maquillaje Online', 'Online', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pinkittyglam.jpg');
+(16, 11, 'Pinkittyglam', 'Tienda de Maquillaje Online', 'Online', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pinkittyglam.jpg'),
+(17, 8, 'AZ Parfums', 'Perfumería', 'Online', '3196516362', 'instagram.com/azparfums', 5, '24/7', 'logoAZparfums.jpeg');
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,20 @@ INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_p
 (14, 12, 'Capuccino', 'frappe.jpg', 1, 6200),
 (15, 12, 'Torta de Almójabana', 'frappe.jpg', 1, 5800),
 (16, 10, 'Camisa 🪐S🪐', 'camisa.png', 8, 70000),
-(17, 10, 'Cadena 🪐', 'cadena.png', 8, 20000);
+(17, 10, 'Cadena 🪐', 'cadena.png', 8, 20000),
+(18, 17, 'Ultramale', 'ultramale.jpg', 8, 15000),
+(19, 17, 'Scandal', 'scandal.jpg', 8, 15000),
+(20, 17, 'Sauvage EDP', 'sauvageedp.jpg', 8, 15000),
+(21, 11, 'Closet', 'closet.jpg', 10, 1900000),
+(22, 11, 'Closet Móvil', 'closetMovil.jpg', 10, 2500000),
+(23, 11, 'Cocina Integral', 'cocinaIntegral.jpg', 10, 4000000),
+(24, 11, 'Cocina', 'cocina.jpg', 10, 3500000),
+(25, 11, 'Reparación Muebles', 'reparacionMuebles.jpg', 10, 0),
+(27, 16, 'Kit x3 cosmetiqueras', 'kitcosmetiqueras.jpg', 11, 35000),
+(28, 16, 'Gorro y Moña de Satín', 'gorroymoñadesatin.jpg', 11, 15000),
+(29, 16, 'Toalla Microfibra', 'toallamicrofibra.jpg', 11, 13000),
+(30, 16, 'Kit Facial Bioaqua', 'kitfacialarroz.jpg', 11, 55000),
+(31, 16, 'Termo Stanley 1.1', 'termostanley.jpg', 11, 92000);
 
 -- --------------------------------------------------------
 
@@ -231,7 +245,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `postulaciones`
@@ -243,7 +257,7 @@ ALTER TABLE `postulaciones`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
