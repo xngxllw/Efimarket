@@ -74,19 +74,17 @@
     </div>
     <div id="overlay"></div>
 
-    <div style="margin-top: 50px;" class="contenedor-busq">
-        <div class="search-input-box">
-            <input type="text" placeholder="¿Qué buscas hoy?" />
-            <a id="linkBusqueda" href="#">
-                <i class="fa-solid fa-magnifying-glass icon"> </i>
-            </a>
-            <ul class="container-suggestions">
-                <li>sugerencia 1</li>
-                <li>sugerencia 2</li>
-                <li>sugerencia 3</li>
-            </ul>
-        </div>
+    <div class="contenedor-busq" style="margin-top: 50px;">
+    <div class="search-input-box">
+        <form action="categorias/resultados.php" method="GET">
+            <input type="text" name="query" placeholder="¿Qué buscas hoy?" required />
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass icon"></i>
+            </button>
+        </form>
     </div>
+</div>
+
 
     <div class="slide">
         <div class="slide-inner">
@@ -197,6 +195,7 @@
                 <li><a href="#">Inicio</a></li>
                 <li><a href="https://wa.me/573196516362"><i class="fab fa-whatsapp"></i>Contacto</a></li>
                 <li><a href="https://wa.me/573145018489"><i class="fab fa-whatsapp"></i>Contacto</a></li>
+                <li><a href="https://wa.me/573106702810"><i class="fab fa-whatsapp"></i>Contacto</a></li>
                 <li><a href="https://wa.me/5731067028"><i class="fab fa-whatsapp"></i>Contacto</a></li>
             </ul>
         </div>

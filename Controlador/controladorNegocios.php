@@ -211,6 +211,31 @@ class ControladorNegocios
     $modeloNegocios = new ModeloNegocios($this->conn);
     return $modeloNegocios->obtenerProductosPorUsuario($id_usuario);
 }
+public function buscarNegociosConSugerencias($termino)
+{
+    // Usamos el operador % para buscar coincidencias parciales en la base de datos
+    $terminoBusqueda = "%" . $termino . "%";
+    $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE nombre_negocio LIKE ? OR descripcion LIKE ?";
+    $stmt = $this->conn->prepare($sql);
+
+    if (!$stmt) {
+        die("Error al preparar la consulta: " . $this->conn->error);
+    }
+
+    // Bind de parámetros para la búsqueda
+    $stmt->bind_param("ss", $terminoBusqueda, $terminoBusqueda);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $negocios = [];
+
+    // Obtenemos los resultados de la búsqueda
+    while ($row = $result->fetch_assoc()) {
+        $negocios[] = $row;
+    }
+
+    $stmt->close();
+    return $negocios;
+}
 
 }
 
