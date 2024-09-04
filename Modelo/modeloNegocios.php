@@ -159,6 +159,7 @@ class ModeloNegocios
             return false;
         }
     }
+
     public function obtenerProductosPorUsuario($id_usuario)
     {
         $sql = "SELECT p.id_producto, p.nombre_producto, p.foto_producto, p.id_negocio, p.precio, n.nombre_negocio
@@ -178,10 +179,42 @@ class ModeloNegocios
         $stmt->close();
         return $productos;
     }
-    
-    
-    
 
+    // Nueva función para buscar negocios por nombre
+    public function buscarNegociosPorNombre($nombre)
+    {
+        $sql = "SELECT * FROM negocios WHERE nombre_negocio LIKE ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $nombre = '%' . $nombre . '%'; // Para hacer la búsqueda más flexible
+        $stmt->bind_param("s", $nombre);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $negocios = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $negocios;
+    }
+    public function buscarNegociosConSugerencias($termino)
+{
+    $termino = '%' . $termino . '%';
+    $sql = "SELECT id_negocio, nombre_negocio FROM negocios WHERE nombre_negocio LIKE ?";
+
+    $stmt = $this->conn->prepare($sql);
+    if (!$stmt) {
+        die("Error al preparar la consulta: " . $this->conn->error);
+    }
+
+    $stmt->bind_param("s", $termino);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $sugerencias = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $sugerencias;
 }
 
+}
 ?>
