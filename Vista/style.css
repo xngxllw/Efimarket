@@ -575,8 +575,8 @@ nav .inicio {
 
 .search-input-box input {
   width: 100%;
-  border: none;
-  outline: none;
+    border: none;
+    outline: none;
   border-radius: 5px;
   height: 55px;
   font-size: 18px;

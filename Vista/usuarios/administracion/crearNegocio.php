@@ -23,7 +23,6 @@ session_start();
       <li><a href="panel.php">Inicio</a></li>
       <li><a href="negocios.php">Mis Negocios</a></li>
       <li><a href="productos.php">Productos</a></li>
-
       <li><a href="vacantes.php">Vacantes de Empleo</a></li>
       <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
 

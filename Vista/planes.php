@@ -9,6 +9,12 @@
     <link rel="icon" type="image/png" href="images/carrito.png">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/a44f9ce7b1.js" crossorigin="anonymous"></script>
+    <script src="js/buscador.js"></script>
+    <script src="js/sugerencias.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/mapa.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdMhWjoJMe-J1QWIZW_37reKryLe-_sLc&callback=initMap">
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
