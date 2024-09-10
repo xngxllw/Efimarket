@@ -725,21 +725,30 @@ footer {
 
 .plan {
   border: 1px solid #ccc;
-  padding: 20px;
+  padding: 0; /* Elimina el padding para el contenedor principal */
   width: 30%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  overflow: hidden; /* Oculta cualquier contenido que sobresalga del borde */
+}
+
+.plan-header {
+  background-color: #007bff; /* Azul */
+  color: white; /* Texto blanco para que contraste con el fondo azul */
+  padding: 20px; /* Ajusta el padding como desees */
+  text-align: center; /* Centra el texto */
 }
 
 .plan h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  margin: 0; /* Elimina el margen para el título */
 }
 
 .plan ul {
   list-style-type: disc;
-  padding-left: 20px;
+  padding: 20px; /* Restaura el padding del contenido */
+  margin: 0; /* Elimina el margen predeterminado */
 }
+
 .suggestion-box {
   position: absolute;
   background-color: #fff;
@@ -759,3 +768,22 @@ footer {
 .suggestion-item:hover {
   background-color: #f0f0f0;
 }
+
+.planbutton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Azul */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.planbutton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
