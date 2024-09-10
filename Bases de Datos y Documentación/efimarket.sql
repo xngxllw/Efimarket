@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-09-2024 a las 19:56:14
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 10-09-2024 a las 17:00:32
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,7 +82,8 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (11, 10, 'Mobiliario Eskuadra', 'Tapicería de muebles', 'CLL32 #29-10', '3135435447', '', 4, '8.00AM  a 9PM', 'eskuadra.jpeg'),
 (12, 1, 'Milagrito Café', 'Móvil de Café', 'CLL 32C #27A43', '3022397164', 'instagram.com/milagritocafemovil', 2, '4:00PM a 8:00PM', 'milagrito.jpeg'),
 (16, 11, 'Pinkittyglam', 'Tienda de Maquillaje Online', 'Online', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pinkittyglam.jpg'),
-(17, 8, 'AZ Parfums', 'Perfumería', 'Online', '3196516362', 'instagram.com/azparfums', 5, '24/7', 'logoAZparfums.jpeg');
+(17, 8, 'AZ Parfums', 'Perfumería', 'Online', '3196516362', 'instagram.com/azparfums', 5, '24/7', 'logoAZparfums.jpeg'),
+(19, 12, 'Arte de Uñas', 'Belleza y autocuidado', 'Carrera 30 #32 17', '3167927622', '', 5, '9:00a.m a 7:00p.m', 'Arte de Uñas.jfif');
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,10 @@ INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_p
 (28, 16, 'Gorro y Moña de Satín', 'gorroymoñadesatin.jpg', 11, 15000),
 (29, 16, 'Toalla Microfibra', 'toallamicrofibra.jpg', 11, 13000),
 (30, 16, 'Kit Facial Bioaqua', 'kitfacialarroz.jpg', 11, 55000),
-(31, 16, 'Termo Stanley 1.1', 'termostanley.jpg', 11, 92000);
+(31, 16, 'Termo Stanley 1.1', 'termostanley.jpg', 11, 92000),
+(32, 18, 'Uñas Acrilicas', 'uñas.jfif', 12, 70000),
+(33, 18, 'Uñas Acrilicas', 'uñass.jfif', 12, 70000),
+(34, 18, 'Uñas Acrilicas', 'Uñas acrilicas.jfif', 12, 70000);
 
 -- --------------------------------------------------------
 
@@ -171,7 +175,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) V
 (7, 'Rodinson Franco', 'panaderiasefimarket@gmail.com', 'rodinson.efimarket123', 'admin'),
 (8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin'),
 (10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin'),
-(11, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin');
+(11, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin'),
+(12, 'Valentina López', 'Valentina140821lopez@gmail.com', 'valentina.efimarket123', 'admin');
 
 -- --------------------------------------------------------
 
@@ -245,7 +250,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `postulaciones`
@@ -257,13 +262,13 @@ ALTER TABLE `postulaciones`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `vacantes`

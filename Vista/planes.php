@@ -17,58 +17,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <style>
-        .plans {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px;
-            gap: 20px; /* Add space between the plan boxes */
-            margin-top: 100px;
-        }
-
-        .plan {
-            border: 1px solid #ccc;
-            padding: 0; /* Elimina el padding para el contenedor principal */
-            width: 30%;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden; /* Oculta cualquier contenido que sobresalga del borde */
-        }
-
-        .plan-header {
-            background-color: #007bff; /* Azul */
-            color: white; /* Texto blanco para que contraste con el fondo azul */
-            padding: 20px; /* Ajusta el padding como desees */
-            text-align: center; /* Centra el texto */
-        }
-
-        .plan h2 {
-            margin: 0; /* Elimina el margen para el título */
-        }
-
-        .plan ul {
-            list-style-type: disc;
-            padding: 20px; /* Restaura el padding del contenido */
-            margin: 0; /* Elimina el margen predeterminado */
-        }
-
-        .planbutton {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff; /* Azul */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            margin: 20px; /* Añade margen para separar el botón del contenido */
-        }
-
-        .planbutton:hover {
-            background-color: #0056b3; /* Cambia el color de fondo cuando se pasa el ratón */
-        }
-    </style>
 </head>
 
 <body>
