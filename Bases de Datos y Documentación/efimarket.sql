@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-09-2024 a las 17:00:32
+-- Tiempo de generación: 15-09-2024 a las 22:48:04
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -158,25 +158,28 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(50) DEFAULT NULL,
   `correo` varchar(50) DEFAULT NULL,
   `contrasena` varchar(25) NOT NULL,
-  `rol` varchar(15) NOT NULL
+  `rol` varchar(15) NOT NULL,
+  `plan` int(11) DEFAULT 1,
+  `xp` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`) VALUES
-(1, 'Angel Restrepo', 'miguelrpo05@gmail.com', 'a1036451368', 'admin'),
-(2, 'Josué Quintero', 'mecanicoslocos1225@gmail.com', 'josue.efimarket123', 'admin'),
-(3, 'testClienteeeeeee', 'a@a.com', '123456789', 'cliente'),
-(4, 'Erika Sanchez', 'laesquinacanina18@gmail.com', 'erika.efimarket123', 'admin'),
-(5, 'Edison Duque', 'edi3110du@gmail.com', 'edison.efimarket123', 'admin'),
-(6, 'David Cruz', 'tiendadecarnesloreto@gmail.com', 'david.efimarket123', 'admin'),
-(7, 'Rodinson Franco', 'panaderiasefimarket@gmail.com', 'rodinson.efimarket123', 'admin'),
-(8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin'),
-(10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin'),
-(11, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin'),
-(12, 'Valentina López', 'Valentina140821lopez@gmail.com', 'valentina.efimarket123', 'admin');
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`, `plan`, `xp`) VALUES
+(1, 'Angel Restrepo', 'miguelrpo05@gmail.com', 'a1036451368', 'admin', 3, 500),
+(2, 'Josué Quintero', 'mecanicoslocos1225@gmail.com', 'josue.efimarket123', 'admin', 1, 0),
+(3, 'testClienteeeeeee', 'a@a.com', '123456789', 'cliente', 1, 0),
+(4, 'Erika Sanchez', 'laesquinacanina18@gmail.com', 'erika.efimarket123', 'admin', 1, 0),
+(5, 'Edison Duque', 'edi3110du@gmail.com', 'edison.efimarket123', 'admin', 1, 0),
+(6, 'David Cruz', 'tiendadecarnesloreto@gmail.com', 'david.efimarket123', 'admin', 1, 0),
+(7, 'Rodinson Franco', 'panaderiasefimarket@gmail.com', 'rodinson.efimarket123', 'admin', 1, 0),
+(8, 'samuel zapata', 'samuelocampo65z@gmail.com', 'tomasamuel', 'admin', 3, 10000),
+(10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin', 3, 0),
+(11, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin', 1, 0),
+(12, 'Valentina López', 'Valentina140821lopez@gmail.com', 'valentina.efimarket123', 'admin', 1, 0),
+(14, 'Miguel Ramírez', 'mramirezjaramillo3@gmail.com', 'ramirezprime123', 'admin', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -268,7 +271,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `vacantes`
