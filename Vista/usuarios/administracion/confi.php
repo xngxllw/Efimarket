@@ -21,6 +21,7 @@
       <li><a href="negocios.php">Negocios</a></li>
       <li><a href="vacantes.php">Vacantes de Empleo</a></li>
       <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
+      <li><a href="planes.php">Planes</a></li>
 
     </ul>
   </div>
