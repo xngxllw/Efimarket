@@ -7,11 +7,10 @@ Efimarket es una plataforma en línea que permite a los usuarios registrar, busc
 ## Características
 
 - Registro y gestión de negocios.
-- Búsqueda avanzada de negocios por ubicación, categoría, y más.
-- Sistema de comentarios y reseñas.
+- Búsqueda avanzada de negocios.
+- Sistema de reseñas.
 - Integración con Google Maps.
-- Notificaciones push.
-- Sistema de recompensas o puntos.
+- Sistema de rangos con experiencia.
 - Diseño responsivo.
 
 
