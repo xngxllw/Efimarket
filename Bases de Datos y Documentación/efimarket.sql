@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-09-2024 a las 22:48:04
+-- Tiempo de generación: 16-09-2024 a las 05:00:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -83,7 +83,8 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (12, 1, 'Milagrito Café', 'Móvil de Café', 'CLL 32C #27A43', '3022397164', 'instagram.com/milagritocafemovil', 2, '4:00PM a 8:00PM', 'milagrito.jpeg'),
 (16, 11, 'Pinkittyglam', 'Tienda de Maquillaje Online', 'Online', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pinkittyglam.jpg'),
 (17, 8, 'AZ Parfums', 'Perfumería', 'Online', '3196516362', 'instagram.com/azparfums', 5, '24/7', 'logoAZparfums.jpeg'),
-(19, 12, 'Arte de Uñas', 'Belleza y autocuidado', 'Carrera 30 #32 17', '3167927622', '', 5, '9:00a.m a 7:00p.m', 'Arte de Uñas.jfif');
+(19, 12, 'Arte de Uñas', 'Belleza y autocuidado', 'Carrera 30 #32 17', '3167927622', '', 5, '9:00a.m a 7:00p.m', 'Arte de Uñas.jfif'),
+(21, 15, 'Laboratorio Yada Dental', 'Clínica Dental', 'Carrera 36A #40-90', '3136933101', 'no aplica', 5, '8:00A.M. a 6:30P.M.', 'yadadental.jpeg');
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,8 @@ INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_p
 (31, 16, 'Termo Stanley 1.1', 'termostanley.jpg', 11, 92000),
 (32, 18, 'Uñas Acrilicas', 'uñas.jfif', 12, 70000),
 (33, 18, 'Uñas Acrilicas', 'uñass.jfif', 12, 70000),
-(34, 18, 'Uñas Acrilicas', 'Uñas acrilicas.jfif', 12, 70000);
+(34, 18, 'Uñas Acrilicas', 'Uñas acrilicas.jfif', 12, 70000),
+(35, 21, 'Nuestros Servicios', 'yadaa.jpg', 15, 999);
 
 -- --------------------------------------------------------
 
@@ -179,7 +181,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`, `
 (10, 'Alan J Ramirez R', 'alan3771@hotmail.com', 'alan.efimarket123', 'admin', 3, 0),
 (11, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin', 1, 0),
 (12, 'Valentina López', 'Valentina140821lopez@gmail.com', 'valentina.efimarket123', 'admin', 1, 0),
-(14, 'Miguel Ramírez', 'mramirezjaramillo3@gmail.com', 'ramirezprime123', 'admin', 1, 0);
+(14, 'Miguel Ramírez', 'mramirezjaramillo3@gmail.com', 'ramirezprime123', 'admin', 3, 10000),
+(15, 'Dairo Grizales', 'carlosgrizales00@gmail.com', 'dairo.efimarket123', 'admin', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -253,7 +256,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `postulaciones`
@@ -265,13 +268,13 @@ ALTER TABLE `postulaciones`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `vacantes`
