@@ -101,9 +101,7 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
                     <button class="boton-editar" data-toggle="modal"
                         data-target="#editModal<?php echo htmlspecialchars($negocio['id_negocio']); ?>">Editar</button>
                     <form action="borrarNegocio.php" method="post" class="borrar-cont"">
-                                <input type=" hidden" name="id_negocio"
-                        value="<?php echo htmlspecialchars($negocio['id_negocio']); ?>">
-                        <button type="submit" class="boton-borrar">Borrar</button>
+                        <button type=" submit" class="boton-borrar">Borrar</button>
                     </form>
                 </div>
 

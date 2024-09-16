@@ -11,7 +11,9 @@
     <script src="https://kit.fontawesome.com/a44f9ce7b1.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -90,7 +92,8 @@
 
     <div class="slide">
         <div class="slide-inner">
-            <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
+            <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden=""
+                checked="checked">
             <div class="slide-item">
                 <img src="images/panaderiaAvila.jpg" alt="">
             </div>
@@ -161,26 +164,22 @@
             <p>Frutas y Verduras</p>
         </div>
     </div>
-    <!-- <h2 class="titulos">Los combos más apetecidos:</h2>
-    <div class="ofertas">
-        <a href=""><img class="oferta" src="images/combo1.jpg" alt="Imagen 1"></a>
-        <a href=""><img class="oferta" src="images/combo2.jpg" alt="Imagen 2"></a>
-        <a href=""><img class="oferta" src="images/combo3.jpg" alt="Imagen 3"></a>
-    </div> -->
     <h2 style="text-align: center">No logras ubicarte? Te ayudamos:</h2>
     <div id="map"></div>
     <script src="js/buscador.js"></script>
     <script src="js/sugerencias.js"></script>
     <script src="js/index.js"></script>
     <script src="js/mapa.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdMhWjoJMe-J1QWIZW_37reKryLe-_sLc&callback=initMap">
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdMhWjoJMe-J1QWIZW_37reKryLe-_sLc&callback=initMap">
     </script>
 </body>
 <footer>
     <div class="footer-content">
         <div class="footer-section about">
             <h2>Sobre Nosotros</h2>
-            <p>Somos un grupo de estudiantes de desarrollo de software que buscan contribuir a la comunidad a través de soluciones tecnológicas.</p>
+            <p>Somos un grupo de estudiantes de desarrollo de software que buscan contribuir a la comunidad a través de
+                soluciones tecnológicas.</p>
             <div class="contact">
                 <span><i class="fas fa-envelope"></i> efimarket@gmail.com</span>
             </div>
@@ -205,7 +204,8 @@
         <div class="footer-section contact-form">
             <h2>Contacto</h2>
             <form action="#">
-                <input type="email" name="email" class="text-input contact-input" placeholder="Tu correo electrónico...">
+                <input type="email" name="email" class="text-input contact-input"
+                    placeholder="Tu correo electrónico...">
                 <textarea name="message" class="text-input contact-input" placeholder="Tu mensaje..."></textarea>
                 <button type="submit" class="btn btn-big contact-btn">
                     <i class="fas fa-envelope"></i>
