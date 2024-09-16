@@ -204,14 +204,78 @@ class ControladorNegocios
         $stmt->close();
         return $fotos;
     }
-    
-    
+
+
     public function obtenerProductosPorUsuario($id_usuario)
-{
-    $modeloNegocios = new ModeloNegocios($this->conn);
-    return $modeloNegocios->obtenerProductosPorUsuario($id_usuario);
-}
+    {
+        $modeloNegocios = new ModeloNegocios($this->conn);
+        return $modeloNegocios->obtenerProductosPorUsuario($id_usuario);
+    }
+    public function buscarNegociosPorNombre($nombre_negocio)
+    {
+        $query = "SELECT * FROM negocios WHERE nombre_negocio LIKE ?";
+        $stmt = $this->conn->prepare($query);
 
-}
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
 
-?>
+        $likeNombre = '%' . $nombre_negocio . '%';
+        $stmt->bind_param("s", $likeNombre);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $negocios = [];
+        while ($row = $result->fetch_assoc()) {
+            $negocios[] = $row;
+        }
+
+        $stmt->close();
+        return $negocios;
+    }
+
+    public function buscarProductosPorNombre($nombre_producto)
+    {
+        $query = "SELECT * FROM productos WHERE nombre_producto LIKE ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $likeNombre = '%' . $nombre_producto . '%';
+        $stmt->bind_param("s", $likeNombre);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $productos = [];
+        while ($row = $result->fetch_assoc()) {
+            $productos[] = $row;
+        }
+
+        $stmt->close();
+        return $productos;
+    }
+    public function buscarNegociosConSugerencias($termino)
+    {
+        $terminoBusqueda = "%" . $termino . "%";
+        $sql = "SELECT id_negocio, nombre_negocio, descripcion, direccion, telefono, sitio_web, horario, logo FROM negocios WHERE nombre_negocio LIKE ? OR descripcion LIKE ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("ss", $terminoBusqueda, $terminoBusqueda);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $negocios = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $negocios[] = $row;
+        }
+
+        $stmt->close();
+        return $negocios;
+    }
+}
