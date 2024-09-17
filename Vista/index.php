@@ -203,7 +203,7 @@
 
         <div class="footer-section contact-form">
             <h2>Contacto</h2>
-            <form action="../Controlador/controladorNegocios.php" method="POST">
+            <form action="../Controlador/controlador.php" method="POST">
         <label for="email">Correo Electrónico:</label>
         <input type="email" id="email" name="email" required>
 

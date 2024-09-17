@@ -120,10 +120,6 @@ public function __destruct()
     $this->conexion->close();
 }
 
-    public function __destruct()
-    {
-        $this->conexion->close();
-    }
-}
 
+}
 ?>

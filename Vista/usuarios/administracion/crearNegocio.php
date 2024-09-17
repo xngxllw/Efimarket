@@ -69,6 +69,7 @@ session_start();
             <option value="6">Cárnicos</option>
             <option value="7">Mascotas</option>
             <option value="8">Ropa</option>
+            <option value="9">Frutas y verduras</option>
           </select><br><br>
 
           <button type="submit" class="boton-subir">Registrar</button>

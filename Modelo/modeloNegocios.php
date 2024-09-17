@@ -215,6 +215,22 @@ class ModeloNegocios
 
     return $sugerencias;
 }
+public function insertarResena($id_negocio, $calificacion, $comentario) {
+    $sql = "INSERT INTO reseñas (id_negocio, calificacion, comentario) VALUES (?, ?, ?)";
+    $stmt = $this->conn->prepare($sql);
+    
+    if ($stmt === false) {
+        die('Error en la preparación de la consulta: ' . $this->conn->error);
+    }
 
+    $stmt->bind_param("iis", $id_negocio, $calificacion, $comentario); // iis: entero, entero, string
+    $stmt->execute();
+
+    if ($stmt->error) {
+        die('Error al ejecutar la consulta: ' . $stmt->error);
+    }
+
+    $stmt->close();
+}
 }
 ?>

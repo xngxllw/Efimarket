@@ -102,6 +102,42 @@
                         echo '<p>No hay fotos disponibles.</p>';
                     }
                     echo '</div>';
+                    echo '<div class="resena-section">';
+                    echo '<button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<div class="modal-footer">';
+                    echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+    
+                    // Modal para la reseña
+                    echo '<div class="modal fade" id="modalResena' . $negocio['id_negocio'] . '" tabindex="-1" aria-labelledby="modalResenaLabel' . $negocio['id_negocio'] . '" aria-hidden="true">';
+                    echo '<div class="modal-dialog">';
+                    echo '<div class="modal-content">';
+                    echo '<div class="modal-header">';
+                    echo '<h5 class="modal-title" id="modalResenaLabel' . $negocio['id_negocio'] . '">Reseñar ' . htmlspecialchars($negocio['nombre_negocio']) . '</h5>';
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+                    echo '</div>';
+                    echo '<div class="modal-body">';
+                    echo '<form action="../../Controlador/controladorNegocios.php" method="POST">';
+                    echo '<input type="hidden" name="id_negocio" value="' . $negocio['id_negocio'] . '">';
+                    echo '<div class="form-group">';
+                    echo '<label for="calificacion">Calificación:</label>';
+                    echo '<select name="calificacion" id="calificacion" class="form-select">';
+                    for ($i = 1; $i <= 5; $i++) {
+                        echo '<option value="' . $i . '">' . $i . ' estrella(s)</option>';
+                    }
+                    echo '</select>';
+                    echo '</div>';
+                    echo '<div class="form-group">';
+                    echo '<label for="comentario">Comentario (opcional):</label>';
+                    echo '<textarea name="comentario" id="comentario" class="form-control" rows="3"></textarea>';
+                    echo '</div>';
+                    echo '<button type="submit" name="submit_resena" class="btn btn-success mt-3">Enviar reseña</button>';
+                    echo '</form>';
 
                     echo '</div>';
                     echo '<div class="modal-footer">';
