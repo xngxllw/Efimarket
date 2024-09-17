@@ -720,7 +720,6 @@ footer {
   justify-content: center;
   padding: 20px;
   gap: 20px; /* Add space between the plan boxes */
-  margin-top: 100px;
   flex-wrap: wrap;
 }
 

@@ -77,9 +77,22 @@ $conexion->close();
             <img src="../../images/letras.png" alt="Efimarket Logo">
         </a>
         <ul class="menu">
-            <li><a href="perfil.php">Mi perfil</a></li>
-            <li><a href="rangos.php">Rangos</a></li>
-            <li><a href="planesClientes.php">Planes</a></li>
+            <?php
+                if (isset($_SESSION['rol'])) {
+                    if ($_SESSION['rol'] == 'admin') {
+                        echo '<a href="../Vista/usuarios/administracion/panel.php">Panel de Administrador</a>';
+                        echo '<a href="rangos.php">Rangos</a>';
+                    } else {
+                        echo '<li><a href="planesClientes.php">Planes</a></li>';
+                        echo '<a href="rangos.php">Rangos</a>';
+
+                    }
+                    echo '<a href="../controlador/logout.php">Cerrar Sesión</a>';
+                } else {
+                    echo '<a href="login.php">Iniciar Sesión</a>';
+                    echo '<a href="registro.php">Registrarse</a>';
+                }
+                ?>
         </ul>
     </div>
     <div class="main-content">

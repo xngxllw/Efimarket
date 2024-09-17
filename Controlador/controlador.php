@@ -13,6 +13,14 @@ try {
     die("No se pudo conectar a la base de datos: " . $e->getMessage());
 }
 
+function obtenerPlanUsuario($id_usuario) {
+    global $pdo;
+    $sql = "SELECT plan FROM usuarios WHERE id_usuario = :id_usuario";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':id_usuario' => $id_usuario]);
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $resultado ? $resultado['plan'] : null;
+}
 // Verificar si la solicitud es de tipo POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Recoger datos del formulario
@@ -37,5 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Error al enviar el mensaje.";
     }
+
 }
 ?>

@@ -6,7 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efimarket: Loreto</title>
-    <link rel="icon" type="image/png" href="images/carrito.png">
+    <?php
+    session_start();
+    include '../controlador/controlador.php'; // Asegúrate de incluir el controlador
+
+    // Obtener el plan del usuario
+    $logo = 'images/letras.png'; // Logo por defecto
+    $iconClass = ''; // Clase por defecto para los íconos
+    $carritoIcon = 'images/carrito.png'; // Icono de carrito por defecto
+
+    if (isset($_SESSION['id_usuario'])) {
+        $planUsuario = obtenerPlanUsuario($_SESSION['id_usuario']);
+        
+        switch ($planUsuario) {
+            case 1:
+                $logo = 'images/letras.png';
+                break;
+            case 2:
+                $logo = 'images/efimarketpremium.png';
+                break;
+            case 3:
+                $logo = 'images/efimarketgold.png';
+                $iconClass = 'gold'; // Clase dorada para íconos
+                $carritoIcon = 'images/carritogold.png'; // Icono dorado para carrito
+                break;
+            default:
+                $logo = 'images/letras.png'; // Logo por defecto en caso de error
+                break;
+        }
+    }
+    ?>
+    <link rel="icon" type="image/png" href="<?php echo $carritoIcon; ?>">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/a44f9ce7b1.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,17 +44,28 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap"
         rel="stylesheet">
+    <style>
+        .gold {
+            color: #b4841c;
+        }
+        .gold-filter {
+            filter: brightness(1.2);
+        }
+    </style>
 </head>
 
 <body>
     <nav>
-        <a class="hamburger link" href="#" onclick="toggleHamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
-        <a class="logo link" href="index.php"><img width="260" src="images/letras.png" alt=""></a>
-        <div class="user-icon" onclick="toggleMenu()">
-            <i class="fas fa-user-circle"></i>
+        <a class="hamburger link <?php echo $iconClass; ?>" href="#" onclick="toggleHamburgerMenu()">
+            <i class="fa-solid fa-bars <?php echo $iconClass; ?> gold-filter"></i>
+        </a>
+        <a class="logo link" href="index.php">
+            <img width="260" src="<?php echo $logo; ?>" alt="Logo">
+        </a>
+        <div class="user-icon <?php echo $iconClass; ?>" onclick="toggleMenu()">
+            <i class="fas fa-user-circle <?php echo $iconClass; ?> gold-filter"></i>
             <div class="dropdown-menu" id="dropdownMenu">
                 <?php
-                session_start();
                 if (isset($_SESSION['rol'])) {
                     if ($_SESSION['rol'] == 'admin') {
                         echo '<a href="../Vista/usuarios/administracion/panel.php">Panel de Administrador</a>';
@@ -41,7 +82,7 @@
             </div>
         </div>
     </nav>
-    <br>
+
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()">

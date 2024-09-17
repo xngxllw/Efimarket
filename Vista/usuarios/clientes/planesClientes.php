@@ -47,7 +47,7 @@
             </div>
         </div>
     </nav>
-    <br>
+    <h2 style="margin: 100px 0 0 60px">Plan Actual:</h2>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()">
@@ -82,44 +82,54 @@
         </ul>
     </div>
     <div id="overlay"></div>
-
     <div class="plans">
+        <!-- Plan Básico para Clientes -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Básico</h2>
+                <h2>Plan Cliente Básico</h2>
             </div>
             <ul>
-                <li>3 negocios máximo</li>
-                <li>5 productos por negocio máximo</li>
-                <li>5 vacantes de trabajo al tiempo</li>
+                <li>Acceso a todos los negocios registrados</li>
+                <li>Acceso a reseñas y comparaciones de negocios</li>
+                <li>Acceso a productos de cada negocio</li>
+                <li>Postularse a vacantes de empleo</li>
             </ul>
         </div>
+
+        <!-- Plan Cliente Premium -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Premium - $29.999</h2>
+                <h2>Plan Cliente Premium - $19.999</h2>
             </div>
             <ul>
-                <li>8 negocios máximo</li>
-                <li>10 productos por negocio</li>
-                <li>10 vacantes al tiempo</li>
-                <li>Aparece con prioridad en su categoría</li>
-                <li style="margin-bottom: 23px;">Experiencia x1.2</li>
+            <li>Acceso a todos los negocios registrados</li>
+                <li>Acceso a reseñas y comparaciones de negocios</li>
+                <li>Acceso a productos de cada negocio</li>
+                <li>Soporte técnico prioritario</li>
+                <li>Prioridad en postulaciones de empleo</li>
+                <li>Prioridad al reseñar</li>
+                <li>Un cupon de descuento en negocios selecionados</li>
+
             </ul>
-            <a href="" class="planbutton">Contratar Plan Premium</a> <!-- Enlace a PSE para el Plan Premium -->
+            <a style="margin-top:33px;" href="../administracion/pagarpremium.php" class="planbutton">Contratar Plan Premium</a> <!-- Enlace a PSE para el Plan Premium -->
         </div>
+
+        <!-- Plan Cliente Ultimate -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Ultimate - $49.999</h2>
+                <h2>Plan Cliente Ultimate - $29.999</h2>
             </div>
             <ul>
-                <li>15 negocios al tiempo</li>
-                <li>15 productos por negocio</li>
-                <li>20 vacantes al tiempo</li>
-                <li>Aparecer en el slider de la pantalla principal</li>
-                <li>Aparece con prioridad en su categoría</li>
-                <li>Experiencia x2</li>
+            <li>Acceso a reseñas y comparaciones de negocios</li>
+                <li>Acceso a productos de cada negocio</li>
+                <li>Soporte técnico prioritario</li>
+                <li>Prioridad en postulaciones de empleo</li>
+                <li>Prioridad al reseñar</li>
+                <li>Acceso exclusivo a eventos en línea y lanzamientos</li>
+                <li>Atención al cliente personalizada</li>
+                <li>3 cupones de descuento en negocios seleccionados</li>
             </ul>
-            <a href="" class="planbutton">Contratar Plan Ultimate</a> <!-- Enlace a PSE para el Plan Ultimate -->
+            <a   href="../administracion/pagarultimate.php" class="planbutton">Contratar Plan Ultimate</a> <!-- Enlace a PSE para el Plan Ultimate -->
         </div>
     </div>
 

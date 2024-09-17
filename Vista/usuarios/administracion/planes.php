@@ -20,6 +20,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap"
         rel="stylesheet">
+</link>
 </head>
 
 <body>
@@ -31,6 +32,8 @@
             <div class="dropdown-menu" id="dropdownMenu">
                 <?php
                 session_start();
+                include('../../../Controlador/controlador.php');    
+
                 if (isset($_SESSION['rol'])) {
                     if ($_SESSION['rol'] == 'admin') {
                         echo '<a href="../Vista/usuarios/administracion/panel.php">Panel de Administrador</a>';
@@ -47,7 +50,34 @@
             </div>
         </div>
     </nav>
-    <br>
+
+    <?php
+    if (isset($_SESSION['id_usuario'])) {
+        $userId = $_SESSION['id_usuario'];
+        $plan = obtenerPlanUsuario($userId);
+
+        // Determinar el nombre del plan
+        $planNombre = '';
+        switch ($plan) {
+            case 1:
+                $planNombre = 'Básico';
+                break;
+            case 2:
+                $planNombre = 'Premium';
+                break;
+            case 3:
+                $planNombre = 'Ultimate';
+                break;
+            default:
+                $planNombre = 'Sin Plan';
+                break;
+        }
+    ?>
+    <h2 style="margin: 100px 0 0 60px">Plan Actual: <?php echo $planNombre; ?></h2>
+    <?php
+    }
+    ?>
+
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()">
@@ -82,47 +112,56 @@
         </ul>
     </div>
     <div id="overlay"></div>
-
     <div class="plans">
+        <!-- Plan Básico para Clientes -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Básico</h2>
+                <h2>Plan Cliente Básico</h2>
             </div>
             <ul>
-                <li>3 negocios máximo</li>
-                <li>5 productos por negocio máximo</li>
-                <li>5 vacantes de trabajo al tiempo</li>
+                <li>Acceso a todos los negocios registrados</li>
+                <li>Acceso a reseñas y comparaciones de negocios</li>
+                <li>Acceso a productos de cada negocio</li>
+                <li>Postularse a vacantes de empleo</li>
             </ul>
         </div>
+
+        <!-- Plan Cliente Premium -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Premium - $29.999</h2>
+                <h2>Plan Cliente Premium - $19.999</h2>
             </div>
             <ul>
-                <li>8 negocios máximo</li>
-                <li>10 productos por negocio</li>
-                <li>10 vacantes al tiempo</li>
-                <li>Aparece con prioridad en su categoría</li>
-                <li style="margin-bottom: 23px;">Experiencia x1.2</li>
+                <li>Acceso a todos los negocios registrados</li>
+                <li>Acceso a reseñas y comparaciones de negocios</li>
+                <li>Acceso a productos de cada negocio</li>
+                <li>Soporte técnico prioritario</li>
+                <li>Prioridad en postulaciones de empleo</li>
+                <li>Prioridad al reseñar</li>
+                <li>Un cupón de descuento en negocios seleccionados</li>
             </ul>
-            <a href="" class="planbutton">Contratar Plan Premium</a> <!-- Enlace a PSE para el Plan Premium -->
+            <a style="margin-top:33px;" href="../administracion/pagarpremium.php" class="planbutton">Contratar Plan Premium</a>
         </div>
+
+        <!-- Plan Cliente Ultimate -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Ultimate - $49.999</h2>
+                <h2>Plan Cliente Ultimate - $29.999</h2>
             </div>
             <ul>
-                <li>15 negocios al tiempo</li>
-                <li>15 productos por negocio</li>
-                <li>20 vacantes al tiempo</li>
-                <li>Aparecer en el slider de la pantalla principal</li>
-                <li>Aparece con prioridad en su categoría</li>
-                <li>Experiencia x2</li>
+                <li>Acceso a todos los negocios registrados</li>
+                <li>Acceso a reseñas y comparaciones de negocios</li>
+                <li>Acceso a productos de cada negocio</li>
+                <li>Soporte técnico prioritario</li>
+                <li>Prioridad en postulaciones de empleo</li>
+                <li>Prioridad al reseñar</li>
+                <li>Dos cupones de descuento en negocios seleccionados</li>
+                <li>Acceso exclusivo a eventos y promociones</li>
+                <li>Asesoramiento personalizado</li>
             </ul>
-            <a href="" class="planbutton">Contratar Plan Ultimate</a> <!-- Enlace a PSE para el Plan Ultimate -->
+            <a style="margin-top:33px;" href="../administracion/pagarultimate.php" class="planbutton">Contratar Plan Ultimate</a>
         </div>
     </div>
-
 </body>
 
 </html>
