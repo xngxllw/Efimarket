@@ -278,4 +278,16 @@ class ControladorNegocios
         $stmt->close();
         return $negocios;
     }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $mensaje = $_POST['mensaje'];
+    
+        // Llamar a la función para guardar el contacto
+        if ($modelo->guardarContacto($email, $mensaje)) {
+            echo "Mensaje enviado con éxito.";
+        } else {
+            echo "Hubo un error al enviar el mensaje. Inténtalo de nuevo.";
+        }
+    }
+    
 }

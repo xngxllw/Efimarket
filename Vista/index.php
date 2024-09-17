@@ -203,15 +203,15 @@
 
         <div class="footer-section contact-form">
             <h2>Contacto</h2>
-            <form action="#">
-                <input type="email" name="email" class="text-input contact-input"
-                    placeholder="Tu correo electrónico...">
-                <textarea name="message" class="text-input contact-input" placeholder="Tu mensaje..."></textarea>
-                <button type="submit" class="btn btn-big contact-btn">
-                    <i class="fas fa-envelope"></i>
-                    Enviar
-                </button>
-            </form>
+            <form action="../Controlador/controladorNegocios.php" method="POST">
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
         </div>
     </div>
 

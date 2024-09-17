@@ -107,12 +107,23 @@ class Modelo
     $stmt->close();
     return $vacantes;
 }
+public function guardarContacto($email, $mensaje)
+{
+    $stmt = $this->conexion->prepare("INSERT INTO Contacto (email, mensaje) VALUES (?, ?)");
+    $stmt->bind_param("ss", $email, $mensaje);
 
+    return $stmt->execute(); // Devuelve true si la inserción fue exitosa, false si hubo un error
+}
 
+public function __destruct()
+{
+    $this->conexion->close();
+}
 
     public function __destruct()
     {
         $this->conexion->close();
     }
 }
+
 ?>
