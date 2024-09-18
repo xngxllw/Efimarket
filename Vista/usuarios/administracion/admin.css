@@ -149,6 +149,13 @@ header a:hover {
   border-collapse: collapse;
 }
 
+.tablaPostulaciones {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
 
 .header,
 .campo {
@@ -214,7 +221,7 @@ textarea {
 
 .vacantesGrid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   gap: 0;
   border: 1px solid #ccc;
   border-collapse: collapse;
@@ -263,7 +270,6 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   height: 50px;
-
 }
 
 .boton-editar:hover {
@@ -330,11 +336,23 @@ textarea {
   border-radius: 5px;
   color: #fff;
   height: 50px;
-margin: 0px;
+  margin: 0px;
 }
 
 .borrar-cont {
   margin: 0;
   width: 100px;
   padding: 0px;
+}
+
+.cont-accionesVacantes {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+.formulario-actualizar {
+  padding: 20px;
 }

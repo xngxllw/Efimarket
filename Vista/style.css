@@ -562,7 +562,7 @@ nav .inicio {
 
 .contenedor-busq {
   width: 70vw;
-  margin: 15px auto 20px; /* Ajuste del margen superior para bajar la barra de búsqueda */
+  margin: 100px auto 20px; /* Ajuste del margen superior para bajar la barra de búsqueda */
 }
 
 .search-input-box {
@@ -570,13 +570,13 @@ nav .inicio {
   position: relative;
   color: #f5f6f4;
   box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.12);
-  margin-top: 10px; /* Ajustamos este margen superior para que la barra se desplace hacia abajo */
+  margin-top: 40px; /* Ajustamos este margen superior para que la barra se desplace hacia abajo */
 }
 
 .search-input-box input {
   width: 100%;
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
   border-radius: 5px;
   height: 55px;
   font-size: 18px;
@@ -788,3 +788,10 @@ footer {
   background-color: #0056b3; /* Cambia el color de fondo cuando se pasa el ratón */
 }
 
+.gold {
+  color: #b4841c;
+}
+
+.gold-filter {
+  filter: brightness(1.2);
+}

@@ -1,5 +1,12 @@
 <?php
 session_start(); // Asegúrate de que esta línea esté al principio y no se llame más de una vez
+
+// Habilitar la visualización de errores para depuración
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Verificar si la sesión está configurada correctamente
 if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'admin') {
     header('Location: ../../login.php');
     exit();
@@ -14,6 +21,7 @@ $id_usuario = $_SESSION['id_usuario'];
 // Obtener los negocios asociados al usuario
 $negocios = $modelo->obtenerNegociosPorUsuario($id_usuario);
 
+// Verificar si la solicitud es POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_negocio = $_POST['id_negocio'];
     $ocupacion = $_POST['ocupacion'];
@@ -22,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $horario = $_POST['horario'];
     $salario = $_POST['salario'];
 
+    // Intentar crear la vacante y manejar errores
     if ($modelo->crearVacante($id_negocio, $ocupacion, $descripcion, $requisitos, $horario, $salario)) {
         header('Location: vacantes.php');
         exit();
@@ -33,14 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Vacante - Efimarket</title>
     <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
-<div class="sidebar">
+    <div class="sidebar">
         <a href="../../index.php" class="logo">
             <img src="../../images/letras.png" alt="Efimarket Logo">
         </a>
@@ -48,8 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <li><a href="panel.php">Inicio</a></li>
             <li><a href="negocios.php">Negocios</a></li>
             <li><a href="vacantes.php">Vacantes</a></li>
-          <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
-            
+            <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
         </ul>
     </div>
     <div class="container">
@@ -89,6 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </form>
     </div>
-
 </body>
+
 </html>

@@ -200,7 +200,7 @@ hr {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: center
+  justify-content: center;
 }
 
 .cont-producto {
@@ -209,7 +209,7 @@ hr {
   align-items: start;
   text-align: center;
   width: 150px;
-  margin-right: 30px
+  margin-right: 30px;
 }
 
 .cont-producto img {
@@ -221,4 +221,66 @@ hr {
 
 .nombre-producto {
   font-weight: 1000;
+}
+/* Estilos similares a los de misNegocios.php para vacantes.php */
+
+.vacantesGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    5,
+    1fr
+  ); /* 5 columnas: Nombre del Negocio, Descripción, Ubicación, Fecha de Publicación, Acciones */
+  gap: 0;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin-top: 60px;
+}
+
+.vacantesGrid .header,
+.vacantesGrid .campo {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.vacantesGrid .header {
+  background-color: #029bfb;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+.vacantesGrid .campo {
+  text-align: center;
+  justify-content: center;
+}
+
+.vacantesGrid .campo[colspan] {
+  grid-column: span 5;
+}
+
+.boton-postularse {
+  color: #fff;
+  background-color: #029bfb;
+  padding: 10px;
+  border-radius: 5px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.boton-postularse:hover {
+  background-color: #0484d3;
+  transition: background-color 0.5s ease;
+}
+
+/* Estilo para ocultar el contenido principal en pantallas menores a 920px */
+@media (max-width: 919px) {
+  .tablaDeVacantes {
+    display: none;
+  }
+
+  .mensaje-alternativo {
+    display: block;
+    text-align: center;
+    padding: 20px;
+  }
 }

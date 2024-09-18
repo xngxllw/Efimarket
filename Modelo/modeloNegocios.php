@@ -166,12 +166,12 @@ class ModeloNegocios
                 FROM productos p
                 INNER JOIN negocios n ON p.id_negocio = n.id_negocio
                 WHERE n.id_usuario = ?";
-        
+
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Error al preparar la consulta: " . $this->conn->error);
         }
-    
+
         $stmt->bind_param("i", $id_usuario);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -198,39 +198,172 @@ class ModeloNegocios
         return $negocios;
     }
     public function buscarNegociosConSugerencias($termino)
-{
-    $termino = '%' . $termino . '%';
-    $sql = "SELECT id_negocio, nombre_negocio FROM negocios WHERE nombre_negocio LIKE ?";
+    {
+        $termino = '%' . $termino . '%';
+        $sql = "SELECT id_negocio, nombre_negocio FROM negocios WHERE nombre_negocio LIKE ?";
 
-    $stmt = $this->conn->prepare($sql);
-    if (!$stmt) {
-        die("Error al preparar la consulta: " . $this->conn->error);
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("s", $termino);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $sugerencias = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+
+        return $sugerencias;
+    }
+    public function insertarResena($id_negocio, $calificacion, $comentario)
+    {
+        $sql = "INSERT INTO reseñas (id_negocio, calificacion, comentario) VALUES (?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt === false) {
+            die('Error en la preparación de la consulta: ' . $this->conn->error);
+        }
+
+        $stmt->bind_param("iis", $id_negocio, $calificacion, $comentario); // iis: entero, entero, string
+        $stmt->execute();
+
+        if ($stmt->error) {
+            die('Error al ejecutar la consulta: ' . $stmt->error);
+        }
+
+        $stmt->close();
+    }
+    public function obtenerVacantesPorNegocio($id_negocio)
+    {
+        $sql = "SELECT * FROM vacantes WHERE id_negocio = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("i", $id_negocio);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $vacantes = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt->close();
+
+        return $vacantes;
+    }
+    public function insertarPostulacion($id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos)
+    {
+        $sql = "INSERT INTO postulaciones (id_usuario, id_negocio, nombres, apellidos, edad, tipo_documento, documento_identidad, celular, correo_electronico, acepta_terminos) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $stmt->bind_param(
+            "iisssssssi",
+            $id_usuario,
+            $id_negocio,
+            $nombres,
+            $apellidos,
+            $edad,
+            $tipo_documento,
+            $documento_identidad,
+            $celular,
+            $correo_electronico,
+            $acepta_terminos
+        );
+
+        $resultado = $stmt->execute();
+        $stmt->close();
+
+        return $resultado;
+    }
+    public function getPostulacionesPorUsuario($id_usuario)
+    {
+        $sql = "SELECT p.*, n.nombre_negocio
+                FROM postulaciones p
+                INNER JOIN negocios n ON p.id_negocio = n.id_negocio
+                WHERE p.id_usuario = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id_usuario);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $postulaciones = [];
+        while ($fila = $resultado->fetch_assoc()) {
+            $postulaciones[] = $fila;
+        }
+
+        $stmt->close();
+        return $postulaciones;
     }
 
-    $stmt->bind_param("s", $termino);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $sugerencias = $result->fetch_all(MYSQLI_ASSOC);
-    $stmt->close();
+    // Método para obtener el nombre del negocio por ID
+    public function obtenerNombreNegocioPorId($id_negocio)
+    {
+        $sql = "SELECT nombre_negocio FROM negocios WHERE id_negocio = ?";
 
-    return $sugerencias;
-}
-public function insertarResena($id_negocio, $calificacion, $comentario) {
-    $sql = "INSERT INTO reseñas (id_negocio, calificacion, comentario) VALUES (?, ?, ?)";
-    $stmt = $this->conn->prepare($sql);
-    
-    if ($stmt === false) {
-        die('Error en la preparación de la consulta: ' . $this->conn->error);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id_negocio);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $nombre_negocio = $resultado->fetch_assoc();
+        $stmt->close();
+
+        return $nombre_negocio ? $nombre_negocio['nombre_negocio'] : null;
     }
+    public function getNombreNegocioPorId($id_negocio)
+    {
+        $sql = "SELECT nombre_negocio FROM negocios WHERE id_negocio = ?";
 
-    $stmt->bind_param("iis", $id_negocio, $calificacion, $comentario); // iis: entero, entero, string
-    $stmt->execute();
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id_negocio);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
 
-    if ($stmt->error) {
-        die('Error al ejecutar la consulta: ' . $stmt->error);
+        $nombre_negocio = $resultado->fetch_assoc();
+        $stmt->close();
+
+        return $nombre_negocio ? $nombre_negocio['nombre_negocio'] : null;
     }
+    public function actualizarVacante($id_vacante, $datos)
+    {
+        $query = "UPDATE vacantes SET ocupacion = ?, descripcion = ?, requisitos = ?, horario = ?, salario = ? WHERE id_vacante = ?";
+        $stmt = $this->conn->prepare($query);
 
-    $stmt->close();
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        // Asegúrate de que el tipo de dato para el salario sea correcto, por ejemplo, "d" para double o float
+        $stmt->bind_param(
+            "ssssdi",
+            $datos['ocupacion'],
+            $datos['descripcion'],
+            $datos['requisitos'],
+            $datos['horario'],
+            $datos['salario'],
+            $id_vacante
+        );
+
+        return $stmt->execute();
+    }
+    public function borrarVacante($id_vacante)
+    {
+        $query = "DELETE FROM vacantes WHERE id_vacante = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("i", $id_vacante);
+
+        return $stmt->execute();
+    }
 }
-}
-?>

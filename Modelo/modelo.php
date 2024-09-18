@@ -75,7 +75,8 @@ class Modelo
         $stmt->close();
         return $negocios;
     }
-    public function obtenerNegociosPorUsuario($id_usuario) {
+    public function obtenerNegociosPorUsuario($id_usuario)
+    {
         $stmt = $this->conexion->prepare("SELECT id_negocio, nombre_negocio FROM negocios WHERE id_usuario = ?");
         $stmt->bind_param("i", $id_usuario);
         $stmt->execute();
@@ -90,36 +91,58 @@ class Modelo
     }
 
     public function obtenerVacantesPorNegocio($id_usuario)
-{
-    $stmt = $this->conexion->prepare("
-        SELECT v.ocupacion, v.descripcion, v.requisitos, v.horario, v.salario, v.fecha, n.nombre_negocio
+    {
+        $stmt = $this->conexion->prepare("
+        SELECT v.id_vacante, v.ocupacion, v.descripcion, v.requisitos, v.horario, v.salario, v.fecha, n.nombre_negocio
         FROM vacantes v
         JOIN negocios n ON v.id_negocio = n.id_negocio
         WHERE n.id_usuario = ?
     ");
-    $stmt->bind_param("i", $id_usuario);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $vacantes = [];
-    while ($row = $result->fetch_assoc()) {
-        $vacantes[] = $row;
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $vacantes = [];
+        while ($row = $result->fetch_assoc()) {
+            $vacantes[] = $row;
+        }
+        $stmt->close();
+        return $vacantes;
     }
-    $stmt->close();
-    return $vacantes;
-}
-public function guardarContacto($email, $mensaje)
-{
-    $stmt = $this->conexion->prepare("INSERT INTO Contacto (email, mensaje) VALUES (?, ?)");
-    $stmt->bind_param("ss", $email, $mensaje);
+    public function actualizarVacante($id_vacante, $datos)
+    {
+        $query = "UPDATE vacantes SET ocupacion = ?, descripcion = ?, requisitos = ?, horario = ?, salario = ? WHERE id_vacante = ?";
+        $stmt = $this->conexion->prepare($query);
 
-    return $stmt->execute(); // Devuelve true si la inserción fue exitosa, false si hubo un error
-}
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conexion->error);
+        }
 
-public function __destruct()
-{
-    $this->conexion->close();
-}
+        // Asegúrate de que el tipo de dato para el salario sea correcto, por ejemplo, "d" para double o float
+        $stmt->bind_param(
+            "ssssdi",
+            $datos['ocupacion'],
+            $datos['descripcion'],
+            $datos['requisitos'],
+            $datos['horario'],
+            $datos['salario'],
+            $id_vacante
+        );
+
+        return $stmt->execute();
+    }
 
 
+
+    public function guardarContacto($email, $mensaje)
+    {
+        $stmt = $this->conexion->prepare("INSERT INTO Contacto (email, mensaje) VALUES (?, ?)");
+        $stmt->bind_param("ss", $email, $mensaje);
+
+        return $stmt->execute(); // Devuelve true si la inserción fue exitosa, false si hubo un error
+    }
+
+    public function __destruct()
+    {
+        $this->conexion->close();
+    }
 }
-?>

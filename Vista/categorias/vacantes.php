@@ -20,8 +20,6 @@ $vacantes = $modelo->obtenerVacantesPorNegocio($_SESSION['id_usuario']);
     <link rel="stylesheet" href="admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" href="../../images/llave.png">
-
 </head>
 
 <body>
@@ -67,16 +65,12 @@ $vacantes = $modelo->obtenerVacantesPorNegocio($_SESSION['id_usuario']);
                         <div class="campo"><?php echo htmlspecialchars($vacante['fecha']); ?></div>
                         <div class="campo">
                             <!-- Botón de Editar -->
-                            <div class="cont-accionesVacantes">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#editModal<?php echo htmlspecialchars($vacante['id_vacante']); ?>">Editar</button>
-                                <!-- Formulario de Borrar -->
-                                <form action="../../../Controlador/controladorNegocios.php" method="post" style="display:inline; width:30px">
-                                    <input type="hidden" name="accion" value="borrar_vacante">
-                                    <input type="hidden" name="id_vacante" value="<?php echo htmlspecialchars($vacante['id_vacante']); ?>">
-                                    <button type="submit" style="height: 50px;" class="btn btn-danger">Borrar</button>
-                                </form>
-
-                            </div>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#editModal<?php echo htmlspecialchars($vacante['id_vacante']); ?>">Editar</button>
+                            <!-- Formulario de Borrar -->
+                            <form action="borrarVacante.php" method="post" style="display:inline; width:30px; height:30px">
+                                <input type="hidden" name="id_vacante" value="<?php echo htmlspecialchars($vacante['id_vacante']); ?>">
+                                <button type="submit" class="btn btn-danger">Borrar</button>
+                            </form>
                         </div>
 
                         <!-- Modal para Editar -->
@@ -89,38 +83,39 @@ $vacantes = $modelo->obtenerVacantesPorNegocio($_SESSION['id_usuario']);
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form class="formulario-actualizar" action="../../../Controlador/controladorNegocios.php" method="post">
-                                        <input type="hidden" name="accion" value="actualizar_vacante">
-                                        <input type="hidden" name="id_vacante" value="<?php echo htmlspecialchars($vacante['id_vacante']); ?>">
-
-                                        <div class="mb-3">
-                                            <label for="ocupacion" class="form-label">Ocupación</label>
-                                            <input style="width: 60%;" type="text" class="form-control" id="ocupacion" name="ocupacion" value="<?php echo htmlspecialchars($vacante['ocupacion']); ?>" required>
+                                    <form action="actualizarVacante.php" method="post">
+                                        <div class="modal-body">
+                                            <input type="hidden" name="id_vacante" value="<?php echo htmlspecialchars($vacante['id_vacante']); ?>">
+                                            <div class="form-group">
+                                                <label for="ocupacion">Ocupación</label>
+                                                <input type="text" class="form-control" id="ocupacion" name="ocupacion" value="<?php echo htmlspecialchars($vacante['ocupacion']); ?>" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="descripcion">Descripción</label>
+                                                <textarea class="form-control" id="descripcion" name="descripcion" required><?php echo htmlspecialchars($vacante['descripcion']); ?></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="requisitos">Requisitos</label>
+                                                <textarea class="form-control" id="requisitos" name="requisitos" required><?php echo htmlspecialchars($vacante['requisitos']); ?></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="horario">Horario</label>
+                                                <input type="text" class="form-control" id="horario" name="horario" value="<?php echo htmlspecialchars($vacante['horario']); ?>" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="salario">Salario</label>
+                                                <input type="text" class="form-control" id="salario" name="salario" value="<?php echo htmlspecialchars($vacante['salario']); ?>" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="fecha">Fecha</label>
+                                                <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo htmlspecialchars($vacante['fecha']); ?>" required>
+                                            </div>
                                         </div>
-
-                                        <div class="mb-3">
-                                            <label for="descripcion" class="form-label">Descripción</label>
-                                            <textarea style="width: 60%;" class="form-control" id="descripcion" name="descripcion" rows="3" required><?php echo htmlspecialchars($vacante['descripcion']); ?></textarea>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
                                         </div>
-
-                                        <div class="mb-3">
-                                            <label for="requisitos" class="form-label">Requisitos</label>
-                                            <textarea style="width: 60%;" class="form-control" id="requisitos" name="requisitos" rows="3" required><?php echo htmlspecialchars($vacante['requisitos']); ?></textarea>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="horario" class="form-label">Horario</label>
-                                            <input style="width: 60%;" type="text" class="form-control" id="horario" name="horario" value="<?php echo htmlspecialchars($vacante['horario']); ?>" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="salario" class="form-label">Salario</label>
-                                            <input style="width: 60%;" type="text" class="form-control" id="salario" name="salario" value="<?php echo htmlspecialchars($vacante['salario']); ?>" required>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
                                     </form>
-
                                 </div>
                             </div>
                         </div>

@@ -24,6 +24,8 @@ session_start();
             <li><a href="negocios.php">Mis Negocios</a></li>
             <li><a href="productos.php">Productos</a></li>
             <li><a href="vacantes.php">Vacantes de Empleo</a></li>
+            <li><a href="postulaciones.php">Postulaciones</a></li>
+
             <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
             <li><a href="planes.php">Planes</a></li>
 
@@ -37,10 +39,10 @@ session_start();
         <div class="content">
             <div class="dashboard-buttons">
                 <?php if ($_SESSION['rol'] == 'admin') : ?>
-                <a href="crearNegocio.php" class="dashboard-button">Registra un nuevo negocio</a>
-                <a href="misNegocios.php" class="dashboard-button">Ver y editar mis negocios</a>
+                    <a href="crearNegocio.php" class="dashboard-button">Registra un nuevo negocio</a>
+                    <a href="misNegocios.php" class="dashboard-button">Ver y editar mis negocios</a>
                 <?php else : ?>
-                <p>No tiene permiso para acceder a esta sección.</p>
+                    <p>No tiene permiso para acceder a esta sección.</p>
                 <?php endif; ?>
             </div>
         </div>

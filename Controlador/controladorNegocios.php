@@ -279,10 +279,131 @@
             return $negocios;
         }
 
-        public function insertarResena($id_negocio, $calificacion, $comentario) {
+        public function insertarResena($id_negocio, $calificacion, $comentario)
+        {
             return $this->modeloNegocios->insertarResena($id_negocio, $calificacion, $comentario);
+        }
+        public function obtenerVacantesPorNegocio($id_negocio)
+        {
+            $sql = "SELECT vacantes.*, negocios.nombre_negocio AS nombre_negocio
+            FROM vacantes
+            JOIN negocios ON vacantes.id_negocio = negocios.id_negocio
+            WHERE vacantes.id_negocio = ?";
+            $stmt = $this->conn->prepare($sql);
+
+            if (!$stmt) {
+                die("Error al preparar la consulta: " . $this->conn->error);
+            }
+
+            $stmt->bind_param("i", $id_negocio);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $vacantes = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt->close();
+
+            return $vacantes;
+        }
+        public function procesarPostulacion()
+        {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'postular') {
+                session_start();
+                if (!isset($_SESSION['id_usuario'])) {
+                    header("Location: ../login.php");
+                    exit();
+                }
+
+                $id_usuario = $_SESSION['id_usuario'];
+                $id_negocio = $_POST['id_negocio'];
+                $nombres = $_POST['nombres'];
+                $apellidos = $_POST['apellidos'];
+                $edad = $_POST['edad'];
+                $tipo_documento = $_POST['tipo_documento'];
+                $documento_identidad = $_POST['documento_identidad'];
+                $celular = $_POST['celular'];
+                $correo_electronico = $_POST['correo_electronico'];
+                $acepta_terminos = isset($_POST['acepta_terminos']) ? 1 : 0;
+
+                $resultado = $this->modeloNegocios->insertarPostulacion($id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos);
+
+                if ($resultado) {
+                    header("Location: ../Vista/categorias/panaderia.php");
+                    exit();
+                } else {
+                    echo "Error al enviar la postulación.";
+                }
+            }
+        }
+
+        public function obtenerPostulacionesPorUsuario($id_usuario)
+        {
+            return $this->modeloNegocios->getPostulacionesPorUsuario($id_usuario);
+        }
+
+        public function obtenerNombreNegocioPorId($id_negocio)
+        {
+            return $this->modeloNegocios->getNombreNegocioPorId($id_negocio);
+        }
+        public function borrarVacante($id_vacante)
+        {
+            $query = "DELETE FROM vacantes WHERE id_vacante = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('i', $id_vacante);
+            return $stmt->execute();
+        }
+        public function procesarActualizacionVacante()
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['accion'] === 'actualizar_vacante') {
+                if (isset($_POST['id_vacante'])) {
+                    $id_vacante = $_POST['id_vacante'];
+                    $datos = [
+                        'ocupacion' => $_POST['ocupacion'],
+                        'descripcion' => $_POST['descripcion'],
+                        'requisitos' => $_POST['requisitos'],
+                        'horario' => $_POST['horario'],
+                        'salario' => $_POST['salario']
+                    ];
+
+                    if ($this->modeloNegocios->actualizarVacante($id_vacante, $datos)) {
+                        header('Location: ../../Vista/usuarios/administracion/vacantes.php');
+                    } else {
+                        header('Location: ../Vista/admin/vacantes.php?mensaje=error');
+                    }
+                    exit();
+                } else {
+                    header('Location: ../Vista/admin/vacantes.php?mensaje=falta_id');
+                    exit();
+                }
+            }
+        }
+
+        // ... (otros métodos de la clase)
+    }
+
+    // Fuera de la clase, al final del archivo
+    $controlador = new ControladorNegocios();
+
+    // Determinar qué acción realizar basado en el parámetro 'accion'
+    if (isset($_POST['accion'])) {
+        switch ($_POST['accion']) {
+            case 'actualizar_vacante':
+                $controlador->procesarActualizacionVacante();
+                break;
+            case 'postular':
+                $controlador->procesarPostulacion();
+            case 'borrar_vacante':
+                if (isset($_POST['id_vacante'])) {
+                    $id_vacante = $_POST['id_vacante'];
+                    $controlador->borrarVacante($id_vacante);
+                }
+                break;
+                // Agrega más casos según sea necesario
         }
     }
 
-
-        
+    // Si no se ha realizado ninguna acción, redirigir a la página principa
+    exit();
+    $controlador = new ControladorNegocios();
+    $controlador->procesarPostulacion();
+    $controlador->procesarActualizacionVacante(); // Añade esta línea
+    ?>

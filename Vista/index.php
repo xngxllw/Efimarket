@@ -17,7 +17,7 @@
 
     if (isset($_SESSION['id_usuario'])) {
         $planUsuario = obtenerPlanUsuario($_SESSION['id_usuario']);
-        
+
         switch ($planUsuario) {
             case 1:
                 $logo = 'images/letras.png';
@@ -44,14 +44,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap"
         rel="stylesheet">
-    <style>
-        .gold {
-            color: #b4841c;
-        }
-        .gold-filter {
-            filter: brightness(1.2);
-        }
-    </style>
 </head>
 
 <body>
@@ -95,6 +87,7 @@
                 if ($_SESSION['rol'] == 'admin') {
                     echo '<li class="elementos-menu"><a href="../Vista/usuarios/administracion/panel.php">Panel de Administrador</a></li>';
                     echo '<li class="elementos-menu"><a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a></li>';
+                    echo '<li class="elementos-menu"><a href="../Vista/usuarios/administracion/planes.php">Planes</a></li>';
                 } else {
                     echo '<li class="elementos-menu"><a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a></li>';
                 }
@@ -102,9 +95,9 @@
             } else {
                 echo '<li class="elementos-menu"><a href="registro.php">Regístrate en Efimarket</a></li>';
                 echo '<li class="elementos-menu"><a href="login.php">Iniciar Sesión</a></li>';
+                echo '<li class="elementos-menu"><a href="../Vista/usuarios/clientes/">Planes</a></li>';
             }
             ?>
-            <li class="elementos-menu"><a href="planes.php">Planes</a></li>
             <li class="elementos-menu"><a href="categorias/despensa.php">Despensa</a></li>
             <li class="elementos-menu"><a href="categorias/panaderia.php">Panaderías</a></li>
             <li class="elementos-menu"><a href="categorias/rapidas.php">Comidas Rápidas</a></li>
@@ -114,6 +107,7 @@
             <li class="elementos-menu"><a href="categorias/mascotas.php">Mascotas</a></li>
             <li class="elementos-menu"><a href="categorias/ropa.php">Ropa y Accesorios</a></li>
             <li class="elementos-menu"><a href="categorias/frutas.php">Frutas</a></li>
+                    
         </ul>
     </div>
     <div id="overlay"></div>
@@ -245,14 +239,14 @@
         <div class="footer-section contact-form">
             <h2>Contacto</h2>
             <form action="../Controlador/controlador.php" method="POST">
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required>
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
 
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" required></textarea>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
 
-        <button type="submit">Enviar</button>
-    </form>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
     </div>
 

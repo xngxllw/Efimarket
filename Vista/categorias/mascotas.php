@@ -92,8 +92,9 @@
                 }
                 echo '</div>';
 
-                echo '<div class="resena-section">';
-                echo '<button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
+                echo '<div class="acciones-section d-flex justify-content-between">';
+                echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
+                echo '<a href="vacantes.php?id_negocio=' . $negocio['id_negocio'] . '" class="btn btn-secondary">Ver Vacantes</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="modal-footer">';
@@ -137,6 +138,7 @@
         }
         ?>
     </div>
+
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()"> <!-- Imagen con evento de clic -->
