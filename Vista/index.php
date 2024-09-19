@@ -232,7 +232,6 @@
                 <li><a href="https://wa.me/573196516362"><i class="fab fa-whatsapp"></i>Contacto</a></li>
                 <li><a href="https://wa.me/573145018489"><i class="fab fa-whatsapp"></i>Contacto</a></li>
                 <li><a href="https://wa.me/573106702810"><i class="fab fa-whatsapp"></i>Contacto</a></li>
-                <li><a href="https://wa.me/5731067028"><i class="fab fa-whatsapp"></i>Contacto</a></li>
             </ul>
         </div>
 
@@ -245,13 +244,14 @@
                 <label for="mensaje">Mensaje:</label>
                 <textarea id="mensaje" name="mensaje" required></textarea>
 
-                <button type="submit">Enviar</button>
+                <button class="btn btn-primary" type="submit">Enviar</button>
             </form>
         </div>
     </div>
 
     <div class="footer-bottom">
-        &copy; 2024 DIGITAL AZ S.A | Todos los derechos reservados
+        &copy; 2024 DIGITAL AZ S.A | Todos los derechos reservados <br>
+        Efimarket les desea a todos un feliz día del amor y la amistad, esperamos que disfruten con sus seres queridos un día especial.
     </div>
 </footer>
 

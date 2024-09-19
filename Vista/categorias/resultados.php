@@ -46,7 +46,7 @@
         <?php
         include_once('../../Controlador/controladorNegocios.php');
 
-        $controlador = new ControladorNegocios();
+        $controlador = new ControladorNegocios(); // Usa la variable $controlador aquí
         $terminoBusqueda = isset($_GET['query']) ? trim($_GET['query']) : '';
 
         if (empty($terminoBusqueda)) {
@@ -54,44 +54,56 @@
         } else {
             $negocios = $controlador->buscarNegociosConSugerencias($terminoBusqueda);
         }
+
         if (!empty($negocios)) {
             echo '<div class="cont-negocios">';
             foreach ($negocios as $negocio) {
-                $descripcion = isset($negocio['descripcion']) ? $negocio['descripcion'] : 'No disponible';
-                $fotos = $controladorNegocios->obtenerFotosPorNegocio($negocio['id_negocio']);
+                $nombreNegocio = isset($negocio['nombre_negocio']) ? htmlspecialchars($negocio['nombre_negocio']) : 'Nombre no disponible';
+                $descripcion = isset($negocio['descripcion']) ? htmlspecialchars($negocio['descripcion']) : 'Descripción no disponible';
+                $horario = isset($negocio['horario']) ? htmlspecialchars($negocio['horario']) : 'Horario no disponible';
+                $direccion = isset($negocio['direccion']) ? htmlspecialchars($negocio['direccion']) : 'Dirección no disponible';
+                $telefono = isset($negocio['telefono']) ? htmlspecialchars($negocio['telefono']) : 'Teléfono no disponible';
+                $logo = isset($negocio['logo']) ? $negocio['logo'] : 'default-logo.png';
+                $idNegocio = isset($negocio['id_negocio']) ? $negocio['id_negocio'] : 0;
 
-                echo '<a href="#" class="negocio" data-bs-toggle="modal" data-bs-target="#modalNegocio' . $negocio['id_negocio'] . '">';
-                echo '<img width="150px" height="150px" src="../../uploads/logos/' . $negocio['logo'] . '" alt="Logo del negocio">';
-                echo '<h5 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h5>';
-                echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
+                $fotos = $controlador->obtenerFotosPorNegocio($idNegocio); // Usa $controlador aquí
+
+                echo '<a href="#" class="negocio" data-bs-toggle="modal" data-bs-target="#modalNegocio' . $idNegocio . '">';
+                echo '<img width="150px" height="150px" src="../../uploads/logos/' . $logo . '" alt="Logo del negocio">';
+                echo '<h5 class="nombreNegocio">' . $nombreNegocio . '</h5>';
+                echo '<div class="categoriaNegocio">' . $descripcion . '</div>';
                 echo '<div class="info-negocio">';
-                echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . htmlspecialchars($negocio['horario']) . '</span></div>';
-                echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . htmlspecialchars($negocio['direccion']) . '</span></div>';
-                echo '<div class="telefono"><i class="fa-solid fa-phone"></i><span>' . htmlspecialchars($negocio['telefono']) . '</span></div>';
+                echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . $horario . '</span></div>';
+                echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . $direccion . '</span></div>';
+                echo '<div class="telefono"><i class="fa-solid fa-phone"></i><span>' . $telefono . '</span></div>';
                 echo '</div>';
                 echo '</a>';
 
-                echo '<div class="modal fade" id="modalNegocio' . $negocio['id_negocio'] . '" tabindex="-1" aria-labelledby="modalLabel' . $negocio['id_negocio'] . '" aria-hidden="true">';
+                echo '<div class="modal fade" id="modalNegocio' . $idNegocio . '" tabindex="-1" aria-labelledby="modalLabel' . $idNegocio . '" aria-hidden="true">';
                 echo '<div class="modal-dialog">';
                 echo '<div class="modal-content">';
                 echo '<div class="modal-header">';
-                echo '<h5 class="modal-title" id="modalLabel' . $negocio['id_negocio'] . '">' . htmlspecialchars($negocio['nombre_negocio']) . '</h5>';
+                echo '<h5 class="modal-title" id="modalLabel' . $idNegocio . '">' . $nombreNegocio . '</h5>';
                 echo '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
                 echo '</div>';
                 echo '<div class="modal-body">';
-                echo '<img width="200px" style="border-radius: 10px;" src="../../uploads/logos/' . $negocio['logo'] . '" alt="Logo del negocio">';
-                echo '<p><strong>Descripción:</strong> ' . htmlspecialchars($descripcion) . '</p>';
-                echo '<p><strong>Horario:</strong> ' . htmlspecialchars($negocio['horario']) . '</p>';
-                echo '<p><strong>Ubicación:</strong> ' . htmlspecialchars($negocio['direccion']) . '</p>';
-                echo '<p><strong>Teléfono:</strong> ' . htmlspecialchars($negocio['telefono']) . '</p>';
+                echo '<img width="200px" style="border-radius: 10px;" src="../../uploads/logos/' . $logo . '" alt="Logo del negocio">';
+                echo '<p><strong>Descripción:</strong> ' . $descripcion . '</p>';
+                echo '<p><strong>Horario:</strong> ' . $horario . '</p>';
+                echo '<p><strong>Ubicación:</strong> ' . $direccion . '</p>';
+                echo '<p><strong>Teléfono:</strong> ' . $telefono . '</p>';
 
                 echo '<p><strong>Fotos:</strong></p>';
                 echo '<div class="cont-productos">';
                 if (!empty($fotos)) {
                     foreach ($fotos as $foto) {
-                        echo '<div class="cont-producto"> <img src="../../uploads/productos/' . $foto['foto_producto'] . '" alt="Foto del negocio" width="150px">';
-                        echo '<h5 class="nombre-producto">' . $foto['nombre_producto'] . '</h5>';
-                        echo '<h6><strong>$</strong>' . $foto['precio'] . '</h6> </div>';
+                        $fotoProducto = isset($foto['foto_producto']) ? $foto['foto_producto'] : 'default-product.png';
+                        $nombreProducto = isset($foto['nombre_producto']) ? htmlspecialchars($foto['nombre_producto']) : 'Nombre no disponible';
+                        $precio = isset($foto['precio']) ? htmlspecialchars($foto['precio']) : 'Precio no disponible';
+
+                        echo '<div class="cont-producto"> <img src="../../uploads/productos/' . $fotoProducto . '" alt="Foto del negocio" width="150px">';
+                        echo '<h5 class="nombre-producto">' . $nombreProducto . '</h5>';
+                        echo '<h6><strong>$</strong>' . $precio . '</h6> </div>';
                     }
                 } else {
                     echo '<p>No hay fotos disponibles.</p>';
@@ -99,8 +111,8 @@
                 echo '</div>';
 
                 echo '<div class="acciones-section d-flex justify-content-between">';
-                echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
-                echo '<a href="vacantes.php?id_negocio=' . $negocio['id_negocio'] . '" class="btn btn-secondary">Ver Vacantes</a>';
+                echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $idNegocio . '">Reseñar</button>';
+                echo '<a href="vacantes.php?id_negocio=' . $idNegocio . '" class="btn btn-secondary">Ver Vacantes</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="modal-footer">';
@@ -111,29 +123,31 @@
                 echo '</div>';
 
                 // Modal para la reseña
-                echo '<div class="modal fade" id="modalResena' . $negocio['id_negocio'] . '" tabindex="-1" aria-labelledby="modalResenaLabel' . $negocio['id_negocio'] . '" aria-hidden="true">';
+                echo '<div class="modal fade" id="modalResena' . $idNegocio . '" tabindex="-1" aria-labelledby="modalResenaLabel' . $idNegocio . '" aria-hidden="true">';
                 echo '<div class="modal-dialog">';
                 echo '<div class="modal-content">';
                 echo '<div class="modal-header">';
-                echo '<h5 class="modal-title" id="modalResenaLabel' . $negocio['id_negocio'] . '">Reseñar ' . htmlspecialchars($negocio['nombre_negocio']) . '</h5>';
+                echo '<h5 class="modal-title" id="modalResenaLabel' . $idNegocio . '">Reseñar ' . $nombreNegocio . '</h5>';
                 echo '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
                 echo '</div>';
                 echo '<div class="modal-body">';
                 echo '<form action="../../Controlador/controladorNegocios.php" method="POST">';
-                echo '<input type="hidden" name="id_negocio" value="' . $negocio['id_negocio'] . '">';
+                echo '<input type="hidden" name="id_negocio" value="' . $idNegocio . '">';
                 echo '<div class="form-group">';
                 echo '<label for="calificacion">Calificación:</label>';
                 echo '<select name="calificacion" id="calificacion" class="form-select">';
                 for ($i = 1; $i <= 5; $i++) {
-                    echo '<option value="' . $i . '">' . $i . ' estrella(s)</option>';
+                    echo '<option value="' . $i . '">' . $i . '</option>';
                 }
                 echo '</select>';
                 echo '</div>';
-                echo '<div class="form-group">';
-                echo '<label for="comentario">Comentario (opcional):</label>';
+                echo '<div class="form-group mt-3">';
+                echo '<label for="comentario">Comentario:</label>';
                 echo '<textarea name="comentario" id="comentario" class="form-control" rows="3"></textarea>';
                 echo '</div>';
-                echo '<button type="submit" name="submit_resena" class="btn btn-success mt-3">Enviar reseña</button>';
+                echo '<div class="form-group mt-3">';
+                echo '<button type="submit" class="btn btn-primary">Enviar Reseña</button>';
+                echo '</div>';
                 echo '</form>';
                 echo '</div>';
                 echo '</div>';
@@ -141,45 +155,15 @@
                 echo '</div>';
             }
             echo '</div>';
+        } else {
+            echo "<div class='alert alert-warning text-center my-4'>No se encontraron resultados para '$terminoBusqueda'.</div>";
         }
         ?>
     </div>
 
-
-    <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
-        <div class="menu-header">
-            <img src="../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()">
-            <div class="close-icon" onclick="closeMenu()">X</div>
-        </div>
-        <hr class="menu-divider">
-        <ul class="lista-menu">
-            <?php
-            if (isset($_SESSION['rol'])) {
-                if ($_SESSION['rol'] == 'admin') {
-                    echo '<li class="elementos-menu"><a href="../usuarios/administracion/panel.php">Panel de Administrador</a></li>';
-                    echo '<li class="elementos-menu"><a href="../usuarios/clientes/perfil.php">Mi Perfil</a></li>';
-                } else {
-                    echo '<li class="elementos-menu"><a href="../usuarios/clientes/perfil.php">Mi Perfil</a></li>';
-                }
-                echo '<li class="elementos-menu"><a href="../../Controlador/logout.php">Cerrar Sesión</a></li>';
-            } else {
-                echo '<li class="elementos-menu"><a href="../registro.php">Regístrate en Efimarket</a></li>';
-                echo '<li class="elementos-menu"><a href="../../login.php">Iniciar Sesión</a></li>';
-            }
-            ?>
-            <li class="elementos-menu"><a href="despensa.php">Despensa</a></li>
-            <li class="elementos-menu"><a href="panaderia.php">Panaderías</a></li>
-            <li class="elementos-menu"><a href="rapidas.php">Comidas Rápidas</a></li>
-            <li class="elementos-menu"><a href="servicios.php">Servicios</a></li>
-            <li class="elementos-menu"><a href="frutas.php">Frutas y Verduras</a></li>
-            <li class="elementos-menu"><a href="mascotas.php">Tienda de Mascotas</a></li>
-            <li class="elementos-menu"><a href="carniceria.php">Carnicería</a></li>
-            <li class="elementos-menu"><a href="farmacia.php">Salud y Belleza</a></li>
-        </ul>
-    </div>
-
-    <script src="categorias.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/hamburger.js"></script>
 </body>
 
 </html>

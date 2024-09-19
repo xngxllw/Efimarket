@@ -253,34 +253,20 @@ class ModeloNegocios
     }
     public function insertarPostulacion($id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos)
     {
-        $sql = "INSERT INTO postulaciones (id_usuario, id_negocio, nombres, apellidos, edad, tipo_documento, documento_identidad, celular, correo_electronico, acepta_terminos) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+        $sql = "INSERT INTO postulaciones (id_usuario, id_negocio, nombres, apellidos, edad, tipo_documento, documento_identidad, celular, correo_electronico, acepta_terminos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {
             die("Error al preparar la consulta: " . $this->conn->error);
         }
 
-        $stmt->bind_param(
-            "iisssssssi",
-            $id_usuario,
-            $id_negocio,
-            $nombres,
-            $apellidos,
-            $edad,
-            $tipo_documento,
-            $documento_identidad,
-            $celular,
-            $correo_electronico,
-            $acepta_terminos
-        );
-
+        $stmt->bind_param("iisssssssi", $id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos);
         $resultado = $stmt->execute();
         $stmt->close();
 
         return $resultado;
     }
+
     public function getPostulacionesPorUsuario($id_usuario)
     {
         $sql = "SELECT p.*, n.nombre_negocio

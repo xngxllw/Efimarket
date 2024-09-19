@@ -31,6 +31,7 @@
             <div class="dropdown-menu" id="dropdownMenu">
                 <?php
                 session_start();
+                include('../../../Controlador/controlador.php');
                 if (isset($_SESSION['rol'])) {
                     if ($_SESSION['rol'] == 'admin') {
                         echo '<a href="../Vista/usuarios/administracion/panel.php">Panel de Administrador</a>';
@@ -47,7 +48,32 @@
             </div>
         </div>
     </nav>
-    <h2 style="margin: 100px 0 0 60px">Plan Actual:</h2>
+    <?php
+    if (isset($_SESSION['id_usuario'])) {
+        $userId = $_SESSION['id_usuario'];
+        $plan = obtenerPlanUsuario($userId);
+
+        // Determinar el nombre del plan
+        $planNombre = '';
+        switch ($plan) {
+            case 1:
+                $planNombre = 'Básico';
+                break;
+            case 2:
+                $planNombre = 'Premium';
+                break;
+            case 3:
+                $planNombre = 'Ultimate';
+                break;
+            default:
+                $planNombre = 'Sin Plan';
+                break;
+        }
+    ?>
+        <h2 style="margin: 100px 0 0 60px">Plan Actual: <?php echo $planNombre; ?></h2>
+    <?php
+    }
+    ?>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="../../images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()">
@@ -102,7 +128,7 @@
                 <h2>Plan Cliente Premium - $19.999</h2>
             </div>
             <ul>
-            <li>Acceso a todos los negocios registrados</li>
+                <li>Acceso a todos los negocios registrados</li>
                 <li>Acceso a reseñas y comparaciones de negocios</li>
                 <li>Acceso a productos de cada negocio</li>
                 <li>Soporte técnico prioritario</li>
@@ -120,7 +146,7 @@
                 <h2>Plan Cliente Ultimate - $29.999</h2>
             </div>
             <ul>
-            <li>Acceso a reseñas y comparaciones de negocios</li>
+                <li>Acceso a reseñas y comparaciones de negocios</li>
                 <li>Acceso a productos de cada negocio</li>
                 <li>Soporte técnico prioritario</li>
                 <li>Prioridad en postulaciones de empleo</li>
@@ -129,7 +155,7 @@
                 <li>Atención al cliente personalizada</li>
                 <li>3 cupones de descuento en negocios seleccionados</li>
             </ul>
-            <a   href="../administracion/pagarultimate.php" class="planbutton">Contratar Plan Ultimate</a> <!-- Enlace a PSE para el Plan Ultimate -->
+            <a href="../administracion/pagarultimate.php" class="planbutton">Contratar Plan Ultimate</a> <!-- Enlace a PSE para el Plan Ultimate -->
         </div>
     </div>
 

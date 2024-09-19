@@ -35,7 +35,6 @@
                 }
                 ?>
             </div>
-        </div>
     </nav>
     <header>
         <h1>Panaderías, Reposterías y Cafeterías</h1>
@@ -94,7 +93,7 @@
 
                 echo '<div class="acciones-section d-flex justify-content-between">';
                 echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
-                echo '<a href="vacantes.php?id_negocio=' . $negocio['id_negocio'] . '" class="btn btn-secondary">Ver Vacantes</a>';
+                echo '<a href="vacantes.php?id_negocio=' . $negocio['id_negocio'] . '" class="btn btn-primary">Ver Vacantes</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="modal-footer">';
@@ -150,17 +149,28 @@
             <?php
             if (isset($_SESSION['rol'])) {
                 if ($_SESSION['rol'] == 'admin') {
-                    echo '<li class="elementos-menu"><a href="../usuarios/administracion/Spanel.php">Panel de Administrador</a></li>';
+                    echo '<li class="elementos-menu"><a href="../usuarios/administracion/panel.php">Panel de Administrador</a></li>';
+                    echo '<li class="elementos-menu"><a href="../usuarios/clientes/perfil.php">Mi Perfil</a></li>';
+                } else {
+                    echo '<li class="elementos-menu"><a href="../usuarios/clientes/perfil.php">Mi Perfil</a></li>';
                 }
-                echo '<li class="elementos-menu"><a href="../usuarios/clientes/perfil.php">Mi Perfil</a></li>';
-                echo '<li class="elementos-menu"><a href="../../../Controlador/logout.php">Cerrar Sesión</a></li>';
+                echo '<li class="elementos-menu"><a href="../../Controlador/logout.php">Cerrar Sesión</a></li>';
             } else {
-                echo '<li class="elementos-menu"><a href="../login.php">Iniciar Sesión</a></li>';
-                echo '<li class="elementos-menu"><a href="../registro.php">Registrarse</a></li>';
+                echo '<li class="elementos-menu"><a href="../registro.php">Regístrate en Efimarket</a></li>';
+                echo '<li class="elementos-menu"><a href="../../login.php">Iniciar Sesión</a></li>';
             }
             ?>
+            <li class="elementos-menu"><a href="despensa.php">Despensa</a></li>
+            <li class="elementos-menu"><a href="panaderia.php">Panaderías</a></li>
+            <li class="elementos-menu"><a href="rapidas.php">Comidas Rápidas</a></li>
+            <li class="elementos-menu"><a href="servicios.php">Servicios</a></li>
+            <li class="elementos-menu"><a href="frutas.php">Frutas y Verduras</a></li>
+            <li class="elementos-menu"><a href="mascotas.php">Tienda de Mascotas</a></li>
+            <li class="elementos-menu"><a href="carniceria.php">Carnicería</a></li>
+            <li class="elementos-menu"><a href="farmacia.php">Salud y Belleza</a></li>
         </ul>
     </div>
+
     <div id="overlay"></div>
     <script src="../js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

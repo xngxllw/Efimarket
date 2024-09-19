@@ -20,7 +20,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap"
         rel="stylesheet">
-</link>
+    </link>
 </head>
 
 <body>
@@ -32,16 +32,16 @@
             <div class="dropdown-menu" id="dropdownMenu">
                 <?php
                 session_start();
-                include('../../../Controlador/controlador.php');    
+                include('../../../Controlador/controlador.php');
 
                 if (isset($_SESSION['rol'])) {
                     if ($_SESSION['rol'] == 'admin') {
-                        echo '<a href="../Vista/usuarios/administracion/panel.php">Panel de Administrador</a>';
-                        echo '<a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a>';
+                        echo '<a href="panel.php">Panel de Administrador</a>';
+                        echo '<a href="../clientes/perfil.php">Mi Perfil</a>';
                     } else {
                         echo '<a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a>';
                     }
-                    echo '<a href="../controlador/logout.php">Cerrar Sesión</a>';
+                    echo '<a href="../../../Controlador/logout.php">Cerrar Sesión</a>';
                 } else {
                     echo '<a href="login.php">Iniciar Sesión</a>';
                     echo '<a href="registro.php">Registrarse</a>';
@@ -73,10 +73,15 @@
                 break;
         }
     ?>
-    <h2 style="margin: 100px 0 0 60px">Plan Actual: <?php echo $planNombre; ?></h2>
+        <div class="cont-info-plan">
+            <h2>Plan Actual: <?php echo $planNombre; ?></h2>
+            <h2 style="margin-left: 65%;">Tu plan vence el: 19/10/2024</h2>
+        </div>
     <?php
     }
     ?>
+
+
 
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
@@ -113,51 +118,46 @@
     </div>
     <div id="overlay"></div>
     <div class="plans">
-        <!-- Plan Básico para Clientes -->
+        <!-- Plan Básico para Administradores -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Cliente Básico</h2>
+                <h2>Plan Administrador Básico</h2>
             </div>
             <ul>
-                <li>Acceso a todos los negocios registrados</li>
-                <li>Acceso a reseñas y comparaciones de negocios</li>
-                <li>Acceso a productos de cada negocio</li>
-                <li>Postularse a vacantes de empleo</li>
+                <li>3 negocios máximo</li>
+                <li>6 productos por negocio</li>
+                <li>10 vacantes al tiempo</li>
+                <li>No aparecen en el slider principal</li>
             </ul>
         </div>
 
-        <!-- Plan Cliente Premium -->
+        <!-- Plan Premium para Administradores -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Cliente Premium - $19.999</h2>
+                <h2>Plan Administrador Premium - $29.999</h2>
             </div>
             <ul>
-                <li>Acceso a todos los negocios registrados</li>
-                <li>Acceso a reseñas y comparaciones de negocios</li>
-                <li>Acceso a productos de cada negocio</li>
-                <li>Soporte técnico prioritario</li>
-                <li>Prioridad en postulaciones de empleo</li>
-                <li>Prioridad al reseñar</li>
-                <li>Un cupón de descuento en negocios seleccionados</li>
+                <li>7 negocios máximo</li>
+                <li>10 productos por negocio</li>
+                <li>15 vacantes al tiempo</li>
+                <li>Tienen prioridad en su categoría</li>
+                <li>Experiencia x1.2</li>
             </ul>
-            <a style="margin-top:33px;" href="../administracion/pagarpremium.php" class="planbutton">Contratar Plan Premium</a>
+            <a style="margin-top:46px;" href="../administracion/pagarpremium.php" class="planbutton">Contratar Plan Premium</a>
         </div>
 
-        <!-- Plan Cliente Ultimate -->
+        <!-- Plan Ultimate para Administradores -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Cliente Ultimate - $29.999</h2>
+                <h2>Plan Administrador Ultimate - $49.999</h2>
             </div>
             <ul>
-                <li>Acceso a todos los negocios registrados</li>
-                <li>Acceso a reseñas y comparaciones de negocios</li>
-                <li>Acceso a productos de cada negocio</li>
-                <li>Soporte técnico prioritario</li>
-                <li>Prioridad en postulaciones de empleo</li>
-                <li>Prioridad al reseñar</li>
-                <li>Dos cupones de descuento en negocios seleccionados</li>
-                <li>Acceso exclusivo a eventos y promociones</li>
-                <li>Asesoramiento personalizado</li>
+                <li>10 negocios máximo</li>
+                <li>15 productos por negocio</li>
+                <li>20 vacantes al tiempo</li>
+                <li>Aparecen en el slider</li>
+                <li>Tienen prioridad total en la categoría</li>
+                <li>Experiencia x2</li>
             </ul>
             <a style="margin-top:33px;" href="../administracion/pagarultimate.php" class="planbutton">Contratar Plan Ultimate</a>
         </div>

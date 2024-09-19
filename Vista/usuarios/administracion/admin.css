@@ -356,3 +356,8 @@ textarea {
 .formulario-actualizar {
   padding: 20px;
 }
+.cont-info-plan {
+  display: flex;
+  flex-direction: row;
+  margin: 100px 0 0 88px;
+}
