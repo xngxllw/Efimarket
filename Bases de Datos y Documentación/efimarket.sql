@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2024 a las 05:00:49
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 19-09-2024 a las 05:05:38
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,6 +50,30 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contacto`
+--
+
+CREATE TABLE `contacto` (
+  `id` int(11) NOT NULL,
+  `correo` varchar(255) NOT NULL,
+  `mensaje` text NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `contacto`
+--
+
+INSERT INTO `contacto` (`id`, `correo`, `mensaje`, `fecha`) VALUES
+(1, 'miguelrpo05@gmail.com', 'hola', '2024-09-17 13:13:44'),
+(2, 'miguelrpo05@gmail.com', 'hola', '2024-09-17 13:14:15'),
+(3, 'miguelrpo05@gmail.com', 'hola', '2024-09-17 13:14:24'),
+(4, 'miguelrpo05@gmail.com', 'hola', '2024-09-17 13:14:36'),
+(5, 'miguelrpo05@gmail.com', 'hola', '2024-09-19 02:55:29');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `negocios`
 --
 
@@ -84,7 +108,8 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 (16, 11, 'Pinkittyglam', 'Tienda de Maquillaje Online', 'Online', '3158170408', 'instagram.com/pinkittyglam', 5, '24/7', 'pinkittyglam.jpg'),
 (17, 8, 'AZ Parfums', 'Perfumería', 'Online', '3196516362', 'instagram.com/azparfums', 5, '24/7', 'logoAZparfums.jpeg'),
 (19, 12, 'Arte de Uñas', 'Belleza y autocuidado', 'Carrera 30 #32 17', '3167927622', '', 5, '9:00a.m a 7:00p.m', 'Arte de Uñas.jfif'),
-(21, 15, 'Laboratorio Yada Dental', 'Clínica Dental', 'Carrera 36A #40-90', '3136933101', 'no aplica', 5, '8:00A.M. a 6:30P.M.', 'yadadental.jpeg');
+(21, 15, 'Laboratorio Yada Dental', 'Clínica Dental', 'Carrera 36A #40-90', '3136933101', 'no aplica', 5, '8:00A.M. a 6:30P.M.', 'yadadental.jpeg'),
+(22, 16, 'Revueltería Marquetalia', 'Fruver', 'CLL 32 #32-3', '3122202569', 'No aplica', 9, '8:00A.M a 8:00P.M', 'marquetalia.png');
 
 -- --------------------------------------------------------
 
@@ -93,15 +118,17 @@ INSERT INTO `negocios` (`id_negocio`, `id_usuario`, `nombre_negocio`, `descripci
 --
 
 CREATE TABLE `postulaciones` (
-  `id_postulacion` int(11) NOT NULL,
-  `id_vacante` int(11) NOT NULL,
+  `id_postulacion` bigint(20) UNSIGNED NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_negocio` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `apellido` varchar(255) NOT NULL,
-  `edad` int(11) NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `hoja_de_vida` text NOT NULL
+  `id_negocio` bigint(20) UNSIGNED NOT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `edad` int(3) NOT NULL,
+  `tipo_documento` varchar(50) NOT NULL,
+  `documento_identidad` varchar(20) NOT NULL,
+  `celular` varchar(20) NOT NULL,
+  `correo_electronico` varchar(100) NOT NULL,
+  `acepta_terminos` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -147,7 +174,39 @@ INSERT INTO `productos` (`id_producto`, `id_negocio`, `nombre_producto`, `foto_p
 (32, 18, 'Uñas Acrilicas', 'uñas.jfif', 12, 70000),
 (33, 18, 'Uñas Acrilicas', 'uñass.jfif', 12, 70000),
 (34, 18, 'Uñas Acrilicas', 'Uñas acrilicas.jfif', 12, 70000),
-(35, 21, 'Nuestros Servicios', 'yadaa.jpg', 15, 999);
+(35, 21, 'Nuestros Servicios', 'yadaa.jpg', 15, 999),
+(36, 19, 'Uñas', 'uñas.jfif', 12, 70000),
+(37, 8, 'Combo 1', 'combo1.jpg', 7, 0),
+(38, 8, 'Combo 2', 'combo2.jpg', 7, 0),
+(39, 8, 'Combo 3', 'combo3.jpg', 7, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reseñas`
+--
+
+CREATE TABLE `reseñas` (
+  `id` int(11) NOT NULL,
+  `id_negocio` int(11) NOT NULL,
+  `calificacion` int(11) DEFAULT NULL CHECK (`calificacion` >= 1 and `calificacion` <= 5),
+  `comentario` text DEFAULT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reseñas`
+--
+
+INSERT INTO `reseñas` (`id`, `id_negocio`, `calificacion`, `comentario`, `fecha`) VALUES
+(1, 12, 5, 'Excelente', '2024-09-17 12:59:06'),
+(2, 12, 5, 'Excelente', '2024-09-17 12:59:13'),
+(3, 12, 5, 'Excelente', '2024-09-17 13:00:10'),
+(4, 12, 5, 'Excelente', '2024-09-17 13:05:34'),
+(5, 12, 5, 'Muy bueno todo', '2024-09-17 13:06:10'),
+(6, 12, 5, 'Hola', '2024-09-17 13:06:53'),
+(7, 12, 5, 'hola', '2024-09-17 13:07:06'),
+(8, 9, 4, 'chimba de pan', '2024-09-17 13:07:28');
 
 -- --------------------------------------------------------
 
@@ -170,9 +229,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`, `plan`, `xp`) VALUES
-(1, 'Angel Restrepo', 'miguelrpo05@gmail.com', 'a1036451368', 'admin', 3, 500),
+(1, 'Angel Restrepo', 'angel@efimarket.com', '123', 'admin', 3, 4501),
 (2, 'Josué Quintero', 'mecanicoslocos1225@gmail.com', 'josue.efimarket123', 'admin', 1, 0),
-(3, 'testClienteeeeeee', 'a@a.com', '123456789', 'cliente', 1, 0),
+(3, 'testClienteeeeeee', 'cliente@efimarket.com', '123', 'cliente', 1, 0),
 (4, 'Erika Sanchez', 'laesquinacanina18@gmail.com', 'erika.efimarket123', 'admin', 1, 0),
 (5, 'Edison Duque', 'edi3110du@gmail.com', 'edison.efimarket123', 'admin', 1, 0),
 (6, 'David Cruz', 'tiendadecarnesloreto@gmail.com', 'david.efimarket123', 'admin', 1, 0),
@@ -182,7 +241,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `contrasena`, `rol`, `
 (11, 'Mariana Acevedo', 'dulcemarizz3240@gmail.com', 'mariana.efimarket123', 'admin', 1, 0),
 (12, 'Valentina López', 'Valentina140821lopez@gmail.com', 'valentina.efimarket123', 'admin', 1, 0),
 (14, 'Miguel Ramírez', 'mramirezjaramillo3@gmail.com', 'ramirezprime123', 'admin', 3, 10000),
-(15, 'Dairo Grizales', 'carlosgrizales00@gmail.com', 'dairo.efimarket123', 'admin', 1, 0);
+(15, 'Dairo Grizales', 'carlosgrizales00@gmail.com', 'dairo.efimarket123', 'admin', 1, 0),
+(16, 'Miguel Carmona', 'marcelita1043@gmail.com', 'miguel.efimarket123', 'admin', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -202,6 +262,13 @@ CREATE TABLE `vacantes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `vacantes`
+--
+
+INSERT INTO `vacantes` (`id_vacante`, `id_negocio`, `ocupacion`, `descripcion`, `requisitos`, `horario`, `salario`, `fecha`) VALUES
+(5, 12, 'Domiciliario', 'Domiciliario', 'Licencia de Moto a2', '7:00am a 6:00pm', '0', '2024-09-19 01:06:21');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -210,6 +277,12 @@ CREATE TABLE `vacantes` (
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `contacto`
+--
+ALTER TABLE `contacto`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `negocios`
@@ -229,6 +302,12 @@ ALTER TABLE `postulaciones`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id_producto`);
+
+--
+-- Indices de la tabla `reseñas`
+--
+ALTER TABLE `reseñas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -253,34 +332,46 @@ ALTER TABLE `categorias`
   MODIFY `id_categoria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `contacto`
+--
+ALTER TABLE `contacto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
-  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_negocio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `postulaciones`
 --
 ALTER TABLE `postulaciones`
-  MODIFY `id_postulacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_postulacion` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT de la tabla `reseñas`
+--
+ALTER TABLE `reseñas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `vacantes`
 --
 ALTER TABLE `vacantes`
-  MODIFY `id_vacante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_vacante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

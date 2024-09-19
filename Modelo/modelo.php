@@ -108,28 +108,7 @@ class Modelo
         $stmt->close();
         return $vacantes;
     }
-    public function actualizarVacante($id_vacante, $datos)
-    {
-        $query = "UPDATE vacantes SET ocupacion = ?, descripcion = ?, requisitos = ?, horario = ?, salario = ? WHERE id_vacante = ?";
-        $stmt = $this->conexion->prepare($query);
 
-        if (!$stmt) {
-            die("Error al preparar la consulta: " . $this->conexion->error);
-        }
-
-        // Asegúrate de que el tipo de dato para el salario sea correcto, por ejemplo, "d" para double o float
-        $stmt->bind_param(
-            "ssssdi",
-            $datos['ocupacion'],
-            $datos['descripcion'],
-            $datos['requisitos'],
-            $datos['horario'],
-            $datos['salario'],
-            $id_vacante
-        );
-
-        return $stmt->execute();
-    }
 
 
 

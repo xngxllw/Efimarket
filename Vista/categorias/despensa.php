@@ -104,7 +104,7 @@
                 echo '</div>';
                 echo '</div>';
 
-                // Modal para la reseña
+                // Modal para la reseña 
                 echo '<div class="modal fade" id="modalResena' . $negocio['id_negocio'] . '" tabindex="-1" aria-labelledby="modalResenaLabel' . $negocio['id_negocio'] . '" aria-hidden="true">';
                 echo '<div class="modal-dialog">';
                 echo '<div class="modal-content">';

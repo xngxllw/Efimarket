@@ -46,7 +46,6 @@ $postulaciones = $controladorNegocios->obtenerPostulacionesPorUsuario($id_usuari
             <li><a href="productos.php">Productos</a></li>
             <li><a href="vacantes.php">Vacantes de Empleo</a></li>
             <li><a href="postulaciones.php">Postulaciones</a></li>
-
             <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
             <li><a href="planes.php">Planes</a></li>
         </ul>
