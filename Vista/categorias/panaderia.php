@@ -116,7 +116,7 @@
                 echo '<input type="hidden" name="id_negocio" value="' . $negocio['id_negocio'] . '">';
                 echo '<div class="form-group">';
                 echo '<label for="calificacion">Calificación:</label>';
-                echo '<select name="calificacion" id="calificacion" class="form-select">';
+                echo '<select name="calificacion" id="calificacion" class="form-select" required>';
                 for ($i = 1; $i <= 5; $i++) {
                     echo '<option value="' . $i . '">' . $i . ' estrella(s)</option>';
                 }

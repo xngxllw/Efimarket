@@ -323,10 +323,10 @@ class ModeloNegocios
         $stmt = $this->conn->prepare($query);
 
         if (!$stmt) {
-            die("Error al preparar la consulta: " . $this->conn->error);
+            error_log("Error al preparar la consulta: " . $this->conn->error);
+            return false;
         }
 
-        // Asegúrate de que el tipo de dato para el salario sea correcto, por ejemplo, "d" para double o float
         $stmt->bind_param(
             "ssssdi",
             $datos['ocupacion'],
@@ -337,8 +337,12 @@ class ModeloNegocios
             $id_vacante
         );
 
-        return $stmt->execute();
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
+
     public function borrarVacante($id_vacante)
     {
         $query = "DELETE FROM vacantes WHERE id_vacante = ?";

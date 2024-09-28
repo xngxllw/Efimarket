@@ -96,27 +96,26 @@
                                         </div>
                                         <form action="actualizarProducto.php" method="post" enctype="multipart/form-data">
                                             <div class="modal-body">
-                                                <input type="hidden" name="id_producto"
-                                                    value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
-                                                <input type="hidden" name="id_negocio"
-                                                    value="<?php echo htmlspecialchars($producto['id_negocio']); ?>">
+                                                <input type="hidden" name="id_producto" value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
+                                                <input type="hidden" name="id_negocio" value="<?php echo htmlspecialchars($producto['id_negocio']); ?>">
                                                 <div class="form-group">
                                                     <label for="nombre_producto">Nombre del Producto</label>
-                                                    <input class="form-editar form-control" type="text" id="nombre_producto"
-                                                        name="nombre_producto"
-                                                        value="<?php echo htmlspecialchars($producto['nombre_producto']); ?>"
-                                                        required>
+                                                    <input class="form-editar form-control" type="text" id="nombre_producto" name="nombre_producto" value="<?php echo htmlspecialchars($producto['nombre_producto']); ?>" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="precio">Precio</label>
-                                                    <input class="form-editar form-control" type="number" step="0.01"
-                                                        id="precio" name="precio"
-                                                        value="<?php echo htmlspecialchars($producto['precio']); ?>" required>
+                                                    <input class="form-editar form-control" type="number" step="0.01" id="precio" name="precio" value="<?php echo htmlspecialchars($producto['precio']); ?>" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="foto_producto">Foto del Producto</label>
-                                                    <input type="file" class="form-control" id="foto_producto"
-                                                        name="foto_producto">
+                                                    <input type="file" class="form-control" id="foto_producto" name="foto_producto">
+                                                    <small class="form-text text-muted">Deja este campo vacío si no quieres cambiar la foto.</small>
+                                                    <?php if (!empty($producto['foto_producto'])): ?>
+                                                        <div class="mt-2">
+                                                            <img src="../../../uploads/productos/<?php echo htmlspecialchars($producto['foto_producto']); ?>" alt="Producto actual" style="max-width: 100px; max-height: 100px;">
+                                                            <p>Foto actual</p>
+                                                        </div>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

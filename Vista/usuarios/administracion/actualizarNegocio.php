@@ -23,7 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sitio_web = $_POST['sitio_web'];
     $horario = $_POST['horario'];
 
-    // Manejar la subida del logo
+    // Inicializar la variable del logo
+    $logo_nombre = null;
+
+    // Manejar la subida del logo si se seleccionó uno nuevo
     if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
         $logo = $_FILES['logo'];
         $logo_nombre = $logo['name'];
@@ -32,16 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Mover el archivo a la ruta deseada
         if (move_uploaded_file($logo_tmp, $logo_ruta)) {
-            // Actualizar el negocio con el nuevo logo
-            $controladorNegocios->actualizarNegocio($id_negocio, $nombre, $descripcion, $direccion, $telefono, $sitio_web, $logo_nombre, $horario);
+            // El logo se ha subido correctamente
+        } else {
+            die("Error al subir el archivo de logo.");
         }
-    } else {
-        // Actualizar el negocio sin cambiar el logo
-        $controladorNegocios->actualizarNegocio($id_negocio, $nombre, $descripcion, $direccion, $telefono, $sitio_web, null, $horario);
     }
+
+    // Actualizar el negocio con o sin un nuevo logo
+    $controladorNegocios->actualizarNegocio($id_negocio, $nombre, $descripcion, $direccion, $telefono, $sitio_web, $horario, $logo_nombre);
 
     // Redirigir a la página de negocios
     header("Location: negocios.php");
     exit();
 }
-?>
