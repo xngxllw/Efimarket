@@ -455,27 +455,43 @@ class ControladorNegocios
     }
     public function agregarResena($id_negocio, $id_usuario, $calificacion, $comentario)
     {
-        $fecha = date('Y-m-d H:i:s');
-        $sql = "INSERT INTO resenas (id_negocio, id_usuario, calificacion, comentario, fecha) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("iiiss", $id_negocio, $id_usuario, $calificacion, $comentario, $fecha);
+        // Validar los datos
+        $id_negocio = filter_var($id_negocio, FILTER_VALIDATE_INT);
+        $id_usuario = filter_var($id_usuario, FILTER_VALIDATE_INT);
+        $calificacion = filter_var($calificacion, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1, "max_range" => 5]]);
+        $comentario = filter_var($comentario, FILTER_SANITIZE_STRING);
 
-        if ($stmt->execute()) {
-            return true;
-        } else {
+        if ($id_negocio === false || $id_usuario === false || $calificacion === false) {
             return false;
         }
+
+        return $this->modeloNegocios->agregarResena($id_negocio, $id_usuario, $calificacion, $comentario);
     }
 }
 
 // Procesar la solicitud
 $controlador = new ControladorNegocios();
 
-if (isset($_POST['action'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     switch ($_POST['action']) {
-        case 'postular':
-            $controlador->procesarPostulacion();
+        case 'agregar_resena':
+            if (isset($_POST['id_negocio']) && isset($_POST['id_usuario']) && isset($_POST['calificacion'])) {
+                $id_negocio = $_POST['id_negocio'];
+                $id_usuario = $_POST['id_usuario'];
+                $calificacion = $_POST['calificacion'];
+                $comentario = isset($_POST['comentario']) ? $_POST['comentario'] : '';
+
+                if ($controlador->agregarResena($id_negocio, $id_usuario, $calificacion, $comentario)) {
+                    header('Location: ../Vista/index.php?mensaje=resena_agregada');
+                } else {
+                    header('Location: ../Vista/index.php?mensaje=error_al_agregar_resena');
+                }
+                exit();
+            } else {
+                header('Location: ../Vista/index.php?mensaje=datos_incompletos');
+                exit();
+            }
             break;
-            // Otros casos...
+            // ... otros casos ...
     }
 }

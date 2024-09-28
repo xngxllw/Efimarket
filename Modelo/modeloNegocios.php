@@ -356,4 +356,24 @@ class ModeloNegocios
 
         return $stmt->execute();
     }
+    public function agregarResena($id_negocio, $id_usuario, $calificacion, $comentario)
+    {
+        $fecha = date('Y-m-d H:i:s');
+        $sql = "INSERT INTO reseñas (id_negocio, id_usuario, calificacion, comentario, fecha) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("iiiss", $id_negocio, $id_usuario, $calificacion, $comentario, $fecha);
+
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
+    }
 }

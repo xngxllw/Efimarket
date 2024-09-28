@@ -114,10 +114,12 @@
                 echo '</div>';
                 echo '<div class="modal-body">';
                 echo '<form action="../../Controlador/controladorNegocios.php" method="POST">';
+                echo '<input type="hidden" name="action" value="agregar_resena">';
                 echo '<input type="hidden" name="id_negocio" value="' . $negocio['id_negocio'] . '">';
+                echo '<input type="hidden" name="id_usuario" value="' . (isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '') . '">';
                 echo '<div class="form-group">';
                 echo '<label for="calificacion">Calificación:</label>';
-                echo '<select name="calificacion" id="calificacion" class="form-select">';
+                echo '<select name="calificacion" id="calificacion' . $negocio['id_negocio'] . '" class="form-select" required>';
                 for ($i = 1; $i <= 5; $i++) {
                     echo '<option value="' . $i . '">' . $i . ' estrella(s)</option>';
                 }
@@ -125,9 +127,9 @@
                 echo '</div>';
                 echo '<div class="form-group">';
                 echo '<label for="comentario">Comentario (opcional):</label>';
-                echo '<textarea name="comentario" id="comentario" class="form-control" rows="3"></textarea>';
+                echo '<textarea name="comentario" id="comentario' . $negocio['id_negocio'] . '" class="form-control" rows="3"></textarea>';
                 echo '</div>';
-                echo '<button type="submit" name="submit_resena" class="btn btn-success mt-3">Enviar reseña</button>';
+                echo '<button type="submit" class="btn btn-success mt-3">Enviar reseña</button>';
                 echo '</form>';
                 echo '</div>';
                 echo '</div>';
