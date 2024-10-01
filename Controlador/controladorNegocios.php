@@ -233,37 +233,8 @@ class ControladorNegocios
         return $productos;
     }
 
-    public function procesarPostulacion()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'postular') {
-            session_start();
-            if (!isset($_SESSION['id_usuario'])) {
-                header("Location: ../Vista/login.php");
-                exit();
-            }
 
-            // Sanitización de entradas
-            $id_usuario = $_SESSION['id_usuario'];
-            $id_negocio = isset($_POST['id_negocio']) ? $_POST['id_negocio'] : null;
-            $nombres = isset($_POST['nombres']) ? $_POST['nombres'] : null;
-            $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : null;
-            $edad = isset($_POST['edad']) ? $_POST['edad'] : null;
-            $tipo_documento = isset($_POST['tipo_documento']) ? $_POST['tipo_documento'] : null;
-            $documento_identidad = isset($_POST['documento_identidad']) ? $_POST['documento_identidad'] : null;
-            $celular = isset($_POST['celular']) ? $_POST['celular'] : null;
-            $correo_electronico = isset($_POST['correo_electronico']) ? $_POST['correo_electronico'] : null;
-            $acepta_terminos = isset($_POST['acepta_terminos']) ? 1 : 0;
 
-            $resultado = $this->modeloNegocios->insertarPostulacion($id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos);
-
-            if ($resultado) {
-                header("Location: ../Vista/index.php?mensaje=postulacion_exitosa");
-            } else {
-                header("Location: ../Vista/index.php?mensaje=error_postulacion");
-            }
-            exit();
-        }
-    }
     public function actualizarNegocio($id_negocio, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio_web, $horario, $logo = null)
     {
         // Primero obtenemos el logo actual si no se subió uno nuevo
@@ -324,6 +295,33 @@ class ControladorNegocios
             // Si no se encontró el negocio, retornar null
             return null;
         }
+    }
+
+    public function obtenerPlanUsuario($id_usuario)
+    {
+        // Consulta para obtener el plan del usuario
+        $query = "SELECT plan FROM usuarios WHERE id_usuario = ?";
+
+        // Preparar la consulta
+        $stmt = $this->conn->prepare($query);
+
+        // Vincular el parámetro
+        $stmt->bind_param("i", $id_usuario); // 'i' para integer
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result(); // Usar get_result() para obtener el conjunto de resultados
+
+        // Verificar si se obtuvo un resultado
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc(); // Obtener la fila
+            return $row['plan']; // Retornar el plan
+        }
+
+        // Retornar null si no se encontró el plan
+        return null;
     }
 
     public function eliminarNegocio($id_negocio)
@@ -459,17 +457,97 @@ class ControladorNegocios
         $id_negocio = filter_var($id_negocio, FILTER_VALIDATE_INT);
         $id_usuario = filter_var($id_usuario, FILTER_VALIDATE_INT);
         $calificacion = filter_var($calificacion, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1, "max_range" => 5]]);
-        $comentario = filter_var($comentario, FILTER_SANITIZE_STRING);
+        $comentario = filter_var($comentario); // Sanitizar el comentario
 
+        // Comprobar si las variables son válidas
         if ($id_negocio === false || $id_usuario === false || $calificacion === false) {
-            return false;
+            return false; // O manejar el error según sea necesario
         }
 
-        return $this->modeloNegocios->agregarResena($id_negocio, $id_usuario, $calificacion, $comentario);
+        // Llamar a la función del modelo para agregar la reseña
+        $resenaAgregada = $this->modeloNegocios->agregarResena($id_negocio, $id_usuario, $calificacion, $comentario);
+
+        // Si la reseña se agregó correctamente, aumentar la XP del usuario
+        if ($resenaAgregada) {
+            $this->modeloNegocios->sumarXP($id_usuario, 30); // Aumentar 30 XP
+        }
+
+        return $resenaAgregada; // Devolver el resultado
+    }
+
+    public function procesarPostulacion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'postular') {
+            session_start();
+            if (!isset($_SESSION['id_usuario'])) {
+                header('Location: ../login.php');
+                exit;
+            }
+
+            $id_usuario = $_SESSION['id_usuario'];
+            $id_negocio = filter_input(INPUT_POST, 'id_negocio', FILTER_VALIDATE_INT);
+
+            if ($id_negocio === false || $id_negocio === null) {
+                $_SESSION['mensaje'] = "Error: ID de negocio inválido.";
+                header("Location: ../Vista/index.php");
+                exit;
+            }
+
+            $nombres = filter_input(INPUT_POST, 'nombres');
+            $apellidos = filter_input(INPUT_POST, 'apellidos');
+            $edad = filter_input(INPUT_POST, 'edad', FILTER_VALIDATE_INT);
+            $tipo_documento = filter_input(INPUT_POST, 'tipo_documento');
+            $documento_identidad = filter_input(INPUT_POST, 'documento_identidad');
+            $celular = filter_input(INPUT_POST, 'celular');
+            $correo_electronico = filter_input(INPUT_POST, 'correo_electronico', FILTER_VALIDATE_EMAIL);
+            $acepta_terminos = isset($_POST['acepta_terminos']) ? 1 : 0;
+
+            if (!$nombres || !$apellidos || !$edad || !$tipo_documento || !$documento_identidad || !$celular || !$correo_electronico) {
+                $_SESSION['mensaje'] = "Error: Todos los campos son obligatorios.";
+                header("Location: ../Vista/categorias/vacantes.php?id_negocio=" . $id_negocio);
+                exit;
+            }
+
+            $resultado = $this->modeloNegocios->agregarPostulacion(
+                $id_usuario,
+                $id_negocio,
+                $nombres,
+                $apellidos,
+                $edad,
+                $tipo_documento,
+                $documento_identidad,
+                $celular,
+                $correo_electronico,
+                $acepta_terminos
+            );
+
+            if ($resultado) {
+                $_SESSION['mensaje'] = "Postulación enviada con éxito.";
+            } else {
+                $_SESSION['mensaje'] = "Error al enviar la postulación.";
+            }
+
+            header("Location: ../Vista/categorias/vacantes.php?id_negocio=" . $id_negocio);
+            exit;
+        }
+    }
+    public function contarNegociosPorUsuario($id_usuario)
+    {
+        // Crear una instancia del modelo de negocios
+        $modelo = new ModeloNegocios();
+
+        // Llamar al método del modelo que cuenta los negocios
+        return $modelo->contarNegociosPorUsuario($id_usuario);
+    }
+    public function contarVacantesPorNegocio($id_negocio)
+    {
+        // Asegúrate de que tienes acceso al modelo
+        $modelo = new ModeloNegocios();
+
+        // Llama al método del modelo que contará las vacantes por negocio
+        return $modelo->contarVacantesPorNegocio($id_negocio);
     }
 }
-
-// Procesar la solicitud
 $controlador = new ControladorNegocios();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
@@ -477,7 +555,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         case 'agregar_resena':
             if (isset($_POST['id_negocio']) && isset($_POST['id_usuario']) && isset($_POST['calificacion'])) {
                 $id_negocio = $_POST['id_negocio'];
-                $id_usuario = $_POST['id_usuario'];
+                $id_usuario = $_POST['id_usuario']; // Obtén el id del usuario
                 $calificacion = $_POST['calificacion'];
                 $comentario = isset($_POST['comentario']) ? $_POST['comentario'] : '';
 
@@ -492,6 +570,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 exit();
             }
             break;
-            // ... otros casos ...
+        case 'postular':
+            $controlador->procesarPostulacion();
+            break;
+    }
+}
+
+
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
+    $accion = $_POST['accion'];
+
+    switch ($accion) {
+        case 'borrar_vacante':
+            $id_vacante = isset($_POST['id_vacante']) ? $_POST['id_vacante'] : null;
+            if ($id_vacante) {
+                $modelo = new ModeloNegocios();
+                $resultado = $modelo->borrarVacante($id_vacante);
+
+                if ($resultado) {
+                    // Redirigir a la página de vacantes con un mensaje de éxito
+                    header('Location: ../Vista/usuarios/administracion/vacantes.php?mensaje=vacante_borrada');
+                } else {
+                    // Redirigir con un mensaje de error
+                    header('Location: ../Vista/usuarios/administracion/vacantes.php?error=error_borrar');
+                }
+            }
+            break;
+
+            // Aquí irían otros casos como actualizar_vacante o crear_vacante.
     }
 }

@@ -92,7 +92,15 @@
                 echo '</div>';
 
                 echo '<div class="acciones-section d-flex justify-content-between">';
-                echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
+
+                if (isset($_SESSION['id_usuario'])) {
+                    // La sesión está iniciada, mostrar el botón de reseña
+                    echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
+                } else {
+                    // La sesión no está iniciada, redirigir a login al intentar reseñar
+                    echo '<button class="btn btn-primary" onclick="window.location.href=\'../login.php\'">Reseñar</button>';
+                }
+
                 echo '<a href="vacantes.php?id_negocio=' . $negocio['id_negocio'] . '" class="btn btn-primary">Ver Vacantes</a>';
                 echo '</div>';
                 echo '</div>';
@@ -104,6 +112,7 @@
                 echo '</div>';
 
                 // Modal para la reseña
+
                 echo '<div class="modal fade" id="modalResena' . $negocio['id_negocio'] . '" tabindex="-1" aria-labelledby="modalResenaLabel' . $negocio['id_negocio'] . '" aria-hidden="true">';
                 echo '<div class="modal-dialog">';
                 echo '<div class="modal-content">';
@@ -115,7 +124,7 @@
                 echo '<form action="../../Controlador/controladorNegocios.php" method="POST">';
                 echo '<input type="hidden" name="action" value="agregar_resena">';
                 echo '<input type="hidden" name="id_negocio" value="' . $negocio['id_negocio'] . '">';
-                echo '<input type="hidden" name="id_usuario" value="' . (isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '') . '">';
+                echo '<input type="hidden" name="id_usuario" value="' . htmlspecialchars($_SESSION['id_usuario']) . '">'; // Escapar el ID de usuario para mayor seguridad
                 echo '<div class="form-group">';
                 echo '<label for="calificacion">Calificación:</label>';
                 echo '<select name="calificacion" id="calificacion' . $negocio['id_negocio'] . '" class="form-select" required>';

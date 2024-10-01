@@ -15,7 +15,7 @@
 <body>
     <nav>
         <a class="hamburger link" href="#" onclick="toggleHamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
-        <a class="logo link" href="../index.php"><img width="260" src="../images/letras.png" alt="Efimarket Logo"></a>
+        <a class="logo link" href="../index.php"><img width="260" src="../images/letras.png" alt=""></a>
         <div class="user-icon" onclick="toggleMenu()">
             <i class="fas fa-user-circle"></i>
             <div class="dropdown-menu" id="dropdownMenu">
@@ -35,7 +35,6 @@
                 }
                 ?>
             </div>
-        </div>
     </nav>
 
     <header>
@@ -132,39 +131,40 @@
                 echo '</div>';
                 echo '<div class="modal-body">';
                 echo '<form action="../../Controlador/controladorNegocios.php" method="POST">';
-                echo '<form action="../../Controlador/controladorNegocios.php" method="POST">';
                 echo '<input type="hidden" name="action" value="agregar_resena">';
-                echo '<input type="hidden" name="id_negocio" value="' . $negocio['id_negocio'] . '">';
-                echo '<input type="hidden" name="id_usuario" value="' . (isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '') . '">';
-                echo '<div class="form-group">';
-                echo '<label for="calificacion">Calificación:</label>';
-                echo '<select name="calificacion" id="calificacion' . $negocio['id_negocio'] . '" class="form-select" required>';
+                echo '<input type="hidden" name="id_negocio" value="' . $idNegocio . '">';
+                echo '<div class="mb-3">';
+                echo '<label for="calificacion" class="form-label">Calificación</label>';
+                echo '<select class="form-select" name="calificacion" required>';
+                echo '<option value="">Selecciona una calificación</option>';
                 for ($i = 1; $i <= 5; $i++) {
-                    echo '<option value="' . $i . '">' . $i . ' estrella(s)</option>';
+                    echo '<option value="' . $i . '">' . $i . '</option>';
                 }
                 echo '</select>';
                 echo '</div>';
-                echo '<div class="form-group">';
-                echo '<label for="comentario">Comentario (opcional):</label>';
-                echo '<textarea name="comentario" id="comentario' . $negocio['id_negocio'] . '" class="form-control" rows="3"></textarea>';
+                echo '<div class="mb-3">';
+                echo '<label for="comentario" class="form-label">Comentario (opcional)</label>';
+                echo '<textarea class="form-control" name="comentario" rows="3"></textarea>';
                 echo '</div>';
-                echo '<button type="submit" class="btn btn-success mt-3">Enviar reseña</button>';
+                echo '</div>';
+                echo '<div class="modal-footer">';
+                echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';
+                echo '<button type="submit" class="btn btn-primary">Enviar Reseña</button>';
+                echo '</div>';
                 echo '</form>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-                echo '</div>';
             }
-            echo '</div>';
+            echo '</div>'; // fin de cont-negocios
         } else {
-            echo "<div class='alert alert-warning text-center my-4'>No se encontraron resultados para '$terminoBusqueda'.</div>";
+            echo "<div class='alert alert-warning text-center my-4'>No se encontraron negocios para la búsqueda.</div>";
         }
         ?>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="overlay"></div> <!--para oscurecer la pagina cuando aparezca el menu hamburguesa-->
     <script src="../js/index.js"></script>
-    <script src="../js/hamburger.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

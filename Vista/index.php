@@ -95,7 +95,7 @@
             } else {
                 echo '<li class="elementos-menu"><a href="registro.php">Regístrate en Efimarket</a></li>';
                 echo '<li class="elementos-menu"><a href="login.php">Iniciar Sesión</a></li>';
-                echo '<li class="elementos-menu"><a href="../Vista/usuarios/clientes/">Planes</a></li>';
+                echo '<li class="elementos-menu"><a href="../Vista/usuarios/clientes/planesClientes.php">Planes</a></li>';
             }
             ?>
             <li class="elementos-menu"><a href="categorias/despensa.php">Despensa</a></li>
@@ -162,43 +162,48 @@
     <br><br>
     <h2 class="titulos">Categorías principales</h2>
     <div class="categorias">
-        <div class="categoria">
-            <a href="categorias/despensa.php"><img src="images/despensa.jpg" alt=""></a>
-            <p>Despensa</p>
+        <button class="nav-button left" onclick="moveLeft()">&#60;</button>
+        <div class="categoria-container">
+            <div class="categoria">
+                <a href="categorias/despensa.php"><img src="images/despensa.jpg" alt=""></a>
+                <p>Despensa</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/panaderia.php"><img src="images/panaderia.jpg" alt=""></a>
+                <p>Panadería y Cafetería</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/rapidas.php"><img src="images/rapidas.jpg" alt=""></a>
+                <p>Comidas Rápidas</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/servicios.php"><img src="images/servicios.jpg" alt=""></a>
+                <p>Servicios</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/farmacia.php"><img src="images/farmacia.jpeg" alt=""></a>
+                <p>Salud y Belleza</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/carniceria.php"><img src="images/carniceria.jpeg" alt=""></a>
+                <p>Carnicerías</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/mascotas.php"><img src="images/mascotas.jpeg" alt=""></a>
+                <p>Mascotas</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/ropa.php"><img src="images/ropa.jpeg" alt=""></a>
+                <p>Ropa y Accesorios</p>
+            </div>
+            <div class="categoria">
+                <a href="categorias/frutas.php"><img src="images/frutas.jpg" alt=""></a>
+                <p>Frutas y Verduras</p>
+            </div>
         </div>
-        <div class="categoria">
-            <a href="categorias/panaderia.php"><img src="images/panaderia.jpg" alt=""></a>
-            <p>Panadería y Cafetería</p>
-        </div>
-        <div class="categoria">
-            <a href="categorias/rapidas.php"><img src="images/rapidas.jpg" alt=""></a>
-            <p>Comidas Rápidas</p>
-        </div>
-        <div class="categoria">
-            <a href="categorias/servicios.php"><img src="images/servicios.jpg" alt=""></a>
-            <p>Servicios</p>
-        </div>
-        <div class="categoria">
-            <a href="categorias/farmacia.php"><img src="images/farmacia.jpeg" alt=""></a>
-            <p>Salud y Belleza</p>
-        </div>
-        <div class="categoria">
-            <a href="categorias/carniceria.php"><img src="images/carniceria.jpeg" alt=""></a>
-            <p>Carnicerías</p>
-        </div>
-        <div class="categoria">
-            <a href="categorias/mascotas.php"><img src="images/mascotas.jpeg" alt=""></a>
-            <p>Mascotas</p>
-        </div>
-        <div class="categoria">
-            <a href="categorias/ropa.php"><img src="images/ropa.jpeg" alt=""></a>
-            <p>Ropa y Accesorios</p>
-        </div>
-        <div class="categoria">
-            <a href="categorias/frutas.php"><img src="images/frutas.jpg" alt=""></a>
-            <p>Frutas y Verduras</p>
-        </div>
+        <button class="nav-button right" onclick="moveRight()">&#62;</button>
     </div>
+
     <h2 style="text-align: center">No logras ubicarte? Te ayudamos:</h2>
     <div id="map"></div>
     <script src="js/buscador.js"></script>
@@ -251,7 +256,6 @@
 
     <div class="footer-bottom">
         &copy; 2024 DIGITAL AZ S.A | Todos los derechos reservados <br>
-        Efimarket les desea a todos un feliz día del amor y la amistad, esperamos que disfruten con sus seres queridos un día especial.
     </div>
 </footer>
 

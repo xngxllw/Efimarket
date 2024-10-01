@@ -21,6 +21,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $foto_producto = $_FILES['foto_producto'];
     $id_usuario = $_SESSION['id_usuario']; // Tomamos el id_usuario de la sesión
 
+    // Verificar el plan del usuario
+    $plan_usuario = $controladorNegocios->obtenerPlanUsuario($id_usuario); // Obtener el plan del usuario
+    // Definir límites de productos por plan
+    switch ($plan_usuario) {
+        case 1: // Básico
+            $limite_productos = 5;
+            break;
+        case 2: // Premium
+            $limite_productos = 15;
+            break;
+        case 3: // Ultimate
+            $limite_productos = 25;
+            break;
+        default:
+            $_SESSION['error'] = "Plan no válido.";
+            header("Location: productos.php");
+            exit();
+    }
+
+    // Contar productos existentes en el negocio
+    $productos_count = $controladorNegocios->contarProductosPorNegocio($id_negocio); // Debes implementar este método
+
+    // Verificar si se alcanza el límite de productos
+    if ($productos_count >= $limite_productos) {
+        if ($plan_usuario == 3) { // Ultimate
+            $_SESSION['error'] = "Límite de productos alcanzado. No puede agregar más productos.";
+            header("Location: productos.php");
+            exit();
+        } else {
+            header("Location: planes.php"); // Redirigir a planes.php
+            exit();
+        }
+    }
+
     // Verificar que se subió la foto correctamente
     if ($foto_producto['error'] === UPLOAD_ERR_OK) {
         // Definir la ruta donde se guardará la imagen
@@ -60,4 +94,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: productos.php");
     exit();
 }
-?>

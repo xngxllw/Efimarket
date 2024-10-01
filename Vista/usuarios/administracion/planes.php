@@ -75,7 +75,6 @@
     ?>
         <div class="cont-info-plan">
             <h2>Plan Actual: <?php echo $planNombre; ?></h2>
-            <h2 style="margin-left: 65%;">Tu plan vence el: 19/10/2024</h2>
         </div>
     <?php
     }
@@ -134,7 +133,7 @@
         <!-- Plan Premium para Administradores -->
         <div class="plan">
             <div class="plan-header">
-                <h2>Plan Administrador Premium - $29.999</h2>
+                <h2>Plan Administrador Premium - $39.999</h2>
             </div>
             <ul>
                 <li>7 negocios máximo</li>

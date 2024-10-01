@@ -27,70 +27,6 @@ function closeMenu() {
   overlay.style.display = "none";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const contenedorNegocios = document.querySelector(".cont-negocios");
-  let inicioX = 0;
-  let desplazamientoInicial = 0;
-  let estaArrastrando = false;
-
-  contenedorNegocios.addEventListener("mousedown", (e) => {
-    if (!contenedorNegocios) return;
-    estaArrastrando = true;
-    inicioX = e.pageX;
-    desplazamientoInicial = contenedorNegocios.scrollLeft;
-    contenedorNegocios.classList.add("agarrando");
-    e.preventDefault();
-
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  });
-
-  function onMouseMove(e) {
-    if (!estaArrastrando) return;
-    const desplazamientoX = e.pageX - inicioX;
-    contenedorNegocios.scrollLeft = desplazamientoInicial - desplazamientoX;
-  }
-
-  function onMouseUp() {
-    estaArrastrando = false;
-    contenedorNegocios.classList.remove("agarrando");
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", onMouseUp);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const contenedorNegocios = document.querySelector(".categorias");
-  let inicioX = 0;
-  let desplazamientoInicial = 0;
-  let estaArrastrando = false;
-
-  contenedorNegocios.addEventListener("mousedown", (e) => {
-    if (!contenedorNegocios) return;
-    estaArrastrando = true;
-    inicioX = e.pageX;
-    desplazamientoInicial = contenedorNegocios.scrollLeft;
-    contenedorNegocios.classList.add("agarrando");
-    e.preventDefault();
-
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  });
-
-  function onMouseMove(e) {
-    if (!estaArrastrando) return;
-    const desplazamientoX = e.pageX - inicioX;
-    contenedorNegocios.scrollLeft = desplazamientoInicial - desplazamientoX;
-  }
-
-  function onMouseUp() {
-    estaArrastrando = false;
-    contenedorNegocios.classList.remove("agarrando");
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", onMouseUp);
-  }
-});
-
 function toggleEdit(field) {
   let textElement = document.getElementById(field + "Text");
   let inputElement = document.getElementById(field + "Input");
@@ -176,3 +112,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 });
+let currentPosition = 0; // Posición actual
+const maxPosition = 5; // Máximo de categorías visibles
+const categoryWidth = 150; // Ancho estimado de cada categoría
+
+function moveLeft() {
+  const container = document.querySelector(".categoria-container");
+  currentPosition = Math.min(currentPosition + 1, 0); // No permite que vaya más a la izquierda
+  container.style.transform = `translateX(${
+    currentPosition * categoryWidth
+  }px)`;
+}
+
+function moveRight() {
+  const container = document.querySelector(".categoria-container");
+  currentPosition = Math.max(
+    currentPosition - 1,
+    -(document.querySelectorAll(".categoria").length - maxPosition)
+  ); // No permite que vaya más a la derecha
+  container.style.transform = `translateX(${
+    currentPosition * categoryWidth
+  }px)`;
+}

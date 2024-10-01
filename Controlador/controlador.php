@@ -13,7 +13,8 @@ try {
     die("No se pudo conectar a la base de datos: " . $e->getMessage());
 }
 
-function obtenerPlanUsuario($id_usuario) {
+function obtenerPlanUsuario($id_usuario)
+{
     global $pdo;
     $sql = "SELECT plan FROM usuarios WHERE id_usuario = :id_usuario";
     $stmt = $pdo->prepare($sql);
@@ -45,6 +46,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Error al enviar el mensaje.";
     }
-
 }
-?>

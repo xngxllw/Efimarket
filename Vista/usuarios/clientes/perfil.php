@@ -83,7 +83,6 @@ $conexion->close();
           echo '<a href=".../../../administracion/panel.php">Panel de Administrador</a>';
           echo '<a href="rangos.php">Rangos</a>';
           echo '<a href="../administracion/planes.php">Planes</a></a>';
-          echo '<a href="../administracion/logrosAdmin.php">Logros</a>';
         } else {
           echo '<li><a href="planesClientes.php">Planes</a></li>';
           echo '<a href="rangos.php">Rangos</a>';

@@ -10,7 +10,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Centramos horizontalmente */
   margin: 50px 0 0 0;
   padding: 10px;
   text-align: center;
@@ -37,13 +36,18 @@ hr {
   margin: 0 0 20px 0;
 }
 
+/* Nueva estructura para la contenedora de negocios con grid invisible */
 .cont-negocios {
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-  /* Permitimos el desplazamiento horizontal en pantallas grandes */
-  cursor: grab;
-  /* Cambiamos el cursor al estilo de agarre */
+  display: flex; /* Cambiamos a flex para centrar los elementos */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en filas */
+  justify-content: center; /* Centra todos los elementos */
+  gap: 20px; /* Espaciado entre los negocios */
+  margin: 0 auto; /* Centra el contenedor en la página */
+  overflow-x: auto; /* Permitimos el desplazamiento horizontal en pantallas grandes */
+  cursor: grab; /* Cambiamos el cursor al estilo de agarre */
+  padding: 20px 0; /* Espaciado superior e inferior */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  max-width: 1200px; /* Establece un ancho máximo para el contenedor */
 }
 
 .negocio {
@@ -51,14 +55,12 @@ hr {
   flex-direction: column;
   align-items: center;
   border: 0.5px solid #b3b3b3;
-  width: 220px;
-  height: 310px;
+  width: 220px; /* Ancho estándar */
+  height: 310px; /* Altura estándar */
   padding: 5px;
   border-radius: 18px;
-  margin-right: 20px;
   text-decoration: none;
   color: #000;
-  flex: 0 0 auto;
   justify-content: center;
   outline: none;
 }
@@ -124,24 +126,21 @@ hr {
   }
 
   .cont-negocios {
-    overflow-x: hidden;
-    height: 80vh;
+    justify-content: center; /* Centra los elementos */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    gap: 10px; /* Espaciado entre los elementos */
   }
 
   .negocio {
-    width: 100px;
-    /* Nuevo ancho para pantallas pequeñas */
-    height: 100px;
-    /* Nueva altura para pantallas pequeñas */
-    margin-left: 5px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 120px; /* Ancho para pantallas pequeñas */
+    height: 120px; /* Altura para pantallas pequeñas */
+    margin: 5px; /* Espaciado */
+    flex: 1 0 auto; /* Permite que los elementos crezcan y se ajusten */
   }
 
   .negocio img {
-    width: 60px;
-    height: 60px;
+    max-width: 80px; /* Ajustar tamaño de imagen en pantallas pequeñas */
+    max-height: 80px; /* Ajustar tamaño de imagen en pantallas pequeñas */
   }
 
   /* Ocultamos la categoría, horario, ubicación y teléfono en pantallas pequeñas */
@@ -222,8 +221,8 @@ hr {
 .nombre-producto {
   font-weight: 1000;
 }
-/* Estilos similares a los de misNegocios.php para vacantes.php */
 
+/* Estilo similar a los de misNegocios.php para vacantes.php */
 .vacantesGrid {
   display: grid;
   grid-template-columns: repeat(

@@ -13,6 +13,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $categoria = $_POST['categoria'];
     $id_usuario = $_SESSION['id_usuario'];
 
+    // Verificar el plan del usuario
+    $controlador = new ControladorNegocios();
+    $plan_usuario = $controlador->obtenerPlanUsuario($id_usuario); // Obtener el plan del usuario
+
+    // Comprobar si el plan se obtuvo correctamente
+    if ($plan_usuario === null) {
+        echo "El plan del usuario no está definido o no se pudo encontrar.";
+        exit;
+    }
+
+    // Obtener el conteo de negocios del usuario
+    $negocios_count = $controlador->contarNegociosPorUsuario($id_usuario);
+
+    // Definir límites por plan
+    switch ($plan_usuario) {
+        case '1':
+            $limite_negocios = 3;
+            break;
+        case '2':
+            $limite_negocios = 7;
+            break;
+        case '3':
+            $limite_negocios = 10;
+            break;
+        default:
+            echo "Plan no válido.";
+            exit;
+    }
+
+    // Verificar si se alcanza el límite de negocios
+    if ($plan_usuario == '3' && $negocios_count >= $limite_negocios) {
+        echo "Límite de negocios alcanzado. No puede registrar más negocios.";
+        exit; // Detener la ejecución
+    } elseif ($negocios_count >= $limite_negocios) {
+        header('Location: planes.php'); // Redirigir a planes.php
+        exit;
+    }
+
     // Manejo de subida de imagen
     $target_dir = "../../../uploads/logos/";
     if (!is_dir($target_dir)) {
@@ -34,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Instanciar el controlador y llamar a guardarNegocio
-    $controlador = new ControladorNegocios();
     $resultado = $controlador->guardarNegocio($id_usuario, $nombre, $descripcion, $direccion, $telefono, $sitio, $categoria, $logo, $horario);
 
     // Manejar el resultado de la operación

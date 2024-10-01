@@ -93,9 +93,15 @@
                 echo '</div>';
 
                 echo '<div class="acciones-section d-flex justify-content-between">';
-                echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
-                echo '<a href="vacantes.php?id_negocio=' . $negocio['id_negocio'] . '" class="btn btn-secondary">Ver Vacantes</a>';
-                echo '</div>';
+
+                if (isset($_SESSION['id_usuario'])) {
+                    // La sesión está iniciada, mostrar el botón de reseña
+                    echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalResena' . $negocio['id_negocio'] . '">Reseñar</button>';
+                } else {
+                    // La sesión no está iniciada, redirigir a login al intentar reseñar
+                    echo '<button class="btn btn-primary" onclick="window.location.href=\'../login.php\'">Reseñar</button>';
+                }
+                echo '<a href="vacantes.php?id_negocio=' . $negocio['id_negocio'] . '" class="btn btn-primary">Ver Vacantes</a>';
                 echo '</div>';
                 echo '<div class="modal-footer">';
                 echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';

@@ -147,7 +147,6 @@ $conexion->close();
                 <div class="modal-body">
                     <p>La XP se obtiene de las siguientes maneras:</p>
                     <ul>
-                        <li>Calificaciones: 3 estrellas - 100 XP, 4 estrellas - 150 XP, 5 estrellas - 300 XP</li>
                         <li>Por logros especiales en la plataforma</li>
                         <li>Por dar empleo a otros usuarios (Si eres administrador)</li>
                         <li>Por subir todas las fotos requeridas de tu negocio</li>

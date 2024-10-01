@@ -134,8 +134,7 @@
                 <li>Soporte técnico prioritario</li>
                 <li>Prioridad en postulaciones de empleo</li>
                 <li>Prioridad al reseñar</li>
-                <li>Un cupon de descuento en negocios selecionados</li>
-
+                <li>Un cupon de descuento en negocios seleccionados</li>
             </ul>
             <a style="margin-top:33px;" href="../administracion/pagarpremium.php" class="planbutton">Contratar Plan Premium</a> <!-- Enlace a PSE para el Plan Premium -->
         </div>
@@ -158,7 +157,6 @@
             <a href="../administracion/pagarultimate.php" class="planbutton">Contratar Plan Ultimate</a> <!-- Enlace a PSE para el Plan Ultimate -->
         </div>
     </div>
-
 </body>
 
 </html>

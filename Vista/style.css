@@ -489,11 +489,47 @@ nav .inicio {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  overflow-x: hidden; /* Permitimos el desplazamiento horizontal */
-  cursor: grab; /* Cambiamos el cursor al estilo de agarre */
-  overflow-y: hidden;
+  position: relative; /* Permite la posición absoluta de los botones */
+  overflow: hidden; /* Oculta cualquier contenido fuera del contenedor */
 }
+
+.categoria-container {
+  display: flex;
+  transition: transform 0.3s ease; /* Suaviza el movimiento */
+  /* Establece el ancho máximo según la cantidad de categorías visibles */
+}
+
+.nav-button {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Fondo blanco semitransparente */
+  border: none;
+  cursor: pointer;
+  font-size: 2em; /* Ajusta el tamaño del botón */
+  color: #007bff; /* Color del texto del botón */
+  z-index: 1; /* Asegúrate de que los botones estén sobre las categorías */
+  position: absolute; /* Posición absoluta para colocar en los extremos */
+  top: 50%; /* Centrado verticalmente */
+  transform: translateY(-50%); /* Centra el botón verticalmente */
+  padding: 10px; /* Añade un poco de espacio alrededor del botón */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.nav-button.left {
+  left: 10px; /* Alinea el botón de la izquierda */
+}
+
+.nav-button.right {
+  right: 10px; /* Alinea el botón de la derecha */
+}
+
+.nav-button:hover {
+  color: #0056b3; /* Cambia el color al pasar el ratón */
+}
+
 @media (max-width: 1583px) {
   .categorias p {
     display: none;
@@ -721,12 +757,21 @@ footer {
   padding: 20px;
   gap: 20px; /* Add space between the plan boxes */
   flex-wrap: wrap;
+  margin-top: 50px;
+}
+.plans {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px; /* Add space between the plan boxes */
+  flex-wrap: wrap;
 }
 
 .plan {
   border: 1px solid #ccc;
   padding: 0; /* Elimina el padding para el contenedor principal */
-  width: 30%;
+  width: 100%; /* Cambiado a 100% para hacerla responsiva */
+  max-width: 300px; /* Ancho máximo de cada tarjeta */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow: hidden; /* Oculta cualquier contenido que sobresalga del borde */
@@ -747,6 +792,12 @@ footer {
   list-style-type: disc;
   padding: 20px; /* Restaura el padding del contenido */
   margin: 10px; /* Elimina el margen predeterminado */
+}
+
+@media (max-width: 768px) {
+  .plan {
+    width: 100%; /* En pantallas pequeñas, las tarjetas ocuparán el 100% del ancho */
+  }
 }
 
 .suggestion-box {

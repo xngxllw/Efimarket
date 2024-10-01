@@ -65,7 +65,7 @@
                 echo '<div class="campo">' . htmlspecialchars($vacante['descripcion']) . '</div>';
                 echo '<div class="campo">' . htmlspecialchars($vacante['requisitos']) . '</div>';
                 echo '<div class="campo">' . htmlspecialchars($vacante['salario']) . '</div>';
-                echo '<div class="campo"><button type="button" class="btn btn-primary boton-postularse" data-bs-toggle="modal" data-bs-target="#postularModal">Postularse</button></div>';
+                echo '<div class="campo"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postularModal">Postularse</button></div>';
             }
 
             echo '</div>'; // .vacantesGrid
@@ -110,7 +110,6 @@
                                 <option value="c.c">C.C.</option>
                                 <option value="t.i">T.I.</option>
                                 <option value="c.e">C.E.</option>
-                                <!-- Añadir más tipos de documento si es necesario -->
                             </select>
                         </div>
 
@@ -136,6 +135,7 @@
 
                         <button type="submit" class="btn btn-primary">Enviar</button>
                     </form>
+
                 </div>
             </div>
         </div>

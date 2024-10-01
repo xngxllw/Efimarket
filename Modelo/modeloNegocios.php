@@ -3,11 +3,13 @@ class ModeloNegocios
 {
     private $conn;
 
-    public function __construct($conn)
+    public function __construct()
     {
-        $this->conn = $conn;
+        $this->conn = new mysqli('localhost', 'root', '', 'efimarket');
+        if ($this->conn->connect_error) {
+            die("Conexión fallida: " . $this->conn->connect_error);
+        }
     }
-
     public function guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario)
     {
         $sql = "INSERT INTO negocios (id_usuario, nombre_negocio, descripcion, direccion, telefono, sitio_web, id_categoria, logo, horario)
@@ -215,16 +217,51 @@ class ModeloNegocios
 
         return $sugerencias;
     }
-    public function insertarResena($id_negocio, $calificacion, $comentario)
+    public function insertarResena($id_negocio, $id_usuario, $calificacion, $comentario)
     {
-        $sql = "INSERT INTO reseñas (id_negocio, calificacion, comentario) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO reseñas (id_negocio, id_usuario, calificacion, comentario) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {
             die('Error en la preparación de la consulta: ' . $this->conn->error);
         }
 
-        $stmt->bind_param("iis", $id_negocio, $calificacion, $comentario); // iis: entero, entero, string
+        $stmt->bind_param("iiis", $id_negocio, $id_usuario, $calificacion, $comentario); // iiis: entero, entero, entero, string
+        $stmt->execute();
+
+        if ($stmt->error) {
+            die('Error al ejecutar la consulta: ' . $stmt->error);
+        }
+
+        // Aquí es donde actualizamos el XP del usuario
+        $sql_xp = "UPDATE usuarios SET xp = xp + 30 WHERE id_usuario = ?";
+        $stmt_xp = $this->conn->prepare($sql_xp);
+
+        if ($stmt_xp === false) {
+            die('Error en la preparación de la consulta de XP: ' . $this->conn->error);
+        }
+
+        $stmt_xp->bind_param("i", $id_usuario);
+        $stmt_xp->execute();
+
+        if ($stmt_xp->error) {
+            die('Error al ejecutar la consulta de XP: ' . $stmt_xp->error);
+        }
+
+        $stmt->close();
+        $stmt_xp->close();
+    }
+
+    public function sumarXP($id_usuario, $xp)
+    {
+        $sql = "UPDATE usuarios SET xp = xp + ? WHERE id_usuario = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt === false) {
+            die('Error en la preparación de la consulta: ' . $this->conn->error);
+        }
+
+        $stmt->bind_param("ii", $xp, $id_usuario);
         $stmt->execute();
 
         if ($stmt->error) {
@@ -233,6 +270,7 @@ class ModeloNegocios
 
         $stmt->close();
     }
+
     public function obtenerVacantesPorNegocio($id_negocio)
     {
         $sql = "SELECT * FROM vacantes WHERE id_negocio = ?";
@@ -251,20 +289,18 @@ class ModeloNegocios
 
         return $vacantes;
     }
-    public function insertarPostulacion($id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos)
+    public function agregarPostulacion($id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos)
     {
-        $sql = "INSERT INTO postulaciones (id_usuario, id_negocio, nombres, apellidos, edad, tipo_documento, documento_identidad, celular, correo_electronico, acepta_terminos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->conn->prepare("INSERT INTO postulaciones (id_usuario, id_negocio, nombres, apellidos, edad, tipo_documento, documento_identidad, celular, correo_electronico, acepta_terminos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iississssi", $id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos);
 
-        if (!$stmt) {
-            die("Error al preparar la consulta: " . $this->conn->error);
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
         }
-
-        $stmt->bind_param("iisssssssi", $id_usuario, $id_negocio, $nombres, $apellidos, $edad, $tipo_documento, $documento_identidad, $celular, $correo_electronico, $acepta_terminos);
-        $resultado = $stmt->execute();
-        $stmt->close();
-
-        return $resultado;
     }
 
     public function getPostulacionesPorUsuario($id_usuario)
@@ -343,19 +379,7 @@ class ModeloNegocios
         return $result;
     }
 
-    public function borrarVacante($id_vacante)
-    {
-        $query = "DELETE FROM vacantes WHERE id_vacante = ?";
-        $stmt = $this->conn->prepare($query);
 
-        if (!$stmt) {
-            die("Error al preparar la consulta: " . $this->conn->error);
-        }
-
-        $stmt->bind_param("i", $id_vacante);
-
-        return $stmt->execute();
-    }
     public function agregarResena($id_negocio, $id_usuario, $calificacion, $comentario)
     {
         $fecha = date('Y-m-d H:i:s');
@@ -375,5 +399,67 @@ class ModeloNegocios
             $stmt->close();
             return false;
         }
+    }
+    public function borrarVacante($id_vacante)
+    {
+        $query = "DELETE FROM vacantes WHERE id_vacante = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("i", $id_vacante);
+
+        return $stmt->execute();
+    }
+    public function contarNegociosPorUsuario($id_usuario)
+    {
+        $query = "SELECT COUNT(*) AS total FROM negocios WHERE id_usuario = ?";
+
+        // Preparar la consulta
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        // Vincular el parámetro
+        $stmt->bind_param("i", $id_usuario); // 'i' para integer
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result(); // Usar get_result() para obtener el conjunto de resultados
+
+        // Retornar el conteo de negocios
+        $row = $result->fetch_assoc(); // Obtener la fila
+        return $row['total']; // Retornar el total
+    }
+    public function contarVacantesPorNegocio($id_negocio)
+    {
+        $query = "SELECT COUNT(*) AS total FROM vacantes WHERE id_negocio = ?";
+
+        // Preparar la consulta
+        $stmt = $this->conn->prepare($query);
+
+        // Verificar si se preparó correctamente
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+
+        // Vincular el parámetro
+        $stmt->bind_param("i", $id_negocio);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result(); // Obtener el resultado de la consulta
+
+        // Retornar el conteo de vacantes
+        $row = $result->fetch_assoc(); // Obtener el resultado en un arreglo asociativo
+        return $row['total'];
     }
 }
