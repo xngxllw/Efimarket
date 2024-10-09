@@ -2,7 +2,7 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "efimarket");
+$conexion = new mysqli("localhost", "u311904283_angelrestrepo", "efimarketTeam2024Colombia123*AZR", "u311904283_efimarket");
 
 // Verificar conexión
 if ($conexion->connect_error) {
@@ -93,7 +93,7 @@ $conexion->close();
                     echo '<li><a href="planesClientes.php">Planes</a></li>';
                     echo '<a href="rangos.php">Rangos</a>';
                 }
-                echo '<a href="../controlador/logout.php">Cerrar Sesión</a>';
+                echo '<a href="../../../Controlador/logout.php">Cerrar Sesión</a>';
             } else {
                 echo '<a href="login.php">Iniciar Sesión</a>';
                 echo '<a href="registro.php">Registrarse</a>';

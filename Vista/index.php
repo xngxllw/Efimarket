@@ -8,8 +8,7 @@
     <title>Efimarket: Loreto</title>
     <?php
     session_start();
-    include '../controlador/controlador.php'; // Asegúrate de incluir el controlador
-
+    include '/home/u311904283/domains/efimarket.com.co/public_html/Controlador/controlador.php';
     // Obtener el plan del usuario
     $logo = 'images/letras.png'; // Logo por defecto
     $iconClass = ''; // Clase por defecto para los íconos
@@ -65,7 +64,7 @@
                     } else {
                         echo '<a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a>';
                     }
-                    echo '<a href="../controlador/logout.php">Cerrar Sesión</a>';
+                    echo '<a href="../Controlador/logout.php">Cerrar Sesión</a>';
                 } else {
                     echo '<a href="login.php">Iniciar Sesión</a>';
                     echo '<a href="registro.php">Registrarse</a>';
@@ -91,7 +90,7 @@
                 } else {
                     echo '<li class="elementos-menu"><a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a></li>';
                 }
-                echo '<li class="elementos-menu"><a href="../controlador/logout.php">Cerrar Sesión</a></li>';
+                echo '<li class="elementos-menu"><a href="../Controlador/logout.php">Cerrar Sesión</a></li>';
             } else {
                 echo '<li class="elementos-menu"><a href="registro.php">Regístrate en Efimarket</a></li>';
                 echo '<li class="elementos-menu"><a href="login.php">Iniciar Sesión</a></li>';
@@ -102,12 +101,11 @@
             <li class="elementos-menu"><a href="categorias/panaderia.php">Panaderías</a></li>
             <li class="elementos-menu"><a href="categorias/rapidas.php">Comidas Rápidas</a></li>
             <li class="elementos-menu"><a href="categorias/servicios.php">Servicios</a></li>
-            <li class="elementos-menu"><a href="categorias/farmacia.php">Farmacia</a></li>
+            <li class="elementos-menu"><a href="categorias/farmacia.php">Salud y Belleza</a></li>
             <li class="elementos-menu"><a href="categorias/carniceria.php">Carnicerías</a></li>
             <li class="elementos-menu"><a href="categorias/mascotas.php">Mascotas</a></li>
             <li class="elementos-menu"><a href="categorias/ropa.php">Ropa y Accesorios</a></li>
-            <li class="elementos-menu"><a href="categorias/frutas.php">Frutas</a></li>
-                    
+            <li class="elementos-menu"><a href="categorias/frutas.php">Frutas y Verduras</a></li>
         </ul>
     </div>
     <div id="overlay"></div>
@@ -224,8 +222,6 @@
                 <span><i class="fas fa-envelope"></i> efimarket@gmail.com</span>
             </div>
             <div class="social">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com/efimarket" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
@@ -235,8 +231,8 @@
             <ul>
                 <li><a href="#">Inicio</a></li>
                 <li><a href="https://wa.me/573196516362"><i class="fab fa-whatsapp"></i>Contacto</a></li>
-                <li><a href="https://wa.me/573145018489"><i class="fab fa-whatsapp"></i>Contacto</a></li>
-                <li><a href="https://wa.me/573106702810"><i class="fab fa-whatsapp"></i>Contacto</a></li>
+                <li><a href="../Documentos/TerminosYCondicionesEfimarket.pdf"><i class="fa-solid fa-gavel"></i>Términos y Condiciones</a></li>
+                <li><a href="../Documentos/TratamientoDeDatosEfimarket.pdf"><i class="fa-solid fa-gavel"></i>Política de Tratamiento de Datos</a></li>
             </ul>
         </div>
 

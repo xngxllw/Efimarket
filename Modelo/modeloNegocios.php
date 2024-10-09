@@ -5,11 +5,15 @@ class ModeloNegocios
 
     public function __construct()
     {
+        // Cambia 'localhost' por el nombre del servidor de base de datos de Hostinger (normalmente 'localhost' o verifica si Hostinger te da una IP específica)
         $this->conn = new mysqli('localhost', 'root', '', 'efimarket');
+
+        // Verificar si hay un error en la conexión
         if ($this->conn->connect_error) {
             die("Conexión fallida: " . $this->conn->connect_error);
         }
     }
+
     public function guardarNegocio($id_usuario, $nombre_negocio, $descripcion, $direccion, $telefono, $sitio, $id_categoria, $logo, $horario)
     {
         $sql = "INSERT INTO negocios (id_usuario, nombre_negocio, descripcion, direccion, telefono, sitio_web, id_categoria, logo, horario)

@@ -28,7 +28,6 @@ session_start();
             <li><a href="postulaciones.php">Postulaciones</a></li>
             <li><a href="../clientes/perfil.php">Mi Perfil</a></li>
             <li><a href="planes.php">Planes</a></li>
-
         </ul>
     </div>
     <div class="main-content">
@@ -41,10 +40,14 @@ session_start();
                 <?php if ($_SESSION['rol'] == 'admin') : ?>
                     <a href="negocios.php" class="dashboard-button">Mis Negocios</a>
                     <a href="../clientes/perfil.php" class="dashboard-button">Mi Perfil</a>
+                    <a href="../../index.php" class="dashboard-button volver-inicio">Volver al Inicio</a>
                 <?php else : ?>
                     <p>No tiene permiso para acceder a esta sección.</p>
                 <?php endif; ?>
             </div>
+
+            <!-- Botón de volver al inicio para móviles -->
+        
         </div>
     </div>
 </body>

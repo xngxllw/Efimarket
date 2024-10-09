@@ -39,7 +39,7 @@
                     } else {
                         echo '<a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a>';
                     }
-                    echo '<a href="../controlador/logout.php">Cerrar Sesión</a>';
+                    echo '<a href="../Controlador/logout.php">Cerrar Sesión</a>';
                 } else {
                     echo '<a href="login.php">Iniciar Sesión</a>';
                     echo '<a href="registro.php">Registrarse</a>';

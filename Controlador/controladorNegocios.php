@@ -9,10 +9,11 @@ class ControladorNegocios
 
     public function __construct()
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "efimarket";
+        $servername = 'localhost'; // Cambia esto según tu configuración
+        $dbname = 'efimarket';
+        $username = 'root'; // Cambia esto según tu configuración
+        $password = ''; // Cambia esto según tu configuración
+
 
         // Crear la conexión
         $this->conn = new mysqli($servername, $username, $password, $dbname);

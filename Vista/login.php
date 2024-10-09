@@ -65,11 +65,11 @@
             <li class="elementos-menu"><a href="categorias/panaderia.php">Panaderías</a></li>
             <li class="elementos-menu"><a href="categorias/rapidas.php">Comidas Rápidas</a></li>
             <li class="elementos-menu"><a href="categorias/servicios.php">Servicios</a></li>
-            <li class="elementos-menu"><a href="categorias/farmacia.php">Farmacia</a></li>
-            <li class="elementos-menu"><a href="categorias/carniceria.php">Carnicos</a></li>
+            <li class="elementos-menu"><a href="categorias/farmacia.php">Salud y Belleza</a></li>
+            <li class="elementos-menu"><a href="categorias/carniceria.php">Carnicerías</a></li>
             <li class="elementos-menu"><a href="categorias/mascotas.php">Mascotas</a></li>
             <li class="elementos-menu"><a href="categorias/ropa.php">Ropa y Accesorios</a></li>
-            <li class="elementos-menu"><a href="categorias/frutas.php">Frutas</a></li>
+            <li class="elementos-menu"><a href="categorias/frutas.php">Frutas y Verduras</a></li>
         </ul>
     </div>
     <div id="overlay"></div>

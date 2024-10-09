@@ -360,4 +360,19 @@ textarea {
   display: flex;
   flex-direction: row;
   margin: 100px 0 0 88px;
+}.volver-inicio {
+    display: none; /* Oculto por defecto */
+}
+
+/* Mostrar el botón solo en dispositivos con un ancho máximo de 768px */
+@media (max-width: 768px) {
+    .volver-inicio {
+        display: flex;
+
+    }
+
+    .volver-inicio:hover {
+        background-color: #1e90ff;
+        transform: scale(1.05);
+    }
 }

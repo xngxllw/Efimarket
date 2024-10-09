@@ -8,10 +8,13 @@ class Modelo
     public function __construct()
     {
         $this->conn = new mysqli('localhost', 'root', '', 'efimarket');
+
+        // Verificar si hay un error en la conexión
         if ($this->conn->connect_error) {
             die("Conexión fallida: " . $this->conn->connect_error);
         }
     }
+
 
     // Función para registrar un nuevo usuario
     public function registrarUsuario($nombre, $correo, $contrasena, $rol)

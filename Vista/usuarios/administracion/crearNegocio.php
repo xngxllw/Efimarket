@@ -63,12 +63,12 @@ session_start();
             <option value="">Seleccione una categoría</option>
             <option value="1">Despensa</option>
             <option value="2">Panadería</option>
-            <option value="3">C. Rápidas</option>
+            <option value="3">Comidas Rápidas</option>
             <option value="4">Servicios</option>
-            <option value="5">Farmacia</option>
-            <option value="6">Cárnicos</option>
+            <option value="5">Salud y Belleza</option>
+            <option value="6">Carnicerías</option>
             <option value="7">Mascotas</option>
-            <option value="8">Ropa</option>
+            <option value="8">Ropa y Accesorios</option>
             <option value="9">Frutas y verduras</option>
           </select><br><br>
 

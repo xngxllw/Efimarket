@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Resto de tu código de controlador.php...
 // Configuración de la conexión a la base de datos
 $host = 'localhost'; // Cambia esto según tu configuración
 $dbname = 'efimarket';

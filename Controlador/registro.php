@@ -28,4 +28,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Error en el registro. Por favor, intenta nuevamente.";
     }
 }
-?>

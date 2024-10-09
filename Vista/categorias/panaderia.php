@@ -176,10 +176,11 @@
             <li class="elementos-menu"><a href="panaderia.php">Panaderías</a></li>
             <li class="elementos-menu"><a href="rapidas.php">Comidas Rápidas</a></li>
             <li class="elementos-menu"><a href="servicios.php">Servicios</a></li>
-            <li class="elementos-menu"><a href="frutas.php">Frutas y Verduras</a></li>
-            <li class="elementos-menu"><a href="mascotas.php">Tienda de Mascotas</a></li>
-            <li class="elementos-menu"><a href="carniceria.php">Carnicería</a></li>
             <li class="elementos-menu"><a href="farmacia.php">Salud y Belleza</a></li>
+            <li class="elementos-menu"><a href="carniceria.php">Carnicerías</a></li>
+            <li class="elementos-menu"><a href="mascotas.php">Mascotas</a></li>
+            <li class="elementos-menu"><a href="ropa.php">Ropa y Accesorios</a></li>
+            <li class="elementos-menu"><a href="frutas.php">Frutas y Verduras</a></li>
         </ul>
     </div>
 

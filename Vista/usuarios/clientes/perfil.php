@@ -2,7 +2,7 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "efimarket");
+$conexion = new mysqli("localhost", "u311904283_angelrestrepo", "efimarketTeam2024Colombia123*AZR", "u311904283_efimarket");
 
 // Verificar conexión
 if ($conexion->connect_error) {
