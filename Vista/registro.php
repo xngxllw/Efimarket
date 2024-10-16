@@ -28,6 +28,10 @@
         </div>
         </div>
     </nav>
+    <div class="navigation-message">
+        <p>Estás a un solo paso de hacer parte de Efimarket. ¡Regístrate!</p>
+    </div>
+
     <br>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">

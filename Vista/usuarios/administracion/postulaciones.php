@@ -50,10 +50,6 @@ $postulaciones = $controladorNegocios->obtenerPostulacionesPorUsuario($id_usuari
             <li><a href="planes.php">Planes</a></li>
         </ul>
     </div>
-    <div class="mensaje-alternativo">
-        <p>Este contenido no puede visualizarse en pantallas menores a 920px.</p>
-        <a href="panel.php">Volver al panel</a>
-    </div>
     <div class="main-content tablaDePostulaciones">
         <header>
             <h1>Postulaciones a mis vacantes de empleo</h1>

@@ -40,6 +40,10 @@
             </div>
         </div>
     </nav>
+    <div class="navigation-message">
+        <p>Es un placer tenerte de vuelta. ¡Inicia sesión!</p>
+    </div>
+
     <br>
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">

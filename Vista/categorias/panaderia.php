@@ -36,9 +36,9 @@
                 ?>
             </div>
     </nav>
-    <header>
-        <h1>Panaderías, Reposterías y Cafeterías</h1>
-    </header>
+    <div class="navigation-message">
+        <p>Panaderías, Reposterías y Cafeterías</p>
+    </div>
     <div class="contenedor-negocios">
         <?php
         require_once '../../Controlador/controladorNegocios.php';
@@ -55,8 +55,10 @@
 
                 echo '<a href="#" class="negocio" data-bs-toggle="modal" data-bs-target="#modalNegocio' . $negocio['id_negocio'] . '">';
                 echo '<img width="150px" height="150px" src="../../uploads/logos/' . $negocio['logo'] . '" alt="Logo del negocio">';
+                echo '<div class="nombre-cat">';
                 echo '<h5 class="nombreNegocio">' . htmlspecialchars($negocio['nombre_negocio']) . '</h5>';
                 echo '<div class="categoriaNegocio">' . htmlspecialchars($negocio['descripcion']) . '</div>';
+                echo '</div>';
                 echo '<div class="info-negocio">';
                 echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . htmlspecialchars($negocio['horario']) . '</span></div>';
                 echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . htmlspecialchars($negocio['direccion']) . '</span></div>';
@@ -77,7 +79,6 @@
                 echo '<p><strong>Horario:</strong> ' . htmlspecialchars($negocio['horario']) . '</p>';
                 echo '<p><strong>Ubicación:</strong> ' . htmlspecialchars($negocio['direccion']) . '</p>';
                 echo '<p><strong>Teléfono:</strong> ' . htmlspecialchars($negocio['telefono']) . '</p>';
-
                 echo '<p><strong>Fotos:</strong></p>';
                 echo '<div class="cont-productos">';
                 if (!empty($fotos)) {

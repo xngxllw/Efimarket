@@ -46,10 +46,6 @@
 
             </ul>
         </div>
-        <div class="mensaje-alternativo">
-            <p>Este contenido no puede visualizarse en pantallas menores a 920px.</p>
-            <a href="panel.php">Volver al panel</a>
-        </div>
         <div class="main-content tablaDeProductos">
             <header>
                 <h1>Gestión de Productos</h1>

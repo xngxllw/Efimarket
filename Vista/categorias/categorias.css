@@ -81,11 +81,12 @@ hr {
 }
 
 .categoriaNegocio {
-  background-color: #74c4fa;
+  background-color: #0097f9;
   font-size: 13px;
   border-radius: 10px;
   padding: 5px;
   margin: 2px 0;
+  color: #fff;
 }
 
 .negocio:hover {
@@ -114,48 +115,82 @@ hr {
 .fa-location-dot {
   margin-right: 10px;
 }
+.nombre-cat {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0;
+}
 
 /* Escondemos la barra de desplazamiento horizontal en pantallas pequeñas */
+/* Estilos para pantallas pequeñas (máximo 715px de ancho) */
 @media (max-width: 715px) {
-  h1 {
-    font-size: 20px;
-  }
-
-  h2 {
-    font-size: 15px;
-  }
-
   .cont-negocios {
-    justify-content: center; /* Centra los elementos */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
-    gap: 10px; /* Espaciado entre los elementos */
+    flex-direction: column; /* Cambia la dirección del layout a columna */
+    align-items: center; /* Centra los negocios */
   }
 
   .negocio {
-    width: 120px; /* Ancho para pantallas pequeñas */
-    height: 120px; /* Altura para pantallas pequeñas */
-    margin: 5px; /* Espaciado */
-    flex: 1 0 auto; /* Permite que los elementos crezcan y se ajusten */
+    display: flex;
+    flex-direction: row; /* Elementos en línea */
+    justify-content: start;
+    align-items: center;
+    width: 95%; /* Ocupa todo el ancho del contenedor */
+    margin-bottom: 10px; /* Espaciado entre negocios */
+    height: 150px;
+    padding: 10px 0; /* Espaciado vertical */
+    border: none;
+    border-bottom: 1px solid #0097f9;
+    border-radius: 0;
   }
 
+  .negocio:last-child {
+    border-bottom: none; /* Quita el borde del último negocio */
+  }
   .negocio img {
-    max-width: 80px; /* Ajustar tamaño de imagen en pantallas pequeñas */
-    max-height: 80px; /* Ajustar tamaño de imagen en pantallas pequeñas */
+    width: 65px;
+    height: 65px;
+    border-radius: 5px;
+    margin-right: 12px;
+    margin-left: 8px;
   }
-
-  /* Ocultamos la categoría, horario, ubicación y teléfono en pantallas pequeñas */
-  .categoriaNegocio,
-  .info-negocio,
-  .horario,
-  .direccion,
-  .ubicacion {
-    display: none;
+  .nombre-cat {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding: 0;
+    margin-left: 0;
   }
-
-  /* Aseguramos que el nombre del negocio se centre */
   .nombreNegocio {
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: start;
+  }
+
+  .categoriaNegocio {
+    display: block;
+    font-size: 12px;
+    color: #74c4fa;
+    margin-bottom: 5px;
+  }
+
+  .info-negocio {
+    display: none; /* Ocultamos la información detallada en móvil */
+  }
+  .categoriaNegocio {
+    background-color: #0097f9;
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 2px 0;
+    color: #fff;
     text-align: center;
+  }
+  /* Icono ">" al final de cada negocio */
+  .ver-mas {
+    font-size: 24px;
+    color: #0098fd;
+    margin-left: 10px;
   }
 }
 

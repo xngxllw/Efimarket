@@ -9,7 +9,18 @@ body {
   padding: 0;
   display: flex;
 }
-
+nav img {
+  display: none;
+}
+nav {
+  display: none;
+}
+.hamburger-dropdown-menu {
+  display: none;
+}
+.hamburger {
+  display: none;
+}
 /* Estilos para la barra lateral y el contenido principal */
 .sidebar {
   width: 250px; /* Ancho de la barra lateral */
@@ -141,6 +152,19 @@ header a:hover {
   border-collapse: collapse;
 }
 
+.header,
+.campo {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.header {
+  background-color: #029bfb;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
 .tablaProductos {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -155,19 +179,6 @@ header a:hover {
   gap: 0;
   border: 1px solid #ccc;
   border-collapse: collapse;
-}
-
-.header,
-.campo {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-.header {
-  background-color: #029bfb;
-  font-weight: bold;
-  text-align: center;
-  color: #fff;
 }
 
 .campo {
@@ -296,33 +307,6 @@ textarea {
 .modal-footer {
   width: 500px;
 }
-/* Estilo para ocultar el contenido principal en pantallas menores a 920px */
-@media (max-width: 919px) {
-  .tablaDeNegocios {
-    display: none;
-  }
-
-  .mensaje-alternativo {
-    display: block;
-    text-align: center;
-    padding: 20px;
-    background-color: #d7e7f8; /* Fondo rojo claro */
-    color: #000000; /* Color de texto rojo oscuro */
-    border: 1px solid #004ab9; /* Borde rojo claro */
-    border-radius: 5px;
-  }
-}
-
-/* Estilo para mostrar el contenido principal y ocultar el mensaje alternativo en pantallas de 920px o mayores */
-@media (min-width: 920px) {
-  .main-content {
-    display: block;
-  }
-
-  .mensaje-alternativo {
-    display: none;
-  }
-}
 
 .boton-borrar {
   background-color: rgb(255, 0, 0);
@@ -360,19 +344,161 @@ textarea {
   display: flex;
   flex-direction: row;
   margin: 100px 0 0 88px;
-}.volver-inicio {
-    display: none; /* Oculto por defecto */
 }
+.volver-inicio {
+  display: none; /* Oculto por defecto */
+}
+@media screen and (max-width: 715px) {
+  .tablaNegocios {
+    border: none;
+    border-bottom: solid #029bfb;
+    align-items: center;
+  }
+  .content {
+    box-shadow: none;
+    background-color: #fff;
+  }
+  .header {
+    display: none;
+  }
 
-/* Mostrar el botón solo en dispositivos con un ancho máximo de 768px */
-@media (max-width: 768px) {
-    .volver-inicio {
-        display: flex;
+  .logo {
+    flex: 0 0 auto; /* No se expande ni se contrae */
+    margin-right: 10px; /* Espacio entre logo y nombre */
+  }
 
-    }
+  .nombre {
+    flex: 1; /* Toma el espacio restante */
+    margin-right: 10px; /* Espacio entre nombre y acciones */
+  }
 
-    .volver-inicio:hover {
-        background-color: #1e90ff;
-        transform: scale(1.05);
-    }
+  .acciones {
+    display: flex;
+    flex-direction: column; /* Alinea los botones en columna */
+    align-items: flex-end; /* Alinea a la derecha */
+  }
+
+  .boton-editar,
+  .boton-borrar {
+    margin: 2px 0; /* Espacio entre botones */
+  }
+  .campo {
+    display: flex;
+    flex-direction: row; /* Organizar campos verticalmente */
+    border: none; /* Quitar bordes entre campos */
+    padding: 10px;
+    margin: 5px 0; /* Espacio entre campos */
+    border: none;
+  }
+  .mobile-hidden {
+    display: none;
+  }
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 65px;
+    background-color: #fff; /* Fondo blanco */
+    -webkit-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+  }
+  nav img {
+    display: block;
+  }
+  nav .hamburger {
+    margin-right: auto;
+  }
+
+  nav .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  nav .user-icon {
+    margin-left: auto;
+    position: relative;
+  }
+
+  /* Estilos para el mensaje debajo de la barra de navegación */
+  .navigation-message {
+    margin-top: 65px; /* Para que el mensaje aparezca debajo del nav */
+    background-color: #0097f9; /* Fondo azul */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .navigation-message.ultimate {
+    background-color: #d5a115; /* Fondo dorado */
+    font-weight: bold; /* Para que el mensaje destaque */
+  }
+
+  .navigation-message p {
+    margin: 0;
+  }
+
+  /* Estilos para el menú desplegable */
+  .hamburger-dropdown-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 30vh;
+    height: 100vh;
+    background-color: #ffffff;
+    transition: left 0.7s ease;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .hamburger-dropdown-menu.show {
+    left: 0;
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #3a7bf5;
+    font-size: 24px;
+  }
+
+  .menu-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .menu-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .menu-divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+  }
+
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+  }
 }

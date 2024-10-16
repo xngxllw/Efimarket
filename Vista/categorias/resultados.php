@@ -37,9 +37,9 @@
             </div>
     </nav>
 
-    <header>
-        <h1>Resultados de Búsqueda</h1>
-    </header>
+    <div class="navigation-message">
+        <p>Resultados de tu búsqueda</p>
+    </div>
 
     <div class="contenedor-negocios">
         <?php
@@ -69,8 +69,11 @@
 
                 echo '<a href="#" class="negocio" data-bs-toggle="modal" data-bs-target="#modalNegocio' . $idNegocio . '">';
                 echo '<img width="150px" height="150px" src="../../uploads/logos/' . $logo . '" alt="Logo del negocio">';
+                echo '<div class="nombre-cat">';
+
                 echo '<h5 class="nombreNegocio">' . $nombreNegocio . '</h5>';
                 echo '<div class="categoriaNegocio">' . $descripcion . '</div>';
+                echo '</div>';
                 echo '<div class="info-negocio">';
                 echo '<div class="horario"><i class="fa-solid fa-clock"></i><span>' . $horario . '</span></div>';
                 echo '<div class="ubicacion"><i class="fa-solid fa-location-dot"></i><span>' . $direccion . '</span></div>';

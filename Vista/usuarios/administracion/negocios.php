@@ -15,6 +15,7 @@ session_start();
 </head>
 
 <body>
+
     <div class="sidebar">
         <a href="../../index.php" class="logo">
             <img src="../../images/letras.png" alt="Efimarket Logo">

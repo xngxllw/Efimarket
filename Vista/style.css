@@ -32,17 +32,17 @@ body {
   ); /* Color del botón de la barra de desplazamiento al pasar el cursor sobre él */
 }
 
+/* Estilos para la barra de navegación */
 nav {
-  position: fixed; /* Fija la barra de navegación en la parte superior */
-  top: 0; /* La coloca en la parte superior de la ventana del navegador */
-  width: 100%; /* Ocupa todo el ancho de la ventana */
-  z-index: 99; /* Asegura que esté por encima de otros elementos */
-  /* Estilos adicionales */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 65px;
-  background-color: #9ec6fd;
+  background-color: #fff; /* Fondo blanco */
   -webkit-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 6px 5px -1px rgba(0, 0, 0, 0.1);
@@ -53,19 +53,10 @@ nav .hamburger {
   margin-right: auto;
 }
 
-nav .hamburger img {
-  max-width: 30px;
-}
-
 nav .logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-}
-
-nav .logo img {
-  max-width: 100%;
-  height: auto;
 }
 
 nav .user-icon {
@@ -73,25 +64,41 @@ nav .user-icon {
   position: relative;
 }
 
-nav .inicio {
-  margin-left: auto;
-  text-decoration: none;
+/* Estilos para el mensaje debajo de la barra de navegación */
+.navigation-message {
+  margin-top: 65px; /* Para que el mensaje aparezca debajo del nav */
+  background-color: #0097f9; /* Fondo azul */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
 }
 
+.navigation-message.ultimate {
+  background-color: #d5a115; /* Fondo dorado */
+  font-weight: bold; /* Para que el mensaje destaque */
+}
+
+.navigation-message p {
+  margin: 0;
+}
+
+/* Estilos para el menú desplegable */
 .hamburger-dropdown-menu {
   position: fixed;
   top: 0;
-  left: -100%; /* Oculta el menú fuera del área visible */
-  width: 30vh; /* Ancho del menú desplegable */
-  height: 100vh; /* Altura del menú desplegable */
-  background-color: #ffffff; /* Fondo gris sólido */
-  transition: left 0.7s ease; /* Cambia la propiedad de transición a "left" */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  overflow-y: auto; /* Agrega desplazamiento vertical si el contenido es demasiado largo */
+  left: -100%;
+  width: 30vh;
+  height: 100vh;
+  background-color: #ffffff;
+  transition: left 0.7s ease;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
 .hamburger-dropdown-menu.show {
-  left: 0; /* Muestra el menú desplazándolo hacia la derecha */
+  left: 0;
 }
 
 .close-icon {
@@ -103,10 +110,6 @@ nav .inicio {
   font-size: 24px;
 }
 
-.close-icon:hover {
-  color: #023e7e;
-}
-
 .menu-header {
   display: flex;
   align-items: center;
@@ -114,22 +117,16 @@ nav .inicio {
 }
 
 .menu-logo {
-  width: 50px; /* Ancho de la imagen */
-  height: auto; /* Altura automática para mantener la proporción */
-  margin-right: 10px; /* Espacio entre la imagen y la "X" */
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
   cursor: pointer;
-}
-
-.close-icon {
-  cursor: pointer;
-  color: #3a7bf5;
-  font-size: 24px;
 }
 
 .menu-divider {
   border: none;
-  border-top: 1px solid #ccc; /* Color y grosor de la línea */
-  margin-top: 10px; /* Espacio entre la imagen y la línea */
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
 }
 
 #overlay {
@@ -138,9 +135,9 @@ nav .inicio {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
-  z-index: 999; /* Asegura que esté por encima de otros elementos */
-  display: none; /* Por defecto, oculto */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
 }
 
 /* Otros estilos para el menú desplegable */
@@ -561,6 +558,7 @@ nav .inicio {
 
 .categoria p {
   cursor: pointer;
+  text-align: center;
 }
 
 .lista-menu {
@@ -598,15 +596,23 @@ nav .inicio {
 
 .contenedor-busq {
   width: 70vw;
-  margin: 100px auto 20px; /* Ajuste del margen superior para bajar la barra de búsqueda */
+  margin: 30px auto; /* Ajuste del margen superior para bajar la barra de búsqueda */
 }
-
+.input-busq {
+  width: 100%;
+  margin: 0;
+}
 .search-input-box {
   border-radius: 5px;
   position: relative;
   color: #f5f6f4;
-  box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.12);
-  margin-top: 40px; /* Ajustamos este margen superior para que la barra se desplace hacia abajo */
+  -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.35);
+  margin-top: 10px; /* Ajustamos este margen superior para que la barra se desplace hacia abajo */
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
 }
 
 .search-input-box input {

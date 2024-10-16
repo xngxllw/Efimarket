@@ -8,12 +8,12 @@
     <title>Efimarket: Loreto</title>
     <?php
     session_start();
-    include '/home/u311904283/domains/efimarket.com.co/public_html/Controlador/controlador.php';
+    include '../Controlador/controlador.php';
     // Obtener el plan del usuario
     $logo = 'images/letras.png'; // Logo por defecto
     $iconClass = ''; // Clase por defecto para los íconos
     $carritoIcon = 'images/carrito.png'; // Icono de carrito por defecto
-
+    $mensajeBienvenida = "Bienvenido a nuestra plataforma. ¡Explora negocios en el sector Loreto!";
     if (isset($_SESSION['id_usuario'])) {
         $planUsuario = obtenerPlanUsuario($_SESSION['id_usuario']);
 
@@ -28,6 +28,9 @@
                 $logo = 'images/efimarketgold.png';
                 $iconClass = 'gold'; // Clase dorada para íconos
                 $carritoIcon = 'images/carritogold.png'; // Icono dorado para carrito
+                $mensajeBienvenida = '¡Bienvenido a Efimarket Ultimate! Empieza a explorar tus beneficios';
+                $esUltimate = true;
+                break;
                 break;
             default:
                 $logo = 'images/letras.png'; // Logo por defecto en caso de error
@@ -74,6 +77,13 @@
         </div>
     </nav>
 
+    <!-- Mensaje debajo de la barra de navegación -->
+    <div class="navigation-message <?php echo $esUltimate ? 'ultimate' : ''; ?>">
+        <?php if ($mensajeBienvenida): ?>
+            <p><?php echo $mensajeBienvenida; ?></p>
+        <?php endif; ?>
+    </div>
+
     <div class="hamburger-dropdown-menu hide" id="hamburgerDropdownMenu">
         <div class="menu-header">
             <img src="images/carrito.png" alt="Logo" class="menu-logo" onclick="closeMenu()">
@@ -108,12 +118,14 @@
             <li class="elementos-menu"><a href="categorias/frutas.php">Frutas y Verduras</a></li>
         </ul>
     </div>
+
     <div id="overlay"></div>
 
-    <div class="contenedor-busq" style="margin-top: 50px;">
+
+    <div class="contenedor-busq">
         <div class="search-input-box">
             <form action="categorias/resultados.php" method="GET">
-                <input type="text" name="query" placeholder="¿Qué buscas hoy?" required />
+                <input cl type="text" name="query" placeholder="¿Qué buscas hoy?" required />
                 <button style="display: none;" type="submit">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
                 </button>
