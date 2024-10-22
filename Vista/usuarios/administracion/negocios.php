@@ -42,6 +42,7 @@ session_start();
                 <?php if ($_SESSION['rol'] == 'admin') : ?>
                     <a href="crearNegocio.php" class="dashboard-button">Registra un nuevo negocio</a>
                     <a href="misNegocios.php" class="dashboard-button">Ver y editar mis negocios</a>
+
                 <?php else : ?>
                     <p>No tiene permiso para acceder a esta sección.</p>
                 <?php endif; ?>

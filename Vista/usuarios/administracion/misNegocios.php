@@ -122,54 +122,58 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
         </header>
         <div class="content">
             <div class="tablaNegocios">
-                <div class="header">Logo</div>
-                <div class="header">Nombre</div>
-                <div class="header">Descripcion</div>
-                <div class="header">Direccion</div>
-                <div class="header">Telefono</div>
-                <div class="header">Sitio Web</div>
-
-                <div class="header">Horario</div>
-                <div class="header">Acciones</div>
+                <div class="header-row">
+                    <div class="header">Logo</div>
+                    <div class="header">Nombre</div>
+                    <div class="header">Descripcion</div>
+                    <div class="header">Direccion</div>
+                    <div class="header">Telefono</div>
+                    <div class="header">Sitio Web</div>
+                    <div class="header">Horario</div>
+                    <div class="header">Acciones</div>
+                </div>
                 <?php if (isset($negocios) && !empty($negocios)) : ?>
                     <?php foreach ($negocios as $negocio) : ?>
-                        <div class="campo">
-                            <?php if (isset($negocio['logo']) && !empty($negocio['logo'])) : ?>
-                                <img src="../../../uploads/logos/<?php echo htmlspecialchars($negocio['logo']); ?>"
-                                    alt="Logo del negocio" style="max-width: 100px; max-height: 100px;">
-                            <?php else : ?>
-                                Sin logo
-                            <?php endif; ?>
+                        <div class="negocio-row">
+                            <div class="campo logo">
+                                <?php if (isset($negocio['logo']) && !empty($negocio['logo'])) : ?>
+                                    <img src="../../../uploads/logos/<?php echo htmlspecialchars($negocio['logo']); ?>"
+                                        alt="Logo del negocio" style="max-width: 100px; max-height: 100px;">
+                                <?php else : ?>
+                                    Sin logo
+                                <?php endif; ?>
+                            </div>
+                            <div class="campo nombre">
+                                <?php echo isset($negocio['nombre_negocio']) ? htmlspecialchars($negocio['nombre_negocio']) : 'N/A'; ?>
+                            </div>
+                            <div class="campo descripcion mobile-hidden">
+                                <?php echo isset($negocio['descripcion']) ? htmlspecialchars($negocio['descripcion']) : 'N/A'; ?>
+                            </div>
+                            <div class="campo direccion mobile-hidden">
+                                <?php echo isset($negocio['direccion']) ? htmlspecialchars($negocio['direccion']) : 'N/A'; ?>
+                            </div>
+                            <div class="campo telefono mobile-hidden">
+                                <?php echo isset($negocio['telefono']) ? htmlspecialchars($negocio['telefono']) : 'N/A'; ?>
+                            </div>
+                            <div class="campo sitio-web mobile-hidden">
+                                <a href="<?php echo isset($negocio['sitio_web']) ? (strpos($negocio['sitio_web'], 'http') === 0 ? htmlspecialchars($negocio['sitio_web']) : 'https://' . htmlspecialchars($negocio['sitio_web'])) : '#'; ?>"
+                                    target="_blank">
+                                    <?php echo isset($negocio['sitio_web']) ? htmlspecialchars($negocio['sitio_web']) : 'N/A'; ?>
+                                </a>
+                            </div>
+                            <div class="campo horario mobile-hidden">
+                                <?php echo isset($negocio['horario']) ? htmlspecialchars($negocio['horario']) : 'N/A'; ?>
+                            </div>
+                            <div class="campo acciones">
+                                <button class="boton-editar" data-toggle="modal"
+                                    data-target="#editModal<?php echo htmlspecialchars($negocio['id_negocio']); ?>">Editar</button>
+                                <form action="borrarNegocio.php" method="post" class="borrar-cont">
+                                    <input type="hidden" name="id_negocio"
+                                        value="<?php echo htmlspecialchars($negocio['id_negocio']); ?>">
+                                    <button type="submit" class="boton-borrar">Borrar</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="campo">
-                            <?php echo isset($negocio['nombre_negocio']) ? htmlspecialchars($negocio['nombre_negocio']) : 'N/A'; ?>
-                        </div>
-                        <div class="campo mobile-hidden">
-                            <?php echo isset($negocio['descripcion']) ? htmlspecialchars($negocio['descripcion']) : 'N/A'; ?>
-                        </div>
-                        <div class="campo mobile-hidden">
-                            <?php echo isset($negocio['direccion']) ? htmlspecialchars($negocio['direccion']) : 'N/A'; ?></div>
-                        <div class="campo mobile-hidden">
-                            <?php echo isset($negocio['telefono']) ? htmlspecialchars($negocio['telefono']) : 'N/A'; ?></div>
-                        <div class="campo mobile-hidden">
-                            <a href="<?php echo isset($negocio['sitio_web']) ? (strpos($negocio['sitio_web'], 'http') === 0 ? htmlspecialchars($negocio['sitio_web']) : 'https://' . htmlspecialchars($negocio['sitio_web'])) : '#'; ?>"
-                                target="_blank">
-                                <?php echo isset($negocio['sitio_web']) ? htmlspecialchars($negocio['sitio_web']) : 'N/A'; ?>
-                            </a>
-                        </div>
-
-                        <div class="campo mobile-hidden">
-                            <?php echo isset($negocio['horario']) ? htmlspecialchars($negocio['horario']) : 'N/A'; ?></div>
-                        <div class="campo">
-                            <button class="boton-editar" data-toggle="modal"
-                                data-target="#editModal<?php echo htmlspecialchars($negocio['id_negocio']); ?>">Editar</button>
-
-                            <form action="borrarNegocio.php" method="post" class="borrar-cont">
-                                <input type="hidden" name="id_negocio" value="<?php echo htmlspecialchars($negocio['id_negocio']); ?>">
-                                <button type="submit" class="boton-borrar">Borrar</button>
-                            </form>
-                        </div>
-
                         <!-- Modal -->
                         <div class="modal fade" id="editModal<?php echo htmlspecialchars($negocio['id_negocio']); ?>"
                             tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

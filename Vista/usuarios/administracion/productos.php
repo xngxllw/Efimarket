@@ -53,82 +53,91 @@
             </header>
             <div class="content">
                 <div class="tablaProductos">
-                    <div class="header">Negocio</div>
-                    <div class="header">Producto</div>
                     <div class="header">Foto</div>
-                    <div class="header">Precio</div> <!-- Nueva columna para el precio -->
+                    <div class="header">Producto</div>
+                    <div class="header">Negocio</div>
+                    <div class="header">Precio</div>
                     <div class="header">Acciones</div>
 
                     <?php if (isset($productos) && !empty($productos)) : ?>
-                        <?php foreach ($productos as $producto) : ?>
-                            <div class="campo"><?php echo htmlspecialchars($producto['nombre_negocio']); ?></div>
-                            <div class="campo"><?php echo htmlspecialchars($producto['nombre_producto']); ?></div>
-                            <div class="campo">
-                                <img src="../../../uploads/productos/<?php echo htmlspecialchars($producto['foto_producto']); ?>"
-                                    alt="Producto" style="max-width: 100px; max-height: 100px;">
-                            </div>
-                            <div class="campo"><?php echo htmlspecialchars(number_format($producto['precio'], 2)); ?> COP</div>
-                            <!-- Mostrar el precio formateado -->
-                            <div class="campo">
-                                <button class="boton-editar" data-toggle="modal"
-                                    data-target="#editModal<?php echo htmlspecialchars($producto['id_producto']); ?>">Editar</button>
-                                <form action="borrarProducto.php" method="post" class="borrar-cont">
-                                    <input type="hidden" name="id_producto"
-                                        value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
-                                    <button type="submit" class="boton-borrar">Borrar</button>
+                    <?php foreach ($productos as $producto) : ?>
+                    <div class="campo">
+                        <img src="../../../uploads/productos/<?php echo htmlspecialchars($producto['foto_producto']); ?>"
+                            alt="Producto" style="max-width: 100px; max-height: 100px;">
+                    </div>
+                    <div class="campo"><?php echo htmlspecialchars($producto['nombre_producto']); ?></div>
+                    <div class="campo"><?php echo htmlspecialchars($producto['nombre_negocio']); ?></div>
+                    <div class="campo"><?php echo htmlspecialchars(number_format($producto['precio'], 2)); ?> COP</div>
+                    <div class="campo acciones">
+                        <button class="boton-editar" data-toggle="modal"
+                            data-target="#editModal<?php echo htmlspecialchars($producto['id_producto']); ?>">Editar</button>
+                        <form action="borrarProducto.php" method="post" class="borrar-cont">
+                            <input type="hidden" name="id_producto"
+                                value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
+                            <button type="submit" class="boton-borrar">Borrar</button>
+                        </form>
+                    </div>
+
+                    <!-- Modal de Edición -->
+                    <div class="modal fade" id="editModal<?php echo htmlspecialchars($producto['id_producto']); ?>"
+                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="actualizarProducto.php" method="post" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id_producto"
+                                            value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
+                                        <input type="hidden" name="id_negocio"
+                                            value="<?php echo htmlspecialchars($producto['id_negocio']); ?>">
+                                        <div class="form-group">
+                                            <label for="nombre_producto">Nombre del Producto</label>
+                                            <input class="form-editar form-control" type="text" id="nombre_producto"
+                                                name="nombre_producto"
+                                                value="<?php echo htmlspecialchars($producto['nombre_producto']); ?>"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="precio">Precio</label>
+                                            <input class="form-editar form-control" type="number" step="0.01"
+                                                id="precio" name="precio"
+                                                value="<?php echo htmlspecialchars($producto['precio']); ?>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="foto_producto">Foto del Producto</label>
+                                            <input type="file" class="form-control" id="foto_producto"
+                                                name="foto_producto">
+                                            <small class="form-text text-muted">Deja este campo vacío si no quieres
+                                                cambiar la foto.</small>
+                                            <?php if (!empty($producto['foto_producto'])): ?>
+                                            <div class="mt-2">
+                                                <img src="../../../uploads/productos/<?php echo htmlspecialchars($producto['foto_producto']); ?>"
+                                                    alt="Producto actual" style="max-width: 100px; max-height: 100px;">
+                                                <p>Foto actual</p>
+                                            </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                    </div>
                                 </form>
                             </div>
-
-                            <!-- Modal de Edición -->
-                            <div class="modal fade" id="editModal<?php echo htmlspecialchars($producto['id_producto']); ?>"
-                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="actualizarProducto.php" method="post" enctype="multipart/form-data">
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id_producto" value="<?php echo htmlspecialchars($producto['id_producto']); ?>">
-                                                <input type="hidden" name="id_negocio" value="<?php echo htmlspecialchars($producto['id_negocio']); ?>">
-                                                <div class="form-group">
-                                                    <label for="nombre_producto">Nombre del Producto</label>
-                                                    <input class="form-editar form-control" type="text" id="nombre_producto" name="nombre_producto" value="<?php echo htmlspecialchars($producto['nombre_producto']); ?>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="precio">Precio</label>
-                                                    <input class="form-editar form-control" type="number" step="0.01" id="precio" name="precio" value="<?php echo htmlspecialchars($producto['precio']); ?>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="foto_producto">Foto del Producto</label>
-                                                    <input type="file" class="form-control" id="foto_producto" name="foto_producto">
-                                                    <small class="form-text text-muted">Deja este campo vacío si no quieres cambiar la foto.</small>
-                                                    <?php if (!empty($producto['foto_producto'])): ?>
-                                                        <div class="mt-2">
-                                                            <img src="../../../uploads/productos/<?php echo htmlspecialchars($producto['foto_producto']); ?>" alt="Producto actual" style="max-width: 100px; max-height: 100px;">
-                                                            <p>Foto actual</p>
-                                                        </div>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
 
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     <?php else : ?>
-                        <div class="campo" colspan="5">No hay productos registrados</div>
-                        <!-- Asegúrate de actualizar el colspan para incluir la nueva columna -->
+                    <div class="campo" colspan="5">No hay productos registrados</div>
+                    <!-- Asegúrate de actualizar el colspan para incluir la nueva columna -->
                     <?php endif; ?>
                 </div>
                 <button style="margin-top: 30px;" class="btn btn-primary mb-3" data-toggle="modal"
@@ -152,8 +161,8 @@
                                     <label for="nombre_negocio">Negocio:</label>
                                     <select class="form-control" id="nombre_negocio" name="nombre_negocio" required>
                                         <?php foreach ($negocios as $negocio) : ?>
-                                            <option value="<?php echo htmlspecialchars($negocio['id_negocio']); ?>">
-                                                <?php echo htmlspecialchars($negocio['nombre_negocio']); ?></option>
+                                        <option value="<?php echo htmlspecialchars($negocio['id_negocio']); ?>">
+                                            <?php echo htmlspecialchars($negocio['nombre_negocio']); ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
