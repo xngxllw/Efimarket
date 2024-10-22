@@ -330,7 +330,9 @@
   display: flex;
   justify-content: center;
   }
-
+.linea-separadora {
+  display: none;
+}
   .cont-accionesVacantes {
     display: flex;
     justify-content: center;
@@ -600,92 +602,151 @@
 
 /* Estilos existentes (no modificar) */
 
-/* Nuevos estilos para la tabla de productos */
-.tablaDeProductos .content {
-  overflow-x: auto;
-}
-
+/* Diseño para escritorio (mantiene las 5 columnas) */
 .tablaProductos {
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1px solid #ccc;
   border-collapse: collapse;
 }
 
-.tablaProductos .header-row {
+.campo {
   display: flex;
-  background-color: #f0f0f0;
-  font-weight: bold;
-}
-
-.tablaProductos .header {
-  flex: 1;
+  align-items: center;
+  justify-content: center;
   padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
 }
 
-.tablaProductos .producto-row {
-  display: flex¿;
-  border-bottom: 1px solid #ddd;
-}
-
-.tablaProductos .campo {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-.tablaProductos .campo.foto img {
+.campo img {
   max-width: 100px;
   max-height: 100px;
 }
 
-.tablaProductos .campo.acciones {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tablaProductos .boton-editar,
-.tablaProductos .boton-borrar {
-  margin: 0 5px;
-}
-
+/* Ocultar en móviles los campos no deseados */
 @media (max-width: 768px) {
-  .tablaProductos .header-row {
+  /* Se pasa de grid a tarjetas individuales */
+  .tablaProductos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: none;
+  }
+
+  /* Cada producto es una tarjeta con borde */
+  .tablaProductos .campo {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  /* Mostrar solo foto, nombre y acciones en móvil */
+  .tablaProductos .campo:nth-child(3),  /* Campo de Negocio */
+  .tablaProductos .campo:nth-child(4) { /* Campo de Precio */
+    display: none;
+  }
+
+  /* Ajustar tamaño de la imagen para que se adapte al ancho del móvil */
+  .campo img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  /* Botones de acción en fila */
+  .acciones {
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px solid #0097f9;
+    width: 100px;
+   justify-content: center;
+   align-items: center;
+   margin: 0 auto;
+  } 
+
+  .acciones button, .borrar-cont, .boton-editar{
+    width: 100%;
+  }
+  .boton-editar {
+    margin: 0;
+    padding: 0;
+  }
+  .borrar-cont {
+    width: 100%;
+    margin-right: 10px;
+  }
+  /* Ocultar negocio y precio solo en móviles */
+@media (max-width: 768px) {
+  .negocio-header, .negocio-campo, .precio-header, .precio-campo, .header {
+      display: none;
+  }
+  .campo {
+    box-shadow: none;
+    border: none;
+  }
+  .acciones {
+    border-bottom: 1px solid #0097f9;
+    padding-bottom: 20px;
+  }
+}
+.linea-separadora {
+  display: block;
+  border: 0;
+  height: 1px;
+  background-color: #0097f9; /* Color de la línea */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+}
+/* Estilos generales para pantalla grande */
+.vacantesGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); /* 8 columnas */
+}
+
+.header {
+  font-weight: bold;
+}
+
+.campo {
+  padding: 10px;
+}
+
+/* Ocultar columnas innecesarias en pantallas pequeñas */
+@media (max-width: 1010px) {
+  .vacantesGrid {
+      grid-template-columns: repeat(3, 1fr); /* Solo mostrar 3 columnas */
+      gap: none;
+      border: none;
+  }
+  .campo {
+border: none;
+  }
+  
+
+  /* Ocultar los encabezados que no queremos mostrar */
+  .header.descripcion,
+  .header.requisitos,
+  .header.horario,
+  .header.salario,
+  .header.fecha {
       display: none;
   }
 
-  .tablaProductos .producto-row {
-      flex-direction: column;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-  }
-
-  .tablaProductos .campo {
-      text-align: left;
-      padding: 10px;
-      border: none;
-      border-bottom: 1px solid #ddd;
-  }
-
-  .tablaProductos .campo:before {
-      content: attr(data-label);
-      float: left;
-      font-weight: bold;
-      margin-right: 10px;
-  }
-
-  .tablaProductos .campo.foto {
-      text-align: center;
-  }
-
-  .tablaProductos .campo.acciones {
-      flex-direction: row;
-      justify-content: flex-start;
-  }
-
-  .tablaProductos .mobile-hidden {
+  /* Ocultar los campos correspondientes */
+  .campo.descripcion,
+  .campo.requisitos,
+  .campo.horario,
+  .campo.salario,
+  .campo.fecha {
       display: none;
   }
 }

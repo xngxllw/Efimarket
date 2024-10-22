@@ -31,7 +31,6 @@
                 $mensajeBienvenida = '¡Bienvenido a Efimarket Ultimate! Empieza a explorar tus beneficios';
                 $esUltimate = true;
                 break;
-                break;
             default:
                 $logo = 'images/letras.png'; // Logo por defecto en caso de error
                 break;

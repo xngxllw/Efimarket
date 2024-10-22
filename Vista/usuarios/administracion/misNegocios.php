@@ -36,32 +36,32 @@ $negocios = $controladorNegocios->obtenerNegociosPorUsuario($id_usuario);
 </head>
 
 <body>
-    <nav>
-        <a class="hamburger link" href="#" onclick="toggleHamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
-        <a class="logo link" href="../../index.php"><img width="260" src="../../images/letras.png" alt=""></a>
-        <div class="user-icon" onclick="toggleMenu()">
-            <i class="fas fa-user-circle"></i>
-            <div class="dropdown-menu" id="dropdownMenu">
-                <?php
-                session_start();
-                include('../../../Controlador/controlador.php');
+        <nav>
+            <a class="hamburger link" href="#" onclick="toggleHamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
+            <a class="logo link" href="../../index.php"><img width="260" src="../../images/letras.png" alt=""></a>
+            <div class="user-icon" onclick="toggleMenu()">
+                <i class="fas fa-user-circle"></i>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <?php
+                    session_start();
+                    include('../../../Controlador/controlador.php');
 
-                if (isset($_SESSION['rol'])) {
-                    if ($_SESSION['rol'] == 'admin') {
-                        echo '<a href="panel.php">Panel de Administrador</a>';
-                        echo '<a href="../clientes/perfil.php">Mi Perfil</a>';
+                    if (isset($_SESSION['rol'])) {
+                        if ($_SESSION['rol'] == 'admin') {
+                            echo '<a href="panel.php">Panel de Administrador</a>';
+                            echo '<a href="../clientes/perfil.php">Mi Perfil</a>';
+                        } else {
+                            echo '<a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a>';
+                        }
+                        echo '<a href="../../../Controlador/logout.php">Cerrar Sesión</a>';
                     } else {
-                        echo '<a href="../Vista/usuarios/clientes/perfil.php">Mi Perfil</a>';
+                        echo '<a href="login.php">Iniciar Sesión</a>';
+                        echo '<a href="registro.php">Registrarse</a>';
                     }
-                    echo '<a href="../../../Controlador/logout.php">Cerrar Sesión</a>';
-                } else {
-                    echo '<a href="login.php">Iniciar Sesión</a>';
-                    echo '<a href="registro.php">Registrarse</a>';
-                }
-                ?>
+                    ?>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
 
 
